@@ -2,3 +2,78 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: rgb(240,242,245); }
+
+.ancho{
+    width: 100%;
+}
+
+.pad10{
+    padding: 10px;
+}
+
+.pad0 {
+    padding: 0;
+}
+
+.marg0 {
+    margin: 0;
+}
+
+.padIzq{
+    padding-left: 5px;
+}
+
+.padDer{
+    padding-right: 5px;
+}
+
+.margTop{
+    margin-top: 10px;
+}
+
+.margBot{
+    margin-bottom: 10px;
+}
+
+.margIzq{
+    margin-left: 10px;
+}
+
+.margDer{
+    margin-right: 10px;
+}
+
+.marg10{
+    margin: 10px;
+}
+
+.centrar{
+    text-align: center;
+    text-align: -moz-center;
+}
+
+.centro{
+    justify-content: center;
+    
+}
+
+.primary{ 
+    background: #eafdf9 !important;
+};
+
+.secondary{ 
+    background: #0D9A80 !important;
+};
+
+.tertiary{
+    background: #095F4F !important;
+    color: white
+}
