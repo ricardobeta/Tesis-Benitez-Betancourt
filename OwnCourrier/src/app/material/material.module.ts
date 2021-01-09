@@ -26,7 +26,6 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
 
 
-
 @NgModule({
   declarations: [],
   imports: [
