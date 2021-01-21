@@ -6,25 +6,26 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatSelectModule} from '@angular/material/select';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatDialogModule} from '@angular/material/dialog';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {ClipboardModule} from '@angular/cdk/clipboard';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatTabsModule} from '@angular/material/tabs';
-
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule} from '@angular/material/input';
+import { MatCardModule} from '@angular/material/card';
+import { MatExpansionModule} from '@angular/material/expansion';
+import { MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSelectModule} from '@angular/material/select';
+import { MatChipsModule} from '@angular/material/chips';
+import { MatDialogModule} from '@angular/material/dialog';
+import { DragDropModule} from '@angular/cdk/drag-drop';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatTooltipModule} from '@angular/material/tooltip';
+import { MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule} from '@angular/material/paginator';
+import { ClipboardModule} from '@angular/cdk/clipboard';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatMenuModule} from '@angular/material/menu';
+import { MatTabsModule} from '@angular/material/tabs';
+import { ReactiveFormsModule} from '@angular/forms';
+ 
 
 @NgModule({
   declarations: [],
@@ -53,7 +54,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     ClipboardModule,
     MatProgressSpinnerModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    ReactiveFormsModule
   ],
   exports: [
     LayoutModule,
@@ -79,7 +81,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     ClipboardModule,
     MatProgressSpinnerModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    ReactiveFormsModule
   ]
 })
 export class MaterialModule { }

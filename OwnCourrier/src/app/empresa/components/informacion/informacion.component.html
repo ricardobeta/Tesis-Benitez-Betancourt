@@ -1,30 +1,320 @@
-<div class="row ancho">
-    <div class="col-xs-12">
-        <div class="row marg10">
-            <div class="col-xs-6">
-                <mat-card>
-                    <mat-card-header>
-                        <mat-card-title>
-                            DATOS PRINCIPALES
-                        </mat-card-title>
-                        <mat-card-content>
+<mat-card class="marg10" style="margin-bottom: 100px;">
+    <mat-card-content>
+        <form [formGroup]="form">
 
-                        </mat-card-content>
-                    </mat-card-header>
-                </mat-card>
+            <mat-card-title class="marg10">Información de la Empresa</mat-card-title>
+            <mat-card-subtitle>Presione <strong>Editar</strong> para habilitar la edición del formulario e imágenes
+            </mat-card-subtitle>
+
+
+            <div class="row ancho margTop">
+
+                <div class="col-xs-12 col-sm-3">
+                    <div class="row ancho center-xs margTop margBot">
+                        <div class="col-xs-12 centrar">
+                            <img class="imgLogo" *ngIf="urlLogoField.value !== '' && banderaImagen === false"
+                                src="{{urlLogoField.value}}" alt="Registro empresa logo" width="100px" height="100px">
+                            <div *ngIf="banderaImagen === true">
+                                <div class="row center-xs bottom-xs" style="height: 100%;">
+                                    <mat-spinner></mat-spinner>
+                                    <div class="col-xs-12">
+                                        <h5>Actualizando imagen...</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="height: 100px; width: 100%; color: gray;" *ngIf="imgField.value !== ''">
+
+                                <mat-icon>cloud_upload</mat-icon> Actualizar para cargar la imagen <span
+                                    style="font-style: italic;">"{{imgField.value.name}}"</span>
+                                <br>
+                                <!-- <div>
+                                    <div class="row center-xs bottom-xs" style="height: 100%;">
+                                        <mat-spinner></mat-spinner>
+                                        <div class="col-xs-12">
+                                            <h1></h1>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+
+
+                            <input class="ng-hide btn-edit-icono" id="input-file-id" accept=".png, .jpg"
+                                (change)="cargarImagen($event)" type="file" />
+                            <label for="input-file-id" class="btn-edit-icono" mat-mini-fab style="cursor: pointer;"
+                                *ngIf="imgField.value === '' && showIcono === true" >
+                                <mat-icon>camera_alt</mat-icon>
+                            </label>
+
+                            <button style="position: relative;" class="btn-edit-icono" mat-mini-fab
+                                *ngIf="imgField.value !== ''" (click)="eliminarImagen(); cerrarSnackBar()"
+                                matTooltip="Eliminar {{imgField.value.name}}" matTooltipPosition="below">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row ancho center-xs margTop margBot">
+                        <div class="col-xs-12 margIzq margBot">
+                            <button (click)="desbloquearCampos()" type="button" class="ancho-btn" mat-raised-button
+                                color="primary">
+                                <mat-icon>edit</mat-icon> Editar
+                            </button>
+                        </div>
+                        <div class="col-xs-12 margIzq margBot">
+                            <button class="ancho-btn" mat-raised-button color="primary">
+                                <mat-icon>store</mat-icon> Ir a Tienda
+                            </button>
+                        </div>
+
+                        <div class="row ancho center-xs margBot margTop">
+                            <div class="col-xs-12">
+                                <mat-card-subtitle class="marg10">NAVEGACIÓN</mat-card-subtitle>
+                                <mat-card-subtitle class="marg10 titulos">Información de la Empresa</mat-card-subtitle>
+                                <mat-card-subtitle class="marg10 titulos">Información de Contacto</mat-card-subtitle>
+                                <mat-card-subtitle class="marg10 titulos">Información Interna</mat-card-subtitle>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-9">
+                    <div class="row ancho end-xs margBot">
+                        <div class="col-xs-12 centrar">
+                            <mat-card-subtitle class="marg10 start-xs">Imagen de la portada</mat-card-subtitle>
+                            <img *ngIf="urlPortadaField.value !== '' && banderaImagenP === false" class="imgS margBot"
+                                src="{{urlPortadaField.value}}" alt="Registro empresa logo portada">
+
+                            <div *ngIf="banderaImagenP === true">
+                                <div class="row center-xs bottom-xs" style="height: 100%;">
+                                    <mat-spinner></mat-spinner>
+                                    <div class="col-xs-12">
+                                        <h5>Actualizando imagen...</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="height: 100px; width: 80%; color: gray;" *ngIf="imgFieldPortada.value !== ''">
+                                <mat-icon>cloud_upload</mat-icon> Actualizar para cargar la imagen <span
+                                    style="font-style: italic;">"{{imgFieldPortada.value.name}}"</span>
+                                <br>
+                            </div>
+
+                            <!-- <button class="btn-edit-icono2 end-xs" mat-raised-button>
+                                Editar imagen <mat-icon>camera_alt</mat-icon>
+                            </button> -->
+
+                            <input class="ng-hide btn-edit-icono2" id="input-file-idP" accept=".png, .jpg"
+                                (change)="cargarImagenPortada($event)" type="file" />
+                            <label for="input-file-idP" class=" but-upload" mat-raised-button style="cursor: pointer;"
+                                *ngIf="imgFieldPortada.value === '' && showIcono === true"
+                                >&nbsp;Editar imagen &nbsp;
+                                <mat-icon>camera_alt</mat-icon>
+                            </label>
+
+                            <button style="position: relative;" class="btn-edit-icono2" mat-mini-fab
+                                *ngIf="imgFieldPortada.value !== ''" (click)="eliminarImagenPortada(); cerrarSnackBar()"
+                                matTooltip="Eliminar {{imgFieldPortada.value.name}}" matTooltipPosition="below">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row ancho">
+                        <div class="col-xs-12">
+                            <mat-form-field appearance="outline" class="ancho">
+                                <mat-label>Nombre de la empresa</mat-label>
+                                <input matInput placeholder="Ingrese el nombre de la empresa"
+                                    formControlName="nombreEmpresa">
+                                <mat-icon matSuffix>business</mat-icon>
+                                <mat-error>* Campo Obligatorio</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row ancho">
+                        <div class="col-xs-12">
+                            <mat-form-field appearance="outline" class="ancho">
+                                <mat-label>Tipo de empresa</mat-label>
+                                <input matInput placeholder="Ingrese el nombre de la empresa" formControlName="tipo">
+                                <mat-icon matSuffix>business_center</mat-icon>
+                                <mat-error>* Campo Obligatorio</mat-error>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row ancho">
+                        <div class="col-xs-12">
+                            <mat-form-field appearance="outline" class="ancho">
+                                <mat-label>Número celular</mat-label>
+                                <input matInput placeholder="Ingrese su número de celular" formControlName="celular">
+                                <mat-icon matSuffix>call</mat-icon>
+                                <mat-error>* Campo Obligatorio</mat-error>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row ancho">
+                        <div class="col-xs-12">
+                            <mat-form-field appearance="outline" class="ancho">
+                                <mat-label>Correo electrónico</mat-label>
+                                <input matInput placeholder="Ingrese su correo electrónico" formControlName="correo">
+                                <mat-icon matSuffix>email</mat-icon>
+                                <mat-error>* Campo Obligatorio</mat-error>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row ancho">
+                        <div class="col-xs-12">
+                            <mat-form-field appearance="outline" class="ancho">
+                                <mat-label>Categoría de la empresa</mat-label>
+                                <mat-select formControlName="categoria">
+                                    <mat-option value="tecnologia">Tecnología</mat-option>
+                                    <mat-option value="ropa">Ropa</mat-option>
+                                    <mat-option value="hogar">Hogar</mat-option>
+                                    <mat-option value="automotriz">Automotriz</mat-option>
+                                </mat-select>
+                                <mat-error>* Campo Obligatorio</mat-error>
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+
+                    <div class="row ancho">
+                        <div class="col-xs-12">
+                            <mat-form-field class="example-chip-list" appearance="outline" class="ancho">
+                                <mat-label>Palabras clave</mat-label>
+
+                                <mat-chip-list #chipList>
+                                    <mat-chip *ngFor="let fruit of palabras" [selectable]="selectable"
+                                        [removable]="removable" (removed)="remove(fruit)">
+                                        {{fruit}}
+                                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                    </mat-chip>
+                                    <input placeholder="Nueva palabra clave" [matChipInputFor]="chipList"
+                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                        [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"
+                                        formControlName="palabrasClave">
+                                </mat-chip-list>
+                                <mat-hint>Presionar ENTER o (,) para ingresar una nueva palabra</mat-hint>
+
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+
+                    <div class="row ancho margTop">
+                        <div class="col-xs-12">
+                            <mat-form-field appearance="outline" class="ancho">
+                                <mat-label>Descripción de la empresa</mat-label>
+                                <textarea matInput rows="8" formControlName="descripcion"></textarea>
+                                <mat-error>* Campo Obligatorio</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
-            <div class="col-xs-6">
-                <mat-card>
-                    <mat-card-header>
-                        <mat-card-title>
-                            DATOS GENERALES
-                        </mat-card-title>
-                        <mat-card-content>
-                            
-                        </mat-card-content>
-                    </mat-card-header>
-                </mat-card>
+
+            <mat-card-title class="marg10">Información de Contacto</mat-card-title>
+
+
+            <div class="row ancho margTop">
+                <div class="col-xs-12">
+                    <mat-form-field appearance="outline" class="ancho">
+                        <mat-label>Dirección</mat-label>
+                        <input matInput placeholder="Ingrese la dirección de la empresa" formControlName="direccion">
+                        <mat-icon matSuffix>place</mat-icon>
+                        <mat-error>* Campo Obligatorio</mat-error>
+                    </mat-form-field>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+
+            <div class="row ancho margTop">
+                <div class="col-xs-12 col-sm-6">
+                    <img class="margDer" src="./assets/prueba/icono-fb.png" alt="" width="25px" height="25px">
+                    <mat-form-field appearance="outline" class="ancho90">
+                        <mat-label>Facebook</mat-label>
+                        <input matInput placeholder="URL Facebook" formControlName="urlfacebook">
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                    </mat-form-field>
+
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <img class="margDer" src="./assets/prueba/icono-insta.png" alt="" width="25px" height="25px">
+                    <mat-form-field appearance="outline" class="ancho90">
+                        <mat-label>Instagram</mat-label>
+                        <input matInput placeholder="URL Instagram" formControlName="urlinsta">
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                    </mat-form-field>
+
+                </div>
+            </div>
+
+            <div class="row ancho margTop">
+                <div class="col-xs-12 col-sm-6">
+                    <img class="margDer" src="./assets/prueba/icono-tw.png" alt="" width="25px" height="25px">
+                    <mat-form-field appearance="outline" class="ancho90">
+                        <mat-label>Twitter</mat-label>
+                        <input matInput placeholder="URL Twitter" formControlName="urltwitter">
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                    </mat-form-field>
+
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <mat-icon class="margDer">contact_phone</mat-icon>
+                    <mat-form-field appearance="outline" class="ancho90">
+                        <mat-label>Número de teléfono</mat-label>
+                        <input matInput placeholder="Número de teléfono" formControlName="telefono">
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                    </mat-form-field>
+
+                </div>
+            </div>
+
+
+            <mat-card-title class="marg10">Información Interna</mat-card-title>
+
+            <div class="row ancho margTop">
+                <div class="col-xs-12">
+                    <mat-form-field appearance="outline" class="ancho">
+                        <mat-label>¿Quiénes somos?</mat-label>
+                        <textarea matInput rows="8" formControlName="quienes"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="row ancho margTop">
+                <div class="col-xs-12 col-sm-6">
+                    <mat-form-field appearance="outline" class="ancho">
+                        <mat-label>Misión de la empresa</mat-label>
+                        <textarea matInput rows="8" formControlName="mision"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <mat-form-field appearance="outline" class="ancho">
+                        <mat-label>Visión de la empresa</mat-label>
+                        <textarea matInput rows="8" formControlName="vision"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- <div class="row ancho margTop center-xs end-sm">
+                <div class="col-xs-12">
+                    <button mat-raised-button color="primary" style="margin-bottom: 5px;">
+                        <mat-icon>save</mat-icon> Guardar
+                    </button>
+                    &nbsp;
+                    <button mat-raised-button color="warn" style="margin-bottom: 5px;" type="button">
+                        <mat-icon>close</mat-icon> Cancelar
+                    </button>
+                    &nbsp;
+                </div>
+            </div> -->
+        </form>
+    </mat-card-content>
+</mat-card>
