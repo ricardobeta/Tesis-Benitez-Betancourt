@@ -1,0 +1,95 @@
+.ancho90{
+    width: 90%;
+}
+
+.btn-edit-icono{
+    background: none;
+    color: black;
+    position: absolute;
+}
+
+.btn-edit-icono2{
+    background: none;
+    color: black;
+}
+
+.ancho-btn{
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .ancho-btn{
+        width: 50%;
+    }
+} 
+
+@media screen and (max-width: 320px) {
+    .ancho-btn{
+        width: 100%;
+    }
+
+    .imgS {
+        width: 100%;
+    }
+} 
+
+@media screen and (max-width: 767px) {
+
+    .imgS {
+        width: 100% !important;
+    }
+}
+
+.imgLogo{
+    border-radius: 10px;
+}
+
+.imgS {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 60%;
+    height: 35vh;
+    border-radius: 50px;
+}
+
+.titulos{
+    color: gray;
+    cursor: pointer;
+}
+
+.titulos:hover{
+    color: black;
+}
+
+.but-upload {
+  // align-items: center;
+  display: flex;
+  // justify-content: end;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: none;
+  color: black;
+  width: max-content;
+  border: 1px solid lightgray;
+}
+
+.ng-hide {
+  display: none;
+}
+
+.but-upload:hover{
+    background-color: lightgray;
+}
+
+.loader {
+    background: rgba(128, 218, 198, 0.692);
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+}
+
