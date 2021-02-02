@@ -29,6 +29,9 @@ export class InformacionComponent implements OnInit, OnDestroy {
   showIcono = false;
   banderaImagen = false;
   banderaImagenP = false;
+  hideA = true;
+  hideN = true;
+  hideVN = true;
 
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
