@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { RegistroEmpresa } from 'src/app/core/models/registro.model';
 
 @Component({
   selector: 'app-confirmacion',
@@ -8,9 +10,28 @@ import { FormGroup } from '@angular/forms';
 })
 export class ConfirmacionComponent implements OnInit {
   form: FormGroup;
-  constructor() { }
+  dataRegistro: RegistroEmpresa;
+  verificacion: Promise<firebase.default.auth.ConfirmationResult>;
+  errorCode = false;
+  formBuilder: any;
+  constructor(public dialogRef: MatDialogRef<ConfirmacionComponent>,
+    @Inject(MAT_DIALOG_DATA) public data)  {
+      this.buildForm();
+    }
 
-  ngOnInit(): void {
-  }
+ngOnInit(): void {
+this.dataRegistro = this.data.registro;
+// this.verificacion = this.registroService.sms(this.data.recaptchaVerifier, this.data.registro.celular);
+}
+
+buildForm(){
+this.form = this.formBuilder.group({
+codigo: ['', Validators.required]
+});
+}
+
+verificarSMS(event: Event){
+event.preventDefault();
+}
 
 }
