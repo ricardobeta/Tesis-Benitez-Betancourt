@@ -25,6 +25,7 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatMenuModule} from '@angular/material/menu';
 import { MatTabsModule} from '@angular/material/tabs';
 import { ReactiveFormsModule} from '@angular/forms';
+import {MatStepperModule} from '@angular/material/stepper';
  
 
 @NgModule({
@@ -55,7 +56,8 @@ import { ReactiveFormsModule} from '@angular/forms';
     MatProgressSpinnerModule,
     MatMenuModule,
     MatTabsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatStepperModule
   ],
   exports: [
     LayoutModule,
@@ -82,7 +84,8 @@ import { ReactiveFormsModule} from '@angular/forms';
     MatProgressSpinnerModule,
     MatMenuModule,
     MatTabsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatStepperModule
   ]
 })
 export class MaterialModule { }

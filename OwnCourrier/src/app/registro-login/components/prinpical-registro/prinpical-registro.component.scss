@@ -1,0 +1,20 @@
+.fondo{
+    height: 100vh;
+    width: 100%;
+    // background: url(../../../../assets/fondo.jpg) no-repeat center;
+    background-color: rgb(93, 213, 253);
+    z-index: 0;
+    position: absolute;
+}
+
+.logo {
+    width: 60%;
+    height: auto;
+}
+
+.rowUP {
+    z-index: 2;
+    position: relative;
+    padding-top: 20px;
+    height: 100vh;
+}

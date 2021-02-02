@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
@@ -16,11 +16,21 @@ const routes: Routes = [
         loadChildren: () => import('./empresa/empresa.module').then(m => m.EmpresaModule)
       }   
     ]
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./registro-login/registro-login.module').then(m => m.RegistroLoginModule)
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,
+    {
+      preloadingStrategy: PreloadAllModules,
+      relativeLinkResolution: 'legacy',
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled'
+    })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
