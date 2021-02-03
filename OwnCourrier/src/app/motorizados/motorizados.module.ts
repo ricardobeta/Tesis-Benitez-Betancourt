@@ -7,6 +7,7 @@ import { MaterialModule } from '../material/material.module';
 import { ConductoresComponent } from './components/conductores/conductores.component';
 import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
 import { CrearConductorComponent } from './components/crear-conductor/crear-conductor.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { CrearConductorComponent } from './components/crear-conductor/crear-cond
   imports: [
     CommonModule,
     MotorizadosRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class MotorizadosModule { }
