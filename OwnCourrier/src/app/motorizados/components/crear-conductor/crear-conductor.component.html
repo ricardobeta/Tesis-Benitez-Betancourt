@@ -3,7 +3,9 @@
         <mat-card>
             <mat-card-header>
                 <h1 class="titulo">
-                    Registro de Conductor
+                    <strong>
+                        Registro de Conductor
+                    </strong>
                 </h1>
             </mat-card-header>
             <form [formGroup]="form" (ngSubmit)="guardarConductor($event)">
@@ -35,7 +37,7 @@
                                 Foto Conductor Cargada Correctamente
                             </div>
                             <div class="col-xs-12">
-                                <button mat-raised-button color="warn" type="button" (click)="eliminarFotoConductor()">
+                                <button mat-raised-button color="primary" type="button" (click)="eliminarFotoConductor()">
                                     Eliminar Imagen
                                 </button>
                             </div>
@@ -65,7 +67,7 @@
                                 Licencia Cargada Correctamente
                             </div>
                             <div class="col-xs-12">
-                                <button mat-raised-button color="warn" type="button" (click)="eliminarLicencia()">
+                                <button mat-raised-button color="primary" type="button" (click)="eliminarLicencia()">
                                     Eliminar Imagen
                                 </button>
                             </div>
@@ -78,7 +80,7 @@
                                     <mat-label>
                                         Cédula de Identidad
                                     </mat-label>
-                                    <input matInput placeholder="Ingrese la cédula del conductor" formControlName="cedula">
+                                    <input matInput placeholder="Ingrese la cédula del conductor" formControlName="cedula" autocomplete="off">
     
                                 </mat-form-field>
                             </div>
@@ -87,7 +89,7 @@
                                     <mat-label>
                                         Nombre Completo
                                     </mat-label>
-                                    <input matInput placeholder="Ingrese el nombre completo del conductor" formControlName="nombreCompleto">
+                                    <input matInput placeholder="Ingrese el nombre completo del conductor" formControlName="nombreCompleto" autocomplete="off">
                                 </mat-form-field>
                             </div>
                             <div class="col-xs-12">
@@ -95,7 +97,7 @@
                                     <mat-label>
                                         Fecha de nacimiento
                                     </mat-label>
-                                    <input matInput type="date" placeholder="Ingrese la fecha de nacimiento del conductor" formControlName="fechaNacimiento">
+                                    <input matInput type="date" placeholder="Ingrese la fecha de nacimiento del conductor" formControlName="fechaNacimiento" autocomplete="off">
                                 </mat-form-field>
                             </div>
                             <div class="col-xs-12">
@@ -103,7 +105,7 @@
                                     <mat-label>
                                         Correo Electronico
                                     </mat-label>
-                                    <input matInput placeholder="Ingrese el Correo del conductor" formControlName="correo">
+                                    <input matInput placeholder="Ingrese el Correo del conductor" formControlName="correo" autocomplete="off">
                                 </mat-form-field>
                             </div>
                             <div class="col-xs-12">
@@ -111,7 +113,7 @@
                                     <mat-label>
                                         Número de Célular
                                     </mat-label>
-                                    <input matInput type="tel" placeholder="Ingrese el número de célular del conductor" formControlName="celular">
+                                    <input matInput type="tel" placeholder="Ingrese el número de célular del conductor" formControlName="celular" autocomplete="off">
                                 </mat-form-field>
                             </div>
                             <div class="col-xs-12">
@@ -119,7 +121,7 @@
                                     <mat-label>
                                         Dirección
                                     </mat-label>
-                                    <textarea matInput placeholder="Ingrese la dirección del Conductor" formControlName="direccion"></textarea>
+                                    <textarea matInput placeholder="Ingrese la dirección del Conductor" formControlName="direccion" autocomplete="off"></textarea>
                                 </mat-form-field>
                             </div>
                         </div>
