@@ -148,17 +148,17 @@ export class InformacionComponent implements OnInit, OnDestroy {
       // if (this.imgField.value.size <= max_size_image || this.imgFieldPortada.value.size <= max_size_image) {
         console.log(this.form.value);
         const info = this.form.value as Negocio;
-        info.palabrasClave = this.palabras;
+        // info.palabrasClave = this.palabras;
         // console.log(this.imgField.value.size);
-        if (info.file) {
-          this.banderaImagen = true;
+       // if (info.file) {
+         // this.banderaImagen = true;
           /*this.negociosService.modificarInfoNegocioLogo(info, this.auxKey).then(() =>
             setTimeout(() => {
 
               this.banderaImagen = false;
             }, 1500)
           );*/
-        }
+        //}
 
         /*if (info.filePortada) {
           this.banderaImagenP = true;

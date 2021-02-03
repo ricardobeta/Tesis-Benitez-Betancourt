@@ -14,7 +14,11 @@ const routes: Routes = [
       {
         path: 'informacion',
         loadChildren: () => import('./empresa/empresa.module').then(m => m.EmpresaModule)
-      }   
+      },
+      {
+        path: 'motorizados',
+        loadChildren: () => import('./motorizados/motorizados.module').then(m => m.MotorizadosModule)
+      }  
     ]
   },
   {

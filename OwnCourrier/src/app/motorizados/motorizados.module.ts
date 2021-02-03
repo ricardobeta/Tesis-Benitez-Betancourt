@@ -2,13 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MotorizadosRoutingModule } from './motorizados-routing.module';
+import { PrincipalComponent } from './components/principal/principal.component';
+import { MaterialModule } from '../material/material.module';
+import { ConductoresComponent } from './components/conductores/conductores.component';
+import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
+import { CrearConductorComponent } from './components/crear-conductor/crear-conductor.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [PrincipalComponent, ConductoresComponent, VehiculosComponent, CrearConductorComponent],
   imports: [
     CommonModule,
-    MotorizadosRoutingModule
+    MotorizadosRoutingModule,
+    MaterialModule
   ]
 })
 export class MotorizadosModule { }

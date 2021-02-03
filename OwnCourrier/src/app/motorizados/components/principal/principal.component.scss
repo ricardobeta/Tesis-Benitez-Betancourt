@@ -1,0 +1,19 @@
+.contenedor {
+    height: 90%;
+    width: 100%;
+    background-color: transparent;
+    align-items: center;
+    display: flex;
+    justify-content: center; 
+}
+
+::ng-deep mat-icon#but {
+    font-size: 100px;
+    width: auto;
+    height: auto;
+    color: #950c0c;
+}
+
+::ng-deep .col-md-6 mat-card {
+    min-height: 220px;
+}

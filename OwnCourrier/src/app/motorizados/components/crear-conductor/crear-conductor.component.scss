@@ -1,0 +1,20 @@
+.but-upload {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: rgb(63,81,181);
+    color: white;
+    height: 25vh;
+    width: 100%;
+  }
+  .ng-hide {
+    display: none;
+  }
+
+  mat-icon#per {
+    font-size: 15vh;
+    width: auto;
+    height: auto;
+  }

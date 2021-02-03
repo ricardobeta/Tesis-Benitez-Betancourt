@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RegistroEmpresa } from 'src/app/core/models/registro.model';
 
@@ -13,9 +13,9 @@ export class ConfirmacionComponent implements OnInit {
   dataRegistro: RegistroEmpresa;
   verificacion: Promise<firebase.default.auth.ConfirmationResult>;
   errorCode = false;
-  formBuilder: any;
   constructor(public dialogRef: MatDialogRef<ConfirmacionComponent>,
-    @Inject(MAT_DIALOG_DATA) public data)  {
+    @Inject(MAT_DIALOG_DATA) public data,
+    private formBuilder: FormBuilder)  {
       this.buildForm();
     }
 

@@ -70,9 +70,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 };
 
 .secondary{ 
-    background: #f56a6a !important;
+    background: #950c0c !important;
 };
-
+.titulo {
+    color: #950c0c;
+    font-weight: bolder;
+}
 .tertiary{
     background: #004AAD!important;
     color: white
