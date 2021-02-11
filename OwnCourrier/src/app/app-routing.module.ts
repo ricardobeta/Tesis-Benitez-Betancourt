@@ -5,6 +5,10 @@ import { LayoutComponent } from './layout/layout.component';
 const routes: Routes = [
   {
     path: '',
+    loadChildren: () => import('./registro-login/registro-login.module').then(m => m.RegistroLoginModule)
+  },
+  {
+    path: ':id',
     component: LayoutComponent,
     children: [
       {
@@ -22,7 +26,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'registro',
+    path: '',
     loadChildren: () => import('./registro-login/registro-login.module').then(m => m.RegistroLoginModule)
   }
 ];
