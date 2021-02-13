@@ -8,7 +8,11 @@ const routes: Routes = [
     loadChildren: () => import('./registro-login/registro-login.module').then(m => m.RegistroLoginModule)
   },
   {
-    path: ':id',
+    path: 'conductor',
+    loadChildren: () => import('./conductor/conductor.module').then( m => m.ConductorModule)
+  },
+  {
+    path: 'empresa/:id',
     component: LayoutComponent,
     children: [
       {
@@ -25,10 +29,7 @@ const routes: Routes = [
       }  
     ]
   },
-  {
-    path: '',
-    loadChildren: () => import('./registro-login/registro-login.module').then(m => m.RegistroLoginModule)
-  }
+
 ];
 
 @NgModule({
