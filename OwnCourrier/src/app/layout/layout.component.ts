@@ -27,7 +27,7 @@ export class LayoutComponent implements OnInit {
       { link: '', icono: 'local_shipping', nombre: 'Envíos', tipo: null },
       { link: 'motorizados', icono: 'directions_bike', nombre: 'Motorizados', tipo: null },
       { link: '', icono: 'contacts', nombre: 'Clientes', tipo: null },
-      { link: '', icono: 'settings', nombre: 'Configuración', tipo: null },
+      { link: 'informacion', icono: 'settings', nombre: 'Configuración', tipo: null },
       { link: '', icono: 'login', nombre: 'Cerrar Sesión', tipo: null }
     ];
   }

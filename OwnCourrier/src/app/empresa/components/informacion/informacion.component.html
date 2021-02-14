@@ -10,152 +10,17 @@
 
             <div class="row ancho margTop">
 
-                <div class="col-xs-12 col-sm-3">
-                    <div class="row ancho center-xs margTop margBot">
-                        <div class="col-xs-12 centrar">
-                            <img class="imgLogo" *ngIf="urlLogoField.value !== '' && banderaImagen === false"
-                                src="{{urlLogoField.value}}" alt="Registro empresa logo" width="100px" height="100px">
-                            <div *ngIf="banderaImagen === true">
-                                <div class="row center-xs bottom-xs" style="height: 100%;">
-                                    <mat-spinner></mat-spinner>
-                                    <div class="col-xs-12">
-                                        <h5>Actualizando imagen...</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="height: 100px; width: 100%; color: gray;" *ngIf="imgField.value !== ''">
-
-                                <mat-icon>cloud_upload</mat-icon> Actualizar para cargar la imagen <span
-                                    style="font-style: italic;">"{{imgField.value.name}}"</span>
-                                <br>
-                            </div>
-
-
-                            <input class="ng-hide btn-edit-icono" id="input-file-id" accept=".png, .jpg"
-                                (change)="cargarImagen($event)" type="file" />
-                            <label for="input-file-id" class="btn-edit-icono" mat-mini-fab style="cursor: pointer;"
-                                *ngIf="imgField.value === '' && showIcono === true">
-                                <mat-icon>camera_alt</mat-icon>
-                            </label>
-
-                            <button style="position: relative;" class="btn-edit-icono" mat-mini-fab
-                                *ngIf="imgField.value !== ''" (click)="eliminarImagen(); cerrarSnackBar()"
-                                matTooltip="Eliminar {{imgField.value.name}}" matTooltipPosition="below">
-                                <mat-icon>close</mat-icon>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row ancho center-xs margTop margBot">
-                        <div class="col-xs-12 margIzq margBot margTop-btn-editar">
-                            <button (click)="desbloquearCampos()" type="button" class="ancho-btn" mat-raised-button
-                                color="primary">
-                                <mat-icon>edit</mat-icon> Editar
-                            </button>
-                        </div>
-
-
-                    </div>
+                <div class="col-xs-12 col-sm-6">
+                    <mat-card-subtitle class="marg10 centrar">INFORMACIÓN DE LA EMPRESA</mat-card-subtitle>
+                    <app-info-empresa></app-info-empresa>
                 </div>
 
-                <div class="col-xs-12 col-sm-9">
+                <div class="col-xs-12 col-sm-6">
+
 
                     <mat-card-subtitle class="marg10 centrar">INFORMACIÓN INICIO DE SESIÓN</mat-card-subtitle>
 
-                    <div class="row ancho">
-                        <div class="col-xs-12">
-                            <mat-form-field appearance="outline" class="ancho">
-                                <mat-label>Nombre de la empresa</mat-label>
-                                <input matInput placeholder="Ingrese el nombre de la empresa"
-                                    formControlName="nombreEmpresa">
-                                <mat-icon matSuffix>business</mat-icon>
-                                <mat-error>* Campo Obligatorio</mat-error>
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="row ancho">
-                        <div class="col-xs-12">
-                            <mat-form-field appearance="outline" class="ancho">
-                                <mat-label>Número de Celular</mat-label>
-                                <input matInput placeholder="Ingrese el nombre de la empresa" formControlName="tipo">
-                                <mat-icon matSuffix>phone_enabled</mat-icon>
-                                <mat-error>* Campo Obligatorio</mat-error>
-                                <!-- <mat-hint>Hint</mat-hint> -->
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <mat-card-subtitle class="marg10 centrar">INFORMACIÓN INICIO DE SESIÓN</mat-card-subtitle>
-
-
-                    <div class="row ancho">
-                        <div class="col-xs-12">
-                            <mat-form-field appearance="outline" class="ancho">
-                                <mat-label>Nombre de Usuario</mat-label>
-                                <input matInput placeholder="Ingrese su número de celular" formControlName="celular">
-                                <mat-icon matSuffix>person_outline</mat-icon>
-                                <mat-error>* Campo Obligatorio</mat-error>
-                                <!-- <mat-hint>Hint</mat-hint> -->
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="row ancho">
-                        <div class="col-xs-12">
-                            <mat-form-field appearance="outline" class="ancho">
-                                <mat-label>Correo electrónico</mat-label>
-                                <input matInput placeholder="Ingrese su correo electrónico" formControlName="correo">
-                                <mat-icon matSuffix>email</mat-icon>
-                                <mat-error>* Campo Obligatorio</mat-error>
-                                <!-- <mat-hint>Hint</mat-hint> -->
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="row ancho">
-                        <div class="col-xs-12">
-                            <mat-form-field appearance="outline" class="ancho">
-                                <mat-label>Contraseña antigua</mat-label>
-                                <input matInput [type]="hideA ? 'password' : 'text'" placeholder="Ingrese su contraseña antigua">
-                                <button mat-icon-button matSuffix (click)="hideA = !hideA"
-                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideA">
-                                    <mat-icon>{{hideA ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                </button>
-                                <mat-error>* Campo Obligatorio</mat-error>
-                                <!-- <mat-hint>Hint</mat-hint> -->
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="row ancho">
-                        <div class="col-xs-12">
-                            <mat-form-field appearance="outline" class="ancho">
-                                <mat-label>Contraseña nueva</mat-label>
-                                <input matInput [type]="hideN ? 'password' : 'text'" placeholder="Ingrese su contraseña nueva">
-                                <button mat-icon-button matSuffix (click)="hideN = !hideN"
-                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideN">
-                                    <mat-icon>{{hideN ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                </button>
-                                <mat-error>* Campo Obligatorio</mat-error>
-                                <!-- <mat-hint>Hint</mat-hint> -->
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="row ancho">
-                        <div class="col-xs-12">
-                            <mat-form-field appearance="outline" class="ancho">
-                                <mat-label>Verificar contraseña nueva</mat-label>
-                                <input matInput [type]="hideVN ? 'password' : 'text'" placeholder="Verifique su contraseña nueva">
-                                <button mat-icon-button matSuffix (click)="hideVN = !hideVN"
-                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideVN">
-                                    <mat-icon>{{hideVN ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                </button>
-                                <mat-error>* Campo Obligatorio</mat-error>
-                                <!-- <mat-hint>Hint</mat-hint> -->
-                            </mat-form-field>
-                        </div>
-                    </div>
+                    <app-info-sesion></app-info-sesion>
 
 
                 </div>

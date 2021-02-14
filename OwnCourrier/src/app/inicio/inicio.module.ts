@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { InicioRoutingModule } from './inicio-routing.module';
+import { MaterialModule } from '../material/material.module';
 import { InicioComponent } from './components/inicio/inicio.component';
 
 
@@ -9,7 +10,8 @@ import { InicioComponent } from './components/inicio/inicio.component';
   declarations: [InicioComponent],
   imports: [
     CommonModule,
-    InicioRoutingModule
+    InicioRoutingModule,
+    MaterialModule
   ]
 })
 export class InicioModule { }

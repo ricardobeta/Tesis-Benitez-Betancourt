@@ -1,0 +1,48 @@
+<p>
+    <input class="ng-hide" id="input-file-id" accept=".png, .jpg" type="file" />
+    <label for="input-file-id" class="row center-xs but-upload" mat-raised-button style="cursor: pointer;">
+        <div class="col-xs-12">
+            <mat-icon id="per">person</mat-icon>
+        </div>
+        <div class="col-xs-12">
+            Subir Foto Conductor &nbsp;
+            <mat-icon>cloud_upload</mat-icon>
+        </div>
+    </label>
+</p>
+<div class="row" class="but-suss" >
+    <div class="col-xs-12">
+        <mat-icon id="per">person</mat-icon>
+    </div>
+    <div class="col-xs-12">
+        Foto Conductor Cargada Correctamente
+    </div>
+    <div class="col-xs-12">
+        <button mat-raised-button color="primary" type="button">
+            Eliminar Imagen
+        </button>
+    </div>
+</div>
+
+<div class="row ancho">
+    <div class="col-xs-12">
+        <mat-form-field appearance="outline" class="ancho">
+            <mat-label>Nombre de la empresa</mat-label>
+            <input matInput placeholder="Ingrese el nombre de la empresa" formControlName="nombreEmpresa">
+            <mat-icon matSuffix>business</mat-icon>
+            <mat-error>* Campo Obligatorio</mat-error>
+        </mat-form-field>
+    </div>
+</div>
+
+<div class="row ancho">
+    <div class="col-xs-12">
+        <mat-form-field appearance="outline" class="ancho">
+            <mat-label>Número de Celular</mat-label>
+            <input matInput placeholder="Ingrese el nombre de la empresa" formControlName="celular">
+            <mat-icon matSuffix>phone_enabled</mat-icon>
+            <mat-error>* Campo Obligatorio</mat-error>
+            <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+    </div>
+</div>
