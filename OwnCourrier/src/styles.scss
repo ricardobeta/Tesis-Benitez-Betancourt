@@ -58,11 +58,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 .centrar{
     text-align: center;
     text-align: -moz-center;
+    text-align: -webkit-center;
 }
 
 .centro{
     justify-content: center;
-    
 }
 
 .primary{ 

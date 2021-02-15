@@ -21,7 +21,9 @@ export class InfoEmpresaComponent implements OnInit {
     this.form = this.fromBuilder.group(
       {
         nombreEmpresa: ['', Validators.required],
-        celular: ['', Validators.required]
+        celular: ['', Validators.required],
+        fileF: [null, [Validators.required]],
+        fileL: [null, [Validators.required]]
       }
     );
   }
