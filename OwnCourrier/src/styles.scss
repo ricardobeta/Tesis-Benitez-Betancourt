@@ -1,15 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700&display=swap');
+@import '~@angular/material/theming';
 /* You can add global styles to this file, and also import other style files */
+$custom-typography: mat-typography-config(
+  $font-family:  'Roboto Slab',
+  $display-4:     mat-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  $display-3:     mat-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  $display-2:     mat-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  $display-1:     mat-typography-level(34px, 40px, 400),
+  $headline:      mat-typography-level(25px, 32px, 400),
+  $title:         mat-typography-level(21px, 32px, 600),
+  $subheading-2:  mat-typography-level(17px, 28px, 400),
+  $subheading-1:  mat-typography-level(16px, 24px, 400),
+  $body-2:        mat-typography-level(15px, 24px, 500),
+  $body-1:        mat-typography-level(15px, 20px, 500),
+  $caption:       mat-typography-level(13px, 20px, 400),
+  $button:        mat-typography-level(15px, 14px, 500),
+);
 
+@include angular-material-typography($custom-typography);
+@include mat-core($custom-typography);
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: rgb(240,242,245); }
+body { margin: 0; font-family: 'Roboto Slab', serif; background-color: rgb(240,242,245); }
 
 .ancho{
     width: 100%;

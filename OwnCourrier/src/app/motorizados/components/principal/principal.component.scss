@@ -15,5 +15,11 @@
 }
 
 ::ng-deep .col-md-6 mat-card {
-    min-height: 220px;
+   min-height: 210px;
+}
+
+@media screen and (max-width: 1025px) {
+     .contenedor {
+        display: block;
+    }
 }
