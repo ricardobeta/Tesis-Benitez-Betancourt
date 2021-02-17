@@ -9,132 +9,138 @@
                 </h1>
             </mat-card-header>
             <form [formGroup]="form" (ngSubmit)="guardarConductor($event)">
-            <mat-card-content>
-                <div class="row middle-xs">
-                    <div class="col-xs-12 col-md-3">
-                        
-                        <p>
-                            <input class="ng-hide" id="input-file-id" accept=".png, .jpg"
-                            type="file" (change)="cargarFotoConductor($event)" />
-                        <label  for="input-file-id" class="row center-xs but-upload" mat-raised-button
-                            style="cursor: pointer;"
-                            *ngIf="filefField.value === null"
-                            >
-                            <div class="col-xs-12">
-                                <mat-icon id="per">person</mat-icon>
+                <mat-card-content>
+                    <div class="row middle-xs">
+                        <div class="col-xs-12 col-md-3">
+
+                            <p>
+                                <input class="ng-hide" id="input-file-id" accept=".png, .jpg" type="file"
+                                    (change)="cargarFotoConductor($event)" />
+                                <label for="input-file-id" class="row center-xs but-upload" mat-raised-button
+                                    style="cursor: pointer;" *ngIf="filefField.value === null">
+                                    <div class="col-xs-12">
+                                        <mat-icon id="per">person</mat-icon>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        Subir Foto Conductor &nbsp;
+                                        <mat-icon>cloud_upload</mat-icon>
+                                    </div>
+                                </label>
+                            </p>
+                            <div class="row" class="but-suss" *ngIf="filefField.value !== null">
+                                <div class="col-xs-12">
+                                    <mat-icon id="per">person</mat-icon>
+                                </div>
+                                <div class="col-xs-12">
+                                    Foto Conductor Cargada Correctamente
+                                </div>
+                                <div class="col-xs-12">
+                                    <button mat-raised-button color="primary" type="button"
+                                        (click)="eliminarFotoConductor()">
+                                        Eliminar Imagen
+                                    </button>
+                                </div>
                             </div>
-                            <div class="col-xs-12">
-                            Subir Foto Conductor &nbsp;
-                            <mat-icon>cloud_upload</mat-icon>
-                            </div>
-                        </label>
-                        </p>
-                        <div class="row" class="but-suss" *ngIf="filefField.value !== null">
-                            <div class="col-xs-12">
-                                <mat-icon id="per">person</mat-icon>
-                            </div>
-                            <div class="col-xs-12">
-                                Foto Conductor Cargada Correctamente
-                            </div>
-                            <div class="col-xs-12">
-                                <button mat-raised-button color="primary" type="button" (click)="eliminarFotoConductor()">
-                                    Eliminar Imagen
-                                </button>
+
+                            <p>
+                                <input class="ng-hide" id="input-file-idL" accept=".png, .jpg" type="file"
+                                    (change)="cargarFotoLicencia($event)" />
+                                <label for="input-file-idL" class="row center-xs but-upload" mat-raised-button
+                                    style="cursor: pointer;" *ngIf="filelField.value === null">
+                                    <div class="col-xs-12">
+                                        <mat-icon id="per">subtitles</mat-icon>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        Subir Licencia Conductor &nbsp;
+                                        <mat-icon>cloud_upload</mat-icon>
+                                    </div>
+                                </label>
+                            </p>
+                            <div class="row" class="but-suss" *ngIf="filelField.value !== null">
+                                <div class="col-xs-12">
+                                    <mat-icon id="per">subtitles</mat-icon>
+                                </div>
+                                <div class="col-xs-12">
+                                    Licencia Cargada Correctamente
+                                </div>
+                                <div class="col-xs-12">
+                                    <button mat-raised-button color="primary" type="button"
+                                        (click)="eliminarLicencia()">
+                                        Eliminar Imagen
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        
-                        <p>
-                            <input class="ng-hide" id="input-file-idL" accept=".png, .jpg"
-                            type="file" (change)="cargarFotoLicencia($event)" />
-                        <label  for="input-file-idL" class="row center-xs but-upload" mat-raised-button
-                            style="cursor: pointer;" 
-                            *ngIf="filelField.value === null"
-                            >
-                            <div class="col-xs-12">
-                                <mat-icon id="per">subtitles</mat-icon>
-                            </div>
-                            <div class="col-xs-12">
-                            Subir Licencia Conductor &nbsp;
-                            <mat-icon>cloud_upload</mat-icon>
-                            </div>
-                        </label>
-                        </p>
-                        <div class="row" class="but-suss" *ngIf="filelField.value !== null">
-                            <div class="col-xs-12">
-                                <mat-icon id="per">subtitles</mat-icon>
-                            </div>
-                            <div class="col-xs-12">
-                                Licencia Cargada Correctamente
-                            </div>
-                            <div class="col-xs-12">
-                                <button mat-raised-button color="primary" type="button" (click)="eliminarLicencia()">
-                                    Eliminar Imagen
-                                </button>
+                        <div class="col-xs-12 col-md-9">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <mat-form-field appearance="outline" class="ancho">
+                                        <mat-label>
+                                            Cédula de Identidad
+                                        </mat-label>
+                                        <input matInput placeholder="Ingrese la cédula del conductor"
+                                            formControlName="cedula" autocomplete="off">
+
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xs-12">
+                                    <mat-form-field appearance="outline" class="ancho">
+                                        <mat-label>
+                                            Nombre Completo
+                                        </mat-label>
+                                        <input matInput placeholder="Ingrese el nombre completo del conductor"
+                                            formControlName="nombreCompleto" autocomplete="off">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xs-12">
+                                    <mat-form-field appearance="outline" class="ancho">
+                                        <mat-label>
+                                            Fecha de nacimiento
+                                        </mat-label>
+                                        <input matInput type="date"
+                                            placeholder="Ingrese la fecha de nacimiento del conductor"
+                                            formControlName="fechaNacimiento" autocomplete="off">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xs-12">
+                                    <mat-form-field appearance="outline" class="ancho">
+                                        <mat-label>
+                                            Correo Electronico
+                                        </mat-label>
+                                        <input matInput placeholder="Ingrese el Correo del conductor"
+                                            formControlName="correo" autocomplete="off">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xs-12">
+                                    <mat-form-field appearance="outline" class="ancho">
+                                        <mat-label>
+                                            Número de Célular
+                                        </mat-label>
+                                        <input matInput type="tel"
+                                            placeholder="Ingrese el número de célular del conductor"
+                                            formControlName="celular" autocomplete="off">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xs-12">
+                                    <mat-form-field appearance="outline" class="ancho">
+                                        <mat-label>
+                                            Dirección
+                                        </mat-label>
+                                        <textarea matInput placeholder="Ingrese la dirección del Conductor"
+                                            formControlName="direccion" autocomplete="off"></textarea>
+                                    </mat-form-field>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-9">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <mat-form-field appearance="outline" class="ancho">
-                                    <mat-label>
-                                        Cédula de Identidad
-                                    </mat-label>
-                                    <input matInput placeholder="Ingrese la cédula del conductor" formControlName="cedula" autocomplete="off">
-    
-                                </mat-form-field>
-                            </div>
-                            <div class="col-xs-12">
-                                <mat-form-field appearance="outline" class="ancho">
-                                    <mat-label>
-                                        Nombre Completo
-                                    </mat-label>
-                                    <input matInput placeholder="Ingrese el nombre completo del conductor" formControlName="nombreCompleto" autocomplete="off">
-                                </mat-form-field>
-                            </div>
-                            <div class="col-xs-12">
-                                <mat-form-field appearance="outline" class="ancho">
-                                    <mat-label>
-                                        Fecha de nacimiento
-                                    </mat-label>
-                                    <input matInput type="date" placeholder="Ingrese la fecha de nacimiento del conductor" formControlName="fechaNacimiento" autocomplete="off">
-                                </mat-form-field>
-                            </div>
-                            <div class="col-xs-12">
-                                <mat-form-field appearance="outline" class="ancho">
-                                    <mat-label>
-                                        Correo Electronico
-                                    </mat-label>
-                                    <input matInput placeholder="Ingrese el Correo del conductor" formControlName="correo" autocomplete="off">
-                                </mat-form-field>
-                            </div>
-                            <div class="col-xs-12">
-                                <mat-form-field appearance="outline" class="ancho">
-                                    <mat-label>
-                                        Número de Célular
-                                    </mat-label>
-                                    <input matInput type="tel" placeholder="Ingrese el número de célular del conductor" formControlName="celular" autocomplete="off">
-                                </mat-form-field>
-                            </div>
-                            <div class="col-xs-12">
-                                <mat-form-field appearance="outline" class="ancho">
-                                    <mat-label>
-                                        Dirección
-                                    </mat-label>
-                                    <textarea matInput placeholder="Ingrese la dirección del Conductor" formControlName="direccion" autocomplete="off"></textarea>
-                                </mat-form-field>
-                            </div>
+                    <div class="row end-xs">
+                        <div class="col-xs-12">
+                            <button mat-raised-button type="submit" color="primary">
+                                Guardar Conductor
+                            </button>
                         </div>
                     </div>
-                </div>
-                <div class="row end-xs">
-                    <div class="col-xs-12">
-                        <button mat-raised-button type="submit" color="primary">
-                            Guardar Conductor
-                        </button>
-                    </div>
-                </div>
-            </mat-card-content>
+                </mat-card-content>
             </form>
         </mat-card>
     </div>
