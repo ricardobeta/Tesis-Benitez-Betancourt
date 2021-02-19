@@ -26,7 +26,11 @@ const routes: Routes = [
       {
         path: 'motorizados',
         loadChildren: () => import('./motorizados/motorizados.module').then(m => m.MotorizadosModule)
-      }  
+      },
+      {
+        path: 'envios',
+        loadChildren: () => import('./envios/envios.module').then( m => m.EnviosModule)
+      }
     ]
   },
 
