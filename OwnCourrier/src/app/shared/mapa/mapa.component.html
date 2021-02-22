@@ -12,7 +12,7 @@
      Arrastra el marcador o da doble click en el lugar exacto de envío
 </h3>
 <div style="height: 300px;  width: 100%;"
-     leaflet 
+    leaflet  
      (leafletDoubleClick)="clickMapa($event)"
      [leafletOptions]="options">
      <button mat-mini-fab class="bGeo" color="primary"
@@ -20,4 +20,11 @@
      >
           <mat-icon >location_on</mat-icon>
      </button>
+</div>
+<div class="row end-xs">
+     <div class="col-xs-12">
+          <button mat-raised-button color="primary"  class="margTop">
+               Confirmar Dirección
+          </button>
+     </div>
 </div>

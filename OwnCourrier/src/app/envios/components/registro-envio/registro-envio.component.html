@@ -2,7 +2,7 @@
     <div class="col-xs-12 col-md-9">
         <mat-vertical-stepper [linear]="true"> 
             <mat-step [stepControl]="" >
-                <ng-template matStepLabel>Datos del Remitente</ng-template>
+                <ng-template matStepLabel>Datos del Destinatario</ng-template>
                 <div class="row">
                     <div class="col-xs-12">
                         <mat-form-field appearance="outline" class="ancho">
@@ -43,7 +43,7 @@
                 <app-mapa></app-mapa>
             </mat-step>
             <mat-step [stepControl]="">
-                <ng-template matStepLabel>Información del Envío</ng-template>
+                <ng-template matStepLabel>Información de lo que se Envía</ng-template>
                 <div class="row">
                     <div class="col-xs-12">
                         <mat-form-field class="ancho" appearance="outline">
@@ -91,6 +91,13 @@
                             </mat-label>
                             <input type="date" matInput autocomplete="off">
                         </mat-form-field>
+                    </div>
+                </div>
+                <div class="row end-xs">
+                    <div class="col-xs-12">
+                        <button mat-raised-button color="primary">
+                            Registrar envío
+                        </button>
                     </div>
                 </div>
             </mat-step>
