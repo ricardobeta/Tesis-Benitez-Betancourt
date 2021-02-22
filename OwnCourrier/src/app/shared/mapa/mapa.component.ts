@@ -10,11 +10,14 @@ import { Direccion } from 'src/app/core/models/direccion.model';
 
 export class MapaComponent implements OnInit {
 
-  streetMaps: TileLayer
+  streetMaps: TileLayer;
   options: any;
   iconoMovible: Marker;
-  @Output() confirmacion = new EventEmitter<boolean>();
+  mapa: Map;
+  zoom;
+  @Output() direccionConf = new EventEmitter<Direccion>();
   @Input() direccion: Direccion;
+
  
   constructor() {
     this.streetMaps = tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -25,6 +28,7 @@ export class MapaComponent implements OnInit {
       zoom: 10,
       center: latLng([-0.1834136, -78.474397]),
     };
+    this.zoom = 10;
     this. iconoMovible = marker([-0.1834136, -78.474397], {
       icon: icon({
         iconSize: [25, 41],
@@ -43,9 +47,20 @@ export class MapaComponent implements OnInit {
   clickMapa(event) {
     this.iconoMovible.setLatLng(latLng([event.latlng.lat, event.latlng.lng]));
     this.options.center = latLng([event.latlng.lat, event.latlng.lng]);
+    this.confirmarDireccion();
   }
 
+
+  descripcionKeyUp(event) {
+    this.direccion.descripcion = event.target.value;
+    this.confirmarDireccion();
+  }
   confirmarDireccion() {
-    this.confirmacion.emit(true);
+    const latLng = this.iconoMovible.getLatLng();
+    this.direccion.latitud = latLng.lat;
+    this.direccion.longitud = latLng.lng;
+    this.direccion.zoom = this.zoom;
+    this.direccion.urlMapa = `http://google.com/maps?q=${this.direccion.latitud},${this.direccion.longitud}`
+    this.direccionConf.emit(this.direccion);
   }
 }

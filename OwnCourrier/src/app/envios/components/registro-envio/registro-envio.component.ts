@@ -9,11 +9,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegistroEnvioComponent implements OnInit {
   
   formCliente: FormGroup;
-  formDirección: FormGroup;
-  formEnvio: FormGroup;
+  formDireccion: FormGroup;
+  formInfoEnvio: FormGroup;
   formFecha: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+
+  constructor(private formBuilder: FormBuilder) {
+    this.buildFormCliente();
+    this.buildFormDireccion();
+    this.buildFormInfoEnvio();
+    this.buildFormFecha();
+  }
 
   ngOnInit(): void {
   }
@@ -29,4 +35,43 @@ export class RegistroEnvioComponent implements OnInit {
       }
     );
   }
+
+  buildFormDireccion() {
+    this.formDireccion = this.formBuilder.group(
+      {
+        descripcion: ['', [Validators.required]],
+        longitud: ['', [Validators.required]],
+        latitud: ['', [Validators.required]],
+        urlMapa: ['', [Validators.required]],
+        zoom: ['', [Validators.required]],
+      }
+    );
+  }
+
+  buildFormInfoEnvio() {
+    this.formInfoEnvio = this.formBuilder.group(
+      {
+        descripcion: ['', [Validators.required]],
+        tipo: ['', [Validators.required]],
+        prioridad: ['', [Validators.required]],
+        peso: [0, [Validators.required]],
+      }
+    );
+  }
+
+  buildFormFecha() {
+    this.formInfoEnvio = this.formBuilder.group(
+      {
+        fecha: ['', [Validators.required]],
+      }
+    );
+  }
+
+  confirmacionDir(event) {
+    this.formDireccion.patchValue(event);
+    this.formDireccion.markAsDirty();
+    console.log(this.formDireccion.dirty);
+  }
+
+
 }
