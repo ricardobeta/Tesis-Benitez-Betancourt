@@ -33,5 +33,9 @@ export class InfoSesionComponent implements OnInit {
     );
   }
 
-
+  saveInfo() {
+    if (this.form.valid) {
+      console.log(this.form.value);
+    }
+  }
 }

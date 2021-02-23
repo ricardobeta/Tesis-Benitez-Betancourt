@@ -22,42 +22,33 @@ export class InfoEmpresaComponent implements OnInit {
       {
         nombreEmpresa: ['', Validators.required],
         celular: ['', Validators.required],
-        fileF: [null, [Validators.required]],
-        fileL: [null, [Validators.required]]
+        correo: ['', Validators.required],
+        descripcion: ['', Validators.required],
+        fileLogo: [null, [Validators.required]],
+        pathLogo: [''],
+        urlLogo: ['']
       }
     );
   }
 
-  cargarFotoConductor(event) {
-    this.filefField.setValue(event.target.files[0]);
+
+  cargarFotoPerfil(event) {
+    this.file.setValue(event.target.files[0]);
   }
 
-
-  cargarFotoLicencia(event) {
-    this.filelField.setValue(event.target.files[0]);
+  eliminarFotoPerfil() {
+    this.file.setValue(null);
   }
 
-  eliminarFotoConductor() {
-    this.filefField.setValue(null);
-  }
-
-  eliminarLicencia() {
-    this.filelField.setValue(null);
-  }
-
-  guardarConductor(event: Event) {
+  guardar(event: Event) {
     event.preventDefault();
     if(this.form.valid) {
       console.log(this.form.value);
     }
   }
 
-  get filefField(): AbstractControl {
-    return this.form.get('fileF')
-  }
-
-  get filelField(): AbstractControl {
-    return this.form.get('fileL')
+  get file(): AbstractControl {
+    return this.form.get('fileLogo')
   }
 
 }
