@@ -41,15 +41,16 @@
                     </div>
                 </div>
                 <table mat-table [dataSource]="dataSource" class="ancho" style="position: sticky;">
+                    <ng-container matColumnDef="Cedula">
+                        <th mat-header-cell *matHeaderCellDef> Cédula </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                    </ng-container>
+                    
                     <ng-container matColumnDef="Nombre_cliente">
                         <th mat-header-cell *matHeaderCellDef> Nombre cliente </th>
                         <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="Cedula">
-                        <th mat-header-cell *matHeaderCellDef> Cédula </th>
-                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-                    </ng-container>
 
                     <ng-container matColumnDef="Celular">
                         <th mat-header-cell *matHeaderCellDef> Celular </th>
