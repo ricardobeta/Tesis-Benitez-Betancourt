@@ -1,1 +1,102 @@
-<p>principal works!</p>
+<div class="row around-xs">
+    <div class="col-xs-12 col-md-11">
+        <mat-card class="margTop margBot">
+                <div class="row end-xs">
+                    <div class="col-xs-12 margBot">
+                        <a mat-raised-button class="tertiary" [routerLink]="['../crearplato']"> <mat-icon>add_circle_outline</mat-icon> Nuevo envío</a>
+                    </div>
+                </div>
+            <mat-card-header class="margBot">
+                <mat-card-title>
+                    <mat-icon>article</mat-icon> Listado de envíos
+                </mat-card-title>
+                <mat-card-subtitle>
+                    Crea, edita o busca tus propios platos
+                </mat-card-subtitle>
+                <p class="info">
+                    <mat-icon class="icono-punto" style="color: green;">circle</mat-icon> Entregados <br>
+                    <mat-icon class="icono-punto" style="color: orange;">circle</mat-icon> Pendientes <br>
+                    <mat-icon class="icono-punto" style="color: red;">circle</mat-icon> Rechazados <br>
+                </p>
+            </mat-card-header>
+            <mat-card-content>
+                <!-- <div class="loader" *ngIf="loading">
+                    <div class="row center-xs bottom-xs" style="height: 100%;">
+                        <mat-spinner></mat-spinner>
+                        <div class="col-xs-12">
+                            <h1>Cargando..</h1>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row ancho center-xs margTop">
+                    <div class="col-xs-8">
+                        <mat-form-field class="ancho margTop" appearance="outline" autocomplete="off">
+                            <mat-label>Buscar</mat-label>
+                            <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." #input autocomplete="off">
+                            <mat-icon matPrefix>search</mat-icon>
+                          </mat-form-field>
+                    </div>
+                </div>
+                <!-- <table mat-table [dataSource]="dataSource" class="ancho" style="position: sticky;">
+                    <ng-container matColumnDef="Nombre_plato">
+                        <th mat-header-cell *matHeaderCellDef> Nombre producto </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="Descripcion">
+                        <th mat-header-cell *matHeaderCellDef> Descripción </th>
+                        <td mat-cell *matCellDef="let element" class="maxh">
+                            
+                            <p class="maxh">
+                                 {{element.descripcion}}
+                            </p>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Precio">
+                        <th mat-header-cell *matHeaderCellDef> Precio </th>
+                        <td mat-cell *matCellDef="let element"> {{element.precio | currency}} </td>
+                    </ng-container>
+    
+    
+                    <ng-container matColumnDef="Imagen">
+                        <th mat-header-cell *matHeaderCellDef> Imagen </th>
+                        <td mat-cell  *matCellDef="let element">
+                            <img mat-card-avatar src="{{element.urlImagenM}}" width="50" height="50">
+                        </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="Acciones">
+                        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                        <td mat-cell *matCellDef="let element; let i = index">
+                            <a [routerLink]="['../modificar', element.$key]" mat-icon-button matTooltip="Editar">
+                                <mat-icon>edit</mat-icon>
+                            </a>
+    
+                            <button mat-icon-button matTooltip="Eliminar">
+                                <mat-icon>delete</mat-icon>
+                            </button> -->
+    <!--
+                            <button mat-icon-button matTooltip="Copiar url">
+                                <mat-icon>file_copy</mat-icon>
+                            </button>-->
+    
+                            <!-- <button mat-icon-button matTooltip="Vista previa">
+                                <mat-icon>visibility</mat-icon>
+                            </button> -->
+    <!--
+                            <mat-slide-toggle class="example-margin" [checked]="element.estado" color="warn" ></mat-slide-toggle>
+    -->
+                        <!-- </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="5">{{'No Se ha Creado Ningún Plato' | titlecase}}</td>
+                      </tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[15,30,50]" showFirstLastButtons></mat-paginator> -->
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

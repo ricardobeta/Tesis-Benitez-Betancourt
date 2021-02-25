@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RegistroEnvioComponent } from './components/registro-envio/registro-envio.component';
+import { PrincipalComponent } from './components/principal/principal.component';
+
 
 const routes: Routes = [
   {
-    path: 'registro',
-    component: RegistroEnvioComponent 
+    path: '',
+    component: PrincipalComponent
   }
 ];
 
