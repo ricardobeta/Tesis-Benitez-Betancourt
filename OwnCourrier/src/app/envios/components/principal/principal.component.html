@@ -1,11 +1,13 @@
 <div class="row around-xs">
     <div class="col-xs-12 col-md-11">
         <mat-card class="margTop margBot">
-                <div class="row end-xs">
-                    <div class="col-xs-12 margBot">
-                        <a mat-raised-button class="tertiary" [routerLink]="['../crearplato']"> <mat-icon>add_circle_outline</mat-icon> Nuevo envío</a>
-                    </div>
+            <div class="row end-xs">
+                <div class="col-xs-12 margBot">
+                    <a mat-raised-button class="tertiary" [routerLink]="['../crearplato']">
+                        <mat-icon>add_circle_outline</mat-icon> Nuevo envío
+                    </a>
                 </div>
+            </div>
             <mat-card-header class="margBot">
                 <mat-card-title>
                     <mat-icon>article</mat-icon> Listado de envíos
@@ -32,70 +34,74 @@
                     <div class="col-xs-8">
                         <mat-form-field class="ancho margTop" appearance="outline" autocomplete="off">
                             <mat-label>Buscar</mat-label>
-                            <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." #input autocomplete="off">
+                            <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." #input
+                                autocomplete="off">
                             <mat-icon matPrefix>search</mat-icon>
-                          </mat-form-field>
+                        </mat-form-field>
                     </div>
                 </div>
-                <!-- <table mat-table [dataSource]="dataSource" class="ancho" style="position: sticky;">
-                    <ng-container matColumnDef="Nombre_plato">
-                        <th mat-header-cell *matHeaderCellDef> Nombre producto </th>
+                <table mat-table [dataSource]="dataSource" class="ancho" style="position: sticky;">
+                    <ng-container matColumnDef="Nombre_cliente">
+                        <th mat-header-cell *matHeaderCellDef> Nombre cliente </th>
                         <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
                     </ng-container>
-    
-                    <ng-container matColumnDef="Descripcion">
-                        <th mat-header-cell *matHeaderCellDef> Descripción </th>
-                        <td mat-cell *matCellDef="let element" class="maxh">
-                            
-                            <p class="maxh">
-                                 {{element.descripcion}}
-                            </p>
-                        </td>
+
+                    <ng-container matColumnDef="Cedula">
+                        <th mat-header-cell *matHeaderCellDef> Cédula </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="Precio">
-                        <th mat-header-cell *matHeaderCellDef> Precio </th>
+                    <ng-container matColumnDef="Celular">
+                        <th mat-header-cell *matHeaderCellDef> Celular </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Dir_url">
+                        <th mat-header-cell *matHeaderCellDef> Dirección </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Fecha">
+                        <th mat-header-cell *matHeaderCellDef> Fecha </th>
                         <td mat-cell *matCellDef="let element"> {{element.precio | currency}} </td>
                     </ng-container>
-    
-    
-                    <ng-container matColumnDef="Imagen">
-                        <th mat-header-cell *matHeaderCellDef> Imagen </th>
-                        <td mat-cell  *matCellDef="let element">
-                            <img mat-card-avatar src="{{element.urlImagenM}}" width="50" height="50">
-                        </td>
+
+                    <ng-container matColumnDef="Estado">
+                        <th mat-header-cell *matHeaderCellDef> Estado </th>
+                        <td mat-cell *matCellDef="let element"> {{element.precio | currency}} </td>
                     </ng-container>
-    
+
                     <ng-container matColumnDef="Acciones">
                         <th mat-header-cell *matHeaderCellDef> Acciones </th>
                         <td mat-cell *matCellDef="let element; let i = index">
                             <a [routerLink]="['../modificar', element.$key]" mat-icon-button matTooltip="Editar">
                                 <mat-icon>edit</mat-icon>
                             </a>
-    
+
                             <button mat-icon-button matTooltip="Eliminar">
                                 <mat-icon>delete</mat-icon>
-                            </button> -->
-    <!--
+                            </button>
+
                             <button mat-icon-button matTooltip="Copiar url">
                                 <mat-icon>file_copy</mat-icon>
-                            </button>-->
-    
+                            </button>
+
                             <!-- <button mat-icon-button matTooltip="Vista previa">
                                 <mat-icon>visibility</mat-icon>
                             </button> -->
-    <!--
-                            <mat-slide-toggle class="example-margin" [checked]="element.estado" color="warn" ></mat-slide-toggle>
-    -->
-                        <!-- </td>
+
+                            <mat-slide-toggle class="example-margin" [checked]="element.estado" color="warn">
+                            </mat-slide-toggle>
+
+                        </td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                     <tr class="mat-row" *matNoDataRow>
-                        <td class="mat-cell" colspan="5">{{'No Se ha Creado Ningún Plato' | titlecase}}</td>
-                      </tr>
+                        <td class="mat-cell" colspan="5">{{'No existen envíos' | titlecase}}</td>
+                    </tr>
                 </table>
-                <mat-paginator [pageSizeOptions]="[15,30,50]" showFirstLastButtons></mat-paginator> -->
+                <mat-paginator [pageSizeOptions]="[15,30,50]" showFirstLastButtons></mat-paginator>
             </mat-card-content>
         </mat-card>
     </div>
