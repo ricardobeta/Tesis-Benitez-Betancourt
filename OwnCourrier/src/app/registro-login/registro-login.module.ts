@@ -8,10 +8,11 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegistroAdministradorComponent } from './components/registro-administrador/registro-administrador.component';
 
 
 @NgModule({
-  declarations: [PrinpicalRegistroComponent, LoginComponent, RegistroComponent, ConfirmacionComponent],
+  declarations: [PrinpicalRegistroComponent, LoginComponent, RegistroComponent, ConfirmacionComponent, RegistroAdministradorComponent],
   imports: [
     CommonModule,
     RegistroLoginRoutingModule,

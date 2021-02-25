@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 import { LoginComponent } from './components/login/login.component';
 import { PrinpicalRegistroComponent } from './components/prinpical-registro/prinpical-registro.component';
+import { RegistroAdministradorComponent } from './components/registro-administrador/registro-administrador.component';
 import { RegistroComponent } from './components/registro/registro.component';
 
 const routes: Routes = [
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'registroAdmin',
+        component: RegistroAdministradorComponent
       },
       {
         path: '',

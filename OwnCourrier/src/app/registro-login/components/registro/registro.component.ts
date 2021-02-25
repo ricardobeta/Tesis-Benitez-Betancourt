@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { RegistroNegocio } from 'src/app/core/models/registro.model';
 import { RegistroService } from 'src/app/core/services/registro/registro.service';
 import { ConfirmacionComponent } from '../confirmacion/confirmacion.component';
 
@@ -51,7 +52,7 @@ export class RegistroComponent implements OnInit, AfterViewInit {
       const dialogRef = this.dialog.open(ConfirmacionComponent, {
         minWidth: '200px',
         data: {
-          registro: this.form.value,
+          registro: (this.form.value as RegistroNegocio),
           recaptchaVerifier: this.recaptchaVerifier
         },
         closeOnNavigation: true

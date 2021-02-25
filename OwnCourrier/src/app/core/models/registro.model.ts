@@ -1,8 +1,9 @@
-export interface RegistroEmpresa {
+export interface RegistroNegocio {
     nombreEmpresa: string;
-    correo: string;
+    correoAdmin: string;
+    celular: string;
     password?: string;
-    verificarPass: string;
-    term: boolean;
-    uid?: string;
+    verificarPass?: string;
+    uidPhone?: string;
+    uidAdmin?: string;
   }
