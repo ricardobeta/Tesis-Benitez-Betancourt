@@ -10,7 +10,23 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioModule)
-      }
+      },
+      {
+        path: 'inicio',
+        loadChildren: () => import('./inicio/inicio.module').then(m => m.InicioModule)
+      },
+      {
+        path: 'envios',
+        loadChildren: () => import('./envios/envios.module').then(m => m.EnviosModule)
+      },
+      // {
+      //   path: 'perfil',
+      //   loadChildren: () => import('./motorizados/motorizados.module').then(m => m.MotorizadosModule)
+      // },
+      // {
+      //   path: 'configuracion',
+      //   loadChildren: () => import('./envios/envios.module').then( m => m.EnviosModule)
+      // }
     ]
   }
 ];
