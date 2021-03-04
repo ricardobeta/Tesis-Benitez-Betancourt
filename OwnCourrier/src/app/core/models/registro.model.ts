@@ -6,4 +6,5 @@ export interface RegistroNegocio {
     verificarPass?: string;
     uidPhone?: string;
     uidAdmin?: string;
+    $key?: string;
   }

@@ -29,5 +29,11 @@ export class RegistroService {
     return this.auth.signInWithPhoneNumber(celularCode, captchaKey);
   }
 
+  registroAdmin(correo, password) {
+    return this.auth.createUserWithEmailAndPassword(correo, password)
+  }
 
+  registrarNegocio(negocio: RegistroNegocio) {
+    return this.db.list('Negocios').push(negocio);
+  }
 }

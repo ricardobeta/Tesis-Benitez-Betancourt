@@ -4,33 +4,38 @@
             Registro Administrador
         </p>
     </mat-card-title>
-    <div class="row">
-        <mat-form-field appearance="outline" class="ancho">
-            <mat-label>
-                Correo Administrador:
-            </mat-label>
-            <input type="text" matInput>
-        </mat-form-field>
-    </div>
-    <div class="row">
-        <mat-form-field appearance="outline" class="ancho">
-            <mat-label>
-                Contraseña:
-            </mat-label>
-            <input type="password" matInput>
-        </mat-form-field>
-    </div>
-    <div class="row">
-        <mat-form-field appearance="outline" class="ancho">
-            <mat-label>
-                Repita su contraseña:
-            </mat-label>
-            <input type="password" matInput>
-        </mat-form-field>
-    </div>
-    <div class="row center-xs">
-        <button mat-raised-button color="primary">
-            Registrar
-        </button>
-    </div>
+    <form [formGroup]="form" (ngSubmit)="registrarEmpresaFinal($event)">
+        <div class="row">
+            <mat-form-field appearance="outline" class="ancho">
+                <mat-label>
+                    Correo Administrador:
+                </mat-label>
+                <input type="text" matInput formControlName="correoAdmin">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="ancho">
+                <mat-label>
+                    Contraseña:
+                </mat-label>
+                <input type="password" matInput formControlName="password">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="ancho">
+                <mat-label>
+                    Repita su contraseña:
+                </mat-label>
+                <input type="password" matInput formControlName="verificarPass">
+            </mat-form-field>
+            <mat-error *ngIf="nocoincide">
+                Las contraseñas no coinciden
+            </mat-error>
+        </div>
+        <div class="row center-xs">
+            <button mat-raised-button color="primary" type="submit">
+                Registrar
+            </button>
+        </div>
+    </form>
 </mat-card>
