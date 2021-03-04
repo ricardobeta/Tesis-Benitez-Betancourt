@@ -13,7 +13,7 @@
                     <mat-icon>article</mat-icon> Listado de envíos
                 </mat-card-title>
                 <mat-card-subtitle>
-                    Crea, edita o busca tus propios platos
+                    Todos los envíos
                 </mat-card-subtitle>
                 <p class="info">
                     <mat-icon class="icono-punto" style="color: green;">circle</mat-icon> Entregados <br>
@@ -41,13 +41,13 @@
                     </div>
                 </div>
                 <table mat-table [dataSource]="dataSource" class="ancho" style="position: sticky;">
-                    <ng-container matColumnDef="Cedula">
-                        <th mat-header-cell *matHeaderCellDef> Cédula </th>
+                    <ng-container matColumnDef="Cliente">
+                        <th mat-header-cell *matHeaderCellDef> Cliente </th>
                         <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
                     </ng-container>
                     
-                    <ng-container matColumnDef="Nombre_cliente">
-                        <th mat-header-cell *matHeaderCellDef> Nombre cliente </th>
+                    <ng-container matColumnDef="Destino">
+                        <th mat-header-cell *matHeaderCellDef> Destino </th>
                         <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
                     </ng-container>
 
@@ -57,19 +57,9 @@
                         <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="Dir_url">
-                        <th mat-header-cell *matHeaderCellDef> Dirección </th>
+                    <ng-container matColumnDef="Placa">
+                        <th mat-header-cell *matHeaderCellDef> Placa Vehículo </th>
                         <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="Fecha">
-                        <th mat-header-cell *matHeaderCellDef> Fecha </th>
-                        <td mat-cell *matCellDef="let element"> {{element.precio | currency}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="Estado">
-                        <th mat-header-cell *matHeaderCellDef> Estado </th>
-                        <td mat-cell *matCellDef="let element"> {{element.precio | currency}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="Acciones">

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Envio } from 'src/app/core/models/envio.model';
+import { Cliente } from 'src/app/core/models/cliente.model';
 
 @Component({
   selector: 'app-principal',
@@ -9,8 +9,8 @@ import { Envio } from 'src/app/core/models/envio.model';
 })
 export class PrincipalComponent implements OnInit {
 
-  dataSource = new MatTableDataSource<Envio>();
-  displayedColumns: string[] = ['Cedula', 'Nombre_cliente', 'Celular', 'Dir_url', 'Fecha', 'Estado', 'Acciones'];
+  dataSource = new MatTableDataSource<Cliente>();
+  displayedColumns: string[] = ['Cedula', 'Nombre', 'Direccion', 'Pedidos', 'Acciones'];
 
   constructor() { }
 

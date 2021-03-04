@@ -10,7 +10,7 @@ import { Envio } from 'src/app/core/models/envio.model';
 export class PrincipalComponent implements OnInit {
 
   dataSource = new MatTableDataSource<Envio>();
-  displayedColumns: string[] = ['Cedula', 'Nombre_cliente', 'Celular', 'Dir_url', 'Fecha', 'Estado', 'Acciones'];
+  displayedColumns: string[] = ['Cliente', 'Destino', 'Placa', 'Acciones'];
 
   constructor() { }
 

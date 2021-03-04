@@ -5,7 +5,7 @@ import { PrincipalComponent } from './components/principal/principal.component';
 const routes: Routes = [
   {
     path: '',
-    component: PrincipalComponent 
+    component: PrincipalComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ClientesRoutingModule { }
+export class EnviosRoutingModule { }

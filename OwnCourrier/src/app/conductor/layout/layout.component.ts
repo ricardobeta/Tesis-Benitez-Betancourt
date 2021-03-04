@@ -23,10 +23,9 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       { link: 'inicio', icono: 'home', nombre: 'Inicio', tipo: null },
-      { link: '', icono: 'local_shipping', nombre: 'Envíos', tipo: null },
-      { link: 'motorizados', icono: 'directions_bike', nombre: 'Motorizados', tipo: null },
-      { link: '', icono: 'contacts', nombre: 'Clientes', tipo: null },
-      { link: '', icono: 'settings', nombre: 'Configuración', tipo: null },
+      { link: 'envios', icono: 'local_shipping', nombre: 'Envíos', tipo: null },
+      { link: 'perfil', icono: 'person', nombre: 'Perfil', tipo: null },
+      { link: 'configuracion', icono: 'settings', nombre: 'Configuración', tipo: null },
       { link: '', icono: 'login', nombre: 'Cerrar Sesión', tipo: null }
     ];
   }

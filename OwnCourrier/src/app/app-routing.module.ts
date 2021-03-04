@@ -30,6 +30,10 @@ const routes: Routes = [
       {
         path: 'envios',
         loadChildren: () => import('./envios/envios.module').then( m => m.EnviosModule)
+      },
+      {
+        path: 'clientes',
+        loadChildren: () => import('./clientes/clientes.module').then( m => m.ClientesModule)
       }
     ]
   },
