@@ -30,7 +30,7 @@ export class RegistroService {
   }
 
   registroAdmin(correo, password) {
-    return this.auth.createUserWithEmailAndPassword(correo, password)
+    return this.auth.createUserWithEmailAndPassword(correo, password);
   }
 
   registrarNegocio(negocio: RegistroNegocio) {
