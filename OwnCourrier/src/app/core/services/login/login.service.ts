@@ -16,4 +16,16 @@ export class LoginService {
 
     }
   }
+
+  iniciarSesionAdm(correo, password) {
+    this.auth.signInWithEmailAndPassword(correo, password);
+  }
+
+  iniciarSesionConductor(correo, password) {
+    this.auth.signInWithEmailAndPassword(correo, password);
+  }
+
+  logout() {
+
+  }
 }

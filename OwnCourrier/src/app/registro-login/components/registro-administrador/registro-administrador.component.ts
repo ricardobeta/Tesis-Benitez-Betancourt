@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegistroNegocio } from 'src/app/core/models/registro.model';
 import { RegistroService } from 'src/app/core/services/registro/registro.service';
 
@@ -13,7 +14,8 @@ export class RegistroAdministradorComponent implements OnInit {
   registroN: RegistroNegocio;
   nocoincide: boolean = false;
   constructor(private formBuilder: FormBuilder,
-              private registroService: RegistroService) {
+              private registroService: RegistroService,
+              private router: Router) {
                 this.buildForm();
               }
 
@@ -44,6 +46,7 @@ export class RegistroAdministradorComponent implements OnInit {
                 .then(
                   negocio => {
                     this.registroN.$key = negocio.key;
+                    this.router.navigate(['/empresa',this.registroN.$key])
                   }
                 );
             }
