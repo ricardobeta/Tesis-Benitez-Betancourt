@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-info-sesion',
@@ -14,7 +15,8 @@ export class InfoSesionComponent implements OnInit {
   hideN = true;
   hideVN = true;
 
-  constructor(private fromBuilder: FormBuilder) {
+  constructor(private fromBuilder: FormBuilder,
+              private toastr: ToastrService) {
     this.buildForm();
   }
 
@@ -35,7 +37,22 @@ export class InfoSesionComponent implements OnInit {
 
   saveInfo() {
     if (this.form.valid) {
-      console.log(this.form.value);
+      if (this.fieldPassword === this.fieldVerificarPass) {
+        console.log(this.form.value);
+        this.toastr.success('Actualizada correctamente', 'Información de la empresa');
+      } else {
+        this.toastr.error('Las contraseñas no coinciden', 'Error');
+      }
+    } else {
+      this.toastr.error('Falta llenar campos obligatorios', 'Error');
     }
+  }
+
+  get fieldPassword(): AbstractControl {
+    return this.form.get('password').value;
+  }
+
+  get fieldVerificarPass(): AbstractControl {
+    return this.form.get('verificarPass').value;
   }
 }

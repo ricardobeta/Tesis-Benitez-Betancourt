@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NegocioService } from 'src/app/core/services/negocio/negocio.service';
 
 @Component({
   selector: 'app-info-empresa',
@@ -9,12 +10,21 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 export class InfoEmpresaComponent implements OnInit {
 
   form: FormGroup;
+  auxKey;
 
-  constructor(private fromBuilder: FormBuilder) {
+  constructor(private fromBuilder: FormBuilder,
+              private negociosService: NegocioService) {
+    this.auxKey = this.negociosService.idNegocio.value;
     this.buildForm();
   }
 
   ngOnInit(): void {
+    this.negociosService.negocio.subscribe(
+      negocio => {
+        console.log(negocio);
+        //this.form.patchValue(negocio);
+      }
+    );
   }
 
   buildForm() {
@@ -31,6 +41,11 @@ export class InfoEmpresaComponent implements OnInit {
     );
   }
 
+  saveInfo() {
+    if (this.form.valid) {
+      console.log(this.form.value);
+    }
+  }
 
   cargarFotoPerfil(event) {
     this.file.setValue(event.target.files[0]);
