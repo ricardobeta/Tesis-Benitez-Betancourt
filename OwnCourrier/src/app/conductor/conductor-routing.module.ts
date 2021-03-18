@@ -19,10 +19,10 @@ const routes: Routes = [
         path: 'envios',
         loadChildren: () => import('./envios/envios.module').then(m => m.EnviosModule)
       },
-      // {
-      //   path: 'perfil',
-      //   loadChildren: () => import('./motorizados/motorizados.module').then(m => m.MotorizadosModule)
-      // },
+      {
+        path: 'perfil',
+        loadChildren: () => import('./perfil/perfil.module').then(m => m.PerfilModule)
+      }
       // {
       //   path: 'configuracion',
       //   loadChildren: () => import('./envios/envios.module').then( m => m.EnviosModule)

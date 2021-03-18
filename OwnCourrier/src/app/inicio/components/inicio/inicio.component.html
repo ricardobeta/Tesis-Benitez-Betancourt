@@ -23,7 +23,7 @@
                     </mat-card-content>
                     <mat-divider></mat-divider>
                     <mat-card-actions class="centrar">
-                        <button mat-button><mat-icon>info_outlined</mat-icon> INFO</button>
+                        <a mat-button [routerLink]="['informacion']"><mat-icon>info_outlined</mat-icon> INFO</a>
                         <button mat-button><mat-icon>logout</mat-icon> SALIR</button>
                     </mat-card-actions>
                 </mat-card>
@@ -41,7 +41,7 @@
                             </span>
                         </p>
 
-                        <div class="button">
+                        <a class="button" [routerLink]="['envios']">
                             <div class="button__text">Más información</div>
 
                             <div class="button__wrapper">
@@ -51,7 +51,7 @@
                                     <div class="button__small-circle"></div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
 
 
                     </mat-card>
@@ -68,7 +68,7 @@
                             </span>
                         </p>
 
-                        <div class="button">
+                        <a class="button" [routerLink]="['motorizados/vehiculos']">
                             <div class="button__text">Más información</div>
 
                             <div class="button__wrapper">
@@ -78,7 +78,7 @@
                                     <div class="button__small-circle"></div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </mat-card>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                             </span>
                         </p>
 
-                        <div class="button">
+                        <a class="button" [routerLink]="['clientes']">
                             <div class="button__text">Más información</div>
 
                             <div class="button__wrapper">
@@ -105,7 +105,7 @@
                                     <div class="button__small-circle"></div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </mat-card>
                 </div>
                 <div class="row ancho">
@@ -120,7 +120,7 @@
                             </span>
                         </p>
 
-                        <div class="button">
+                        <a class="button" [routerLink]="['motorizados/conductores']">
                             <div class="button__text">Más información</div>
 
                             <div class="button__wrapper">
@@ -130,7 +130,7 @@
                                     <div class="button__small-circle"></div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </mat-card>
                 </div>
             </div>
