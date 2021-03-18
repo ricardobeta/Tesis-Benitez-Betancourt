@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from '../core/services/login/login.service';
 
 @Component({
   selector: 'app-layout',
@@ -19,17 +20,23 @@ export class LayoutComponent implements OnInit {
   items;
 
   constructor(private breakpointObserver: BreakpointObserver,
-    private router: ActivatedRoute) {
+    private router: ActivatedRoute,
+    private loginService: LoginService) {
   }
   ngOnInit(): void {
     this.items = [
-      { link: 'inicio', icono: 'home', nombre: 'Inicio', tipo: null },
-      { link: 'envios', icono: 'local_shipping', nombre: 'Envíos', tipo: null },
-      { link: 'motorizados', icono: 'directions_bike', nombre: 'Motorizados', tipo: null },
-      { link: 'clientes', icono: 'contacts', nombre: 'Clientes', tipo: null },
-      { link: 'informacion', icono: 'settings', nombre: 'Configuración', tipo: null },
-      { link: '', icono: 'login', nombre: 'Cerrar Sesión', tipo: null }
+      { link: './', icono: 'home', nombre: 'Inicio',  },
+      { link: 'envios', icono: 'local_shipping', nombre: 'Envíos'  },
+      { link: 'motorizados', icono: 'directions_bike', nombre: 'Motorizados' },
+      { link: 'clientes', icono: 'contacts', nombre: 'Clientes' },
+      { link: 'informacion', icono: 'settings', nombre: 'Configuración' },
+      { link: '', icono: 'login', nombre: 'Cerrar Sesión', f: true }
     ];
   }
 
+  cerrarSesion() {
+    this.loginService.logout();
+  }
+  nada() {
+  }
 }

@@ -6,9 +6,8 @@
         MENÚ
       </mat-toolbar>
       <mat-nav-list>
-        <ng-container *ngIf="this.tipo"></ng-container>
         <ng-container *ngFor="let item of items">
-          <a mat-list-item *ngIf=" item.tipo === this.tipo || item.tipo === null" routerLink="{{item.link}}">
+          <a mat-list-item  routerLink="{{item.link}}" (click)="(item.f)? cerrarSesion(): nada()">
             <mat-icon>{{item.icono}}</mat-icon>&nbsp; {{item.nombre}}
           </a>
         </ng-container>

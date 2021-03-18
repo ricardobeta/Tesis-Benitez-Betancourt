@@ -16,7 +16,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: 'inicio',
+        path: '',
         loadChildren: () => import('./inicio/inicio.module').then(m => m.InicioModule)
       },
       {
