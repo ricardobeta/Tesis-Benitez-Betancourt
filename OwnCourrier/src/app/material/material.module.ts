@@ -25,7 +25,9 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatMenuModule} from '@angular/material/menu';
 import { MatTabsModule} from '@angular/material/tabs';
 import { ReactiveFormsModule} from '@angular/forms';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
  
 
 @NgModule({
@@ -57,7 +59,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatMenuModule,
     MatTabsModule,
     ReactiveFormsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDatepickerModule
   ],
   exports: [
     LayoutModule,
@@ -85,7 +88,9 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatMenuModule,
     MatTabsModule,
     ReactiveFormsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
 export class MaterialModule { }

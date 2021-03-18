@@ -46,7 +46,7 @@ export class InformacionComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.form.disable();
     // console.log('lectura', this.negociosService.negocio.value);
-    this.palabras = [];
+    //this.palabras = [];
     /*this.negociosService.negocio.subscribe(
       negocio => {
         // console.log(negocio);

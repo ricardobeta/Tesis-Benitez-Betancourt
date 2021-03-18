@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PerfilRoutingModule } from './perfil-routing.module';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { MaterialModule } from 'src/app/material/material.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [PerfilComponent],
   imports: [
     CommonModule,
-    PerfilRoutingModule
+    PerfilRoutingModule,
+    MaterialModule
   ]
 })
 export class PerfilModule { }

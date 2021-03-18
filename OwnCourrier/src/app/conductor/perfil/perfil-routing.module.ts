@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PerfilComponent } from 'src/app/perfil/components/perfil/perfil.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+
 
 const routes: Routes = [
   {
