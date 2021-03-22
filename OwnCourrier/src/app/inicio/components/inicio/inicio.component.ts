@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
+  banderaCargando = true;
+
   constructor() { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.banderaCargando = false;
+    }, 2000);
   }
+
 
 }

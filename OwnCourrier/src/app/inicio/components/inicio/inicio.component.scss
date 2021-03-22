@@ -220,3 +220,15 @@ box-shadow:         0px 1px 15px 0px rgba(50, 50, 50, 1);
 a{
   text-decoration: none;
 }
+
+.contenedorL{
+  display: flexbox;
+  color: blue;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+
+::ng-deep .mat-progress-spinner#loadingr circle, .mat-spinner circle {
+  stroke: blue !important;
+}
