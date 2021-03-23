@@ -12,27 +12,28 @@ export class InfoEmpresaComponent implements OnInit {
   form: FormGroup;
   auxKey;
 
-  constructor(private fromBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder,
               private negociosService: NegocioService) {
-    this.auxKey = this.negociosService.idNegocio.value;
     this.buildForm();
+    this.auxKey = this.negociosService.idNegocio.value;
   }
 
   ngOnInit(): void {
     this.negociosService.negocio.subscribe(
       negocio => {
         console.log(negocio);
-        //this.form.patchValue(negocio);
+        this.form.patchValue(negocio);
       }
     );
+    console.log(this.auxKey);
   }
 
   buildForm() {
-    this.form = this.fromBuilder.group(
+    this.form = this.formBuilder.group(
       {
         nombreEmpresa: ['', Validators.required],
         celular: ['', Validators.required],
-        correo: ['', Validators.required],
+        correoAdmin: ['', Validators.required],
         descripcion: ['', Validators.required],
         fileLogo: [null, [Validators.required]],
         pathLogo: [''],

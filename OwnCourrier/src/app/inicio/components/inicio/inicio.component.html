@@ -6,26 +6,26 @@
                     <mat-card class="sombra" style="margin: 15px;">
                         <mat-card-header>
                             <div mat-card-avatar class="example-header-image"></div>
-                            <mat-card-title>Nombre de la empresa</mat-card-title>
-                            <mat-card-subtitle>Usuario empresa</mat-card-subtitle>
+                            <mat-card-title>{{negocio.nombreEmpresa}}</mat-card-title>
+                            <mat-card-subtitle>Administrador</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
                             
                             <p>
                                 <mat-icon>email</mat-icon>&nbsp;&nbsp;
                                 <b> Correo electrónico:</b> <br>
-                                ejemplo@hotmail.com
+                                <small>{{negocio.correoAdmin}}</small>
                             </p>
                             <p>
                                 <mat-icon>phone_enabled</mat-icon>&nbsp;&nbsp;
                                 <b>Número de celular:</b> <br>
-                                0987321654
+                                <small>{{negocio.celular}}</small>
                             </p>
                         </mat-card-content>
                         <mat-divider></mat-divider>
                         <mat-card-actions class="centrar">
                             <a mat-button [routerLink]="['informacion']"><mat-icon>info_outlined</mat-icon> INFO</a>
-                            <button mat-button><mat-icon>logout</mat-icon> SALIR</button>
+                            <button mat-button (click)="cerrarSesion()"><mat-icon>logout</mat-icon> SALIR</button>
                         </mat-card-actions>
                     </mat-card>
                 </div>

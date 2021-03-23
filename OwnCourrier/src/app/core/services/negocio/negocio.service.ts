@@ -16,6 +16,14 @@ export class NegocioService {
               private storage: AngularFireStorage) { }
 
 
+  recuperarNegocioID(id) {
+    const sub$ = this.db.object(`Negocios/${id}`).snapshotChanges().subscribe( auxNegocio => {
+       this.idNegocio.next(auxNegocio.key);
+       this.negocio.next(auxNegocio.payload.toJSON() as Negocio);
+       sub$.unsubscribe();
+    });
+  }
+
   informacionNegocio() {
     return this.db.object(`Negocios/${this.idNegocio.value}`).valueChanges()
   }

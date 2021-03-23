@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../core/services/login/login.service';
+import { NegocioService } from '../core/services/negocio/negocio.service';
 
 @Component({
   selector: 'app-layout',
@@ -20,9 +21,14 @@ export class LayoutComponent implements OnInit {
   items;
 
   constructor(private breakpointObserver: BreakpointObserver,
-    private router: ActivatedRoute,
-    private loginService: LoginService) {
+              private router: ActivatedRoute,
+              private loginService: LoginService,
+              private negocioService: NegocioService) {
+      this.router.params.subscribe(params => {
+        negocioService.recuperarNegocioID(params.id);
+      });
   }
+  
   ngOnInit(): void {
     this.items = [
       { link: './', icono: 'home', nombre: 'Inicio',  },
