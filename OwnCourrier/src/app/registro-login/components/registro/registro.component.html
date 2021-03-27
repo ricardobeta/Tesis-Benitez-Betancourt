@@ -1,12 +1,12 @@
 <mat-card>
     <mat-card-title>
         <p>
-            Registrate en Own Courrier
+            Regístrate en Own Courrier
         </p>
     </mat-card-title>
     <mat-card-content>
         <p>
-            Administra y controla los envios de tus motorizados 
+            Administra y controla los envíos de tus motorizados 
         </p>
         <form [formGroup]="form" (ngSubmit)="registrarEmpresa($event)">
             <div class="row center-xs">
@@ -42,4 +42,11 @@
             </div>
         </form>
     </mat-card-content>
+
+    <mat-divider></mat-divider>
+    <p id="extra">
+        <small>
+            Ya tengo cuenta. <a [routerLink]="['/login']">Iniciar sesión</a>
+        </small>
+    </p>
 </mat-card>
