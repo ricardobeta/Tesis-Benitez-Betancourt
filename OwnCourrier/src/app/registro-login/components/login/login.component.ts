@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/core/services/login/login.service';
 
 @Component({
@@ -13,7 +14,9 @@ export class LoginComponent implements OnInit {
     'Administrador',
     'Conductor'
   ];
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService) {
+  constructor(private formBuilder: FormBuilder, 
+              private loginService: LoginService,
+              private toastr: ToastrService) {
     this.buildForm();
   }
 
@@ -42,6 +45,11 @@ export class LoginComponent implements OnInit {
       }
     } else {
       this.form.markAllAsTouched();
+      if (this.form.invalid) {
+        this.toastr.error('Campos obligatorios', 'Error Iniciar sesión');
+      } else {
+        this.toastr.error('Correo o contraseña incorrectos', 'Error Iniciar sesión');
+      } 
     }
   }
 

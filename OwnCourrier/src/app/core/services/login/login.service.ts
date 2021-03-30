@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { first, take } from 'rxjs/operators';
 import { RegistroNegocio } from '../../models/registro.model';
@@ -14,13 +15,20 @@ export class LoginService {
   constructor(public auth: AngularFireAuth,
               private db: AngularFireDatabase,
               private router: Router,
-              private negocioService: NegocioService) {
+              private negocioService: NegocioService,
+              private toastr: ToastrService) {
   }
 
 
   iniciarSesionAdm(correo, password) {
     return this.auth.signInWithEmailAndPassword(correo, password).then( userA => {
         this.irNegocio(userA.user.uid)
+    }).catch(error => {
+      if (error.code === "auth/invalid-email") {
+        this.toastr.error('Su correo está mal formateado o no existe', 'Error Iniciar sesión');
+      } else {
+        this.toastr.error('Correo o contraseña incorrecta', 'Error Iniciar sesión');
+      }
     });
   }
 

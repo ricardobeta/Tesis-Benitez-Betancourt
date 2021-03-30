@@ -27,4 +27,20 @@ export class NegocioService {
   informacionNegocio() {
     return this.db.object(`Negocios/${this.idNegocio.value}`).valueChanges()
   }
+
+  modificarInfoNegocio(negocio: Negocio, id) {
+
+    return this.storage.upload(`${id}/${negocio.pathLogo}.jpg`, negocio.fileLogo).then(
+      uploaded => {
+        return uploaded.ref.getDownloadURL().then(
+          url => {
+            negocio.urlLogo = url;
+            //this.negocio.next(negocio);
+            delete negocio.fileLogo;
+            return this.db.object(`Negocios/${id}`).update(negocio).then(()=>{this.recuperarNegocioID(this.idNegocio.value);});
+          }
+        );
+      }
+    );
+  }
 }
