@@ -11,10 +11,39 @@
             <div class="row ancho margTop">
 
                 <div class="col-xs-12 col-sm-6">
-
-                </div>
-
-                <div class="col-xs-12 col-sm-6">
+                    <div class="row ancho centrar">
+                        <div class="col-xs-12">
+                            <p>
+                                <input class="ng-hide" id="input-file-id" accept=".png, .jpg" type="file"
+                                    (change)="cargarFotoPerfil($event)" />
+                                <label for="input-file-id" class="row center-xs but-upload" mat-raised-button style="cursor: pointer;"
+                                    *ngIf="file.value === null">
+                                    <div class="col-xs-12">
+                                        <mat-icon id="per">camera_alt</mat-icon>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        Subir Foto Perfil &nbsp;
+                                        <mat-icon>cloud_upload</mat-icon>
+                                    </div>
+                                </label>
+                            </p>
+                            <div class="row" class="but-suss" *ngIf="file.value !== null">
+                                <div class="col-xs-12">
+                                    <mat-icon id="per">camera_alt</mat-icon>
+                                </div>
+                                <div class="col-xs-12">
+                                    Logo Perfil Cargada Correctamente
+                                </div>
+                                <div class="col-xs-12">
+                                    <button mat-raised-button color="primary" type="button" (click)="eliminarFotoPerfil()">
+                                        Eliminar Imagen
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    
                     <div class="row ancho">
                         <div class="col-xs-12">
                             <mat-form-field appearance="outline" class="ancho">
@@ -30,11 +59,27 @@
                     <div class="row ancho">
                         <div class="col-xs-12">
                             <mat-form-field appearance="outline" class="ancho">
+                                <mat-label>Cédula</mat-label>
+                                <input matInput placeholder="Ingrese su cédula" formControlName="cedula">
+                                <mat-icon matSuffix>card_membership</mat-icon>
+                                <mat-error>* Campo Obligatorio</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-xs-12 col-sm-6">
+
+                    <div class="row ancho">
+                        <div class="col-xs-12">
+                            <mat-form-field appearance="outline" class="ancho">
                                 <mat-label>Fecha de nacimiento</mat-label>
                                 <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" disabled>
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
-                                <!-- <mat-hint>Hint</mat-hint> -->
+                                <mat-hint>Presione sobre el ícono del calendario</mat-hint>
                             </mat-form-field>
                         </div>
                     </div>

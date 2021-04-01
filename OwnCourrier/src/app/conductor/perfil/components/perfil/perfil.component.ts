@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-perfil',
@@ -21,13 +21,37 @@ export class PerfilComponent implements OnInit {
     this.form = this.fromBuilder.group(
       {
         nombreCompleto: ['', Validators.required],
-        fechaNacimiento: [''],
-        correo: [''],
-        celular: [''],
-        direccion: [''],
+        cedula: ['', Validators.required],
+        fechaNacimiento: ['', Validators.required],
+        correo: ['', Validators.required],
+        celular: ['', Validators.required],
+        direccion: ['', Validators.required],
+        fileF: [null, [Validators.required]],
+        pathFoto: [''],
+        urlFoto: ['']
 
       }
     );
   }
+
+  cargarFotoPerfil(event) {
+    this.file.setValue(event.target.files[0]);
+  }
+
+  eliminarFotoPerfil() {
+    this.file.setValue(null);
+  }
+
+  guardar(event: Event) {
+    event.preventDefault();
+    if(this.form.valid) {
+      console.log(this.form.value);
+    }
+  }
+
+  get file(): AbstractControl {
+    return this.form.get('fileF')
+  }
+
 
 }
