@@ -106,22 +106,6 @@ $color_light: #FAFAFA;
 $color_background: #2D3235;
 $default_timer: 987ms;
 
-// Resets
-*, *:before, *:after {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-}
-
-body {
-font-family: Roboto;
-height: 80vh;
-width: 100vw;
-display: flex;
-align-items: center;
-justify-content: center;
-background-color: $color_background;
-}
 
 /*******************************************/
 .button {

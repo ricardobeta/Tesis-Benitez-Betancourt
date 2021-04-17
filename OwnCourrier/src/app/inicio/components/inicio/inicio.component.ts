@@ -17,15 +17,14 @@ export class InicioComponent implements OnInit {
               private loginService: LoginService) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.banderaCargando = false;
       this.negociosService.negocio.subscribe(
         negocioAux => {
           console.log(negocioAux);
           this.negocio = negocioAux;
+          setTimeout(() => { this.banderaCargando = false;}, 800)
         }
       );
-    }, 1000);
+
   }
 
   
