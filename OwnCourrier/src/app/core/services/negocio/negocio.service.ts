@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { BehaviorSubject } from 'rxjs';
@@ -13,7 +14,8 @@ export class NegocioService {
   public negocio = new BehaviorSubject<Negocio>(undefined);
 
   constructor(private db: AngularFireDatabase,
-              private storage: AngularFireStorage) { }
+              private storage: AngularFireStorage,
+              public auth: AngularFireAuth) { }
 
 
   recuperarNegocioID(id) {
@@ -43,4 +45,16 @@ export class NegocioService {
       }
     );
   }
+
+cambiarPassword(email: string) {
+  return this.auth.sendPasswordResetEmail(email);
+}
+
+cambiarEmail(newEmail: string) {
+  return   this.auth.currentUser.then(
+    user => {
+      return user.updateEmail(newEmail)
+    }
+  )
+}
 }

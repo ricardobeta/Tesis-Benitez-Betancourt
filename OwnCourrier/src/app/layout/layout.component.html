@@ -7,7 +7,7 @@
       </mat-toolbar>
       <mat-nav-list>
         <ng-container *ngFor="let item of items">
-          <a mat-list-item  routerLink="{{item.link}}" (click)="(item.f)? cerrarSesion(): nada()">
+          <a mat-list-item  [routerLink]="(item.link != '')? item.link: nada()" (click)="(item.f)? cerrarSesion(): nada()">
             <mat-icon>{{item.icono}}</mat-icon>&nbsp; {{item.nombre}}
           </a>
         </ng-container>

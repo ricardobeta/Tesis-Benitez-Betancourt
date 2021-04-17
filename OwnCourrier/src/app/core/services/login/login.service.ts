@@ -44,7 +44,9 @@ export class LoginService {
   }
 
   logout() {
-    this.auth.signOut()
+    this.auth.signOut().then( () => {
+      this.router.navigate(['login'])
+    })
   }
 
   usuarioConecteado() {
@@ -54,5 +56,10 @@ export class LoginService {
   navegarAdministrador(keyEmpresa) {
     this.negocioService.idNegocio.next(keyEmpresa);
     this.router.navigate(['/empresa', keyEmpresa]);
+  }
+
+
+  olvidoPassword(email: string) {
+    return this.auth.sendPasswordResetEmail(email);
   }
 }

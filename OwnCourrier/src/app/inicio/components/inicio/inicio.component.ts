@@ -25,7 +25,7 @@ export class InicioComponent implements OnInit {
           this.negocio = negocioAux;
         }
       );
-    }, 2000);
+    }, 1000);
   }
 
   
