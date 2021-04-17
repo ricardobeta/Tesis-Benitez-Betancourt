@@ -22,7 +22,9 @@ export class InfoEmpresaComponent implements OnInit {
     this.negociosService.negocio.subscribe(
       negocio => {
         console.log(negocio);
-        this.form.patchValue(negocio);
+        // if (negocio !== undefined || negocio !== null) {
+        //   this.form.patchValue(negocio);
+        // }
       }
     );
     console.log(this.auxKey);

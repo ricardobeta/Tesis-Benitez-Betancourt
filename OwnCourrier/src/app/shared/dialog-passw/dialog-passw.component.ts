@@ -48,6 +48,8 @@ export class DialogPasswComponent implements OnInit {
       } else {
         this.toastr.error('Problemas con el correo electrónico', 'Error');
       }
+    }).finally( () => {
+      this.onNoClick();
     });
   }
 

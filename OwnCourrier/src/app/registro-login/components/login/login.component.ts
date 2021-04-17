@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/core/services/login/login.service';
-import { DialogPasswComponent } from '../dialog-passw/dialog-passw.component';
+import { DialogPasswComponent } from 'src/app/shared/dialog-passw/dialog-passw.component';
+
 
 @Component({
   selector: 'app-login',

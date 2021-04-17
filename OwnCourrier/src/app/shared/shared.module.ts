@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { MapaComponent } from './mapa/mapa.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MaterialModule } from '../material/material.module';
+import { DialogPasswComponent } from './dialog-passw/dialog-passw.component';
 
 
 @NgModule({
-  declarations: [MapaComponent],
+  declarations: [MapaComponent, DialogPasswComponent],
   imports: [
     CommonModule,
     LeafletModule,
@@ -14,6 +15,7 @@ import { MaterialModule } from '../material/material.module';
   ],
   exports: [
     MapaComponent,
+    DialogPasswComponent,
     LeafletModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
