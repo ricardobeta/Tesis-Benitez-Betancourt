@@ -1,6 +1,12 @@
 <div class="row center-xs margTop">
     <div class="col-xs-12 col-md-10">
         <mat-card>
+            <div class="loadingCard" *ngIf="loading">
+                <mat-spinner></mat-spinner>
+                <h1>
+                    Guardando Conductor
+                </h1>
+            </div>
             <mat-card-header>
                 <h1 class="titulo">
                     <strong>
@@ -41,6 +47,7 @@
                                     </button>
                                 </div>
                             </div>
+                            <mat-error class="margBot" *ngIf="filefField.touched && filefField.invalid">Es obligatorio subir su Foto</mat-error>
 
                             <p>
                                 <input class="ng-hide" id="input-file-idL" accept=".png, .jpg" type="file"
@@ -70,6 +77,8 @@
                                     </button>
                                 </div>
                             </div>
+                            <mat-error class="margBot" *ngIf="filelField.touched && filelField.invalid">Es obligatorio subir su Licencia</mat-error>
+
                         </div>
                         <div class="col-xs-12 col-md-9">
                             <div class="row">

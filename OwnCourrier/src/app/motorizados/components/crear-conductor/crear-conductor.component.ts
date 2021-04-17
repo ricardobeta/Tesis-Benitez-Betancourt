@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Conductor } from 'src/app/core/models/conductor.model';
+import { ConductorService } from 'src/app/core/services/conductor/conductor.service';
 
 @Component({
   selector: 'app-crear-conductor',
@@ -8,11 +12,14 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 })
 export class CrearConductorComponent implements OnInit {
   form: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  loading = false;
+  constructor(private formBuilder: FormBuilder, private conductorService: ConductorService, private toastService: ToastrService,
+              private router: Router, private ruta: ActivatedRoute) {
     this.buildForm();
   }
 
   ngOnInit(): void {
+    console.log(this.ruta)
   }
 
   buildForm() {
@@ -48,7 +55,18 @@ export class CrearConductorComponent implements OnInit {
   guardarConductor(event: Event) {
     event.preventDefault();
     if(this.form.valid) {
-      console.log(this.form.value);
+      this.loading = true;
+      this.conductorService.crearConductor(this.form.value as Conductor).
+      then(
+        value => {
+          console.log(value);
+          this.toastService.success('Conductor Guardado Correctamente', 'Nuevo Conductor')
+          this.router.navigate(['../conductores'], {relativeTo: this.ruta})
+          this.loading = false
+        }
+      )
+    } else {
+      this.form.markAllAsTouched()
     }
   }
 

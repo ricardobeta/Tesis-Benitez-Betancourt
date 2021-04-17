@@ -11,4 +11,7 @@ export interface Conductor {
     pathLicencia?: string;
     fileF?: any;
     fileL?: any;
+    //user information
+    uidConductor: string;
+    keyNegocio: string;
 }

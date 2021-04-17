@@ -1,6 +1,12 @@
 <div class="row center-xs margTop">
     <div class="col-xs-12 col-md-10">
         <mat-card>
+            <div class="loadingCard" *ngIf="loading">
+                <mat-spinner></mat-spinner>
+                <h1>
+                    Guardando Vehiculos
+                </h1>
+            </div>
             <mat-card-header>
                 <h1 class="titulo">
                     <strong>
@@ -69,6 +75,7 @@
                                 </button>
                             </div>
                         </div>
+                        <mat-error class="margBot" *ngIf="fileMField.touched && fileMField.invalid">Es obligatorio subir la Matrícula</mat-error>
                     </div>
                 </div>
                 <div class="row end-xs margTop">
