@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/core/services/login/login.service';
+import { DialogPasswComponent } from 'src/app/shared/dialog-passw/dialog-passw.component';
+
 
 @Component({
   selector: 'app-login',
@@ -14,9 +17,11 @@ export class LoginComponent implements OnInit {
     'Administrador',
     'Conductor'
   ];
+  dialogRef;
   constructor(private formBuilder: FormBuilder, 
               private loginService: LoginService,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              public dialog: MatDialog) {
     this.buildForm();
   }
 
@@ -59,5 +64,12 @@ export class LoginComponent implements OnInit {
   
   private get valuePassword() {
     return this.form.get('password').value
+  }
+
+  openDialogContrasena() {
+    this.dialogRef = this.dialog.open(DialogPasswComponent);
+    this.dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

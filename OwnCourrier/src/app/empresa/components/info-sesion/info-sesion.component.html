@@ -1,80 +1,21 @@
-<form [formGroup]="form">
-    <div class="row ancho">
+<ng-container>
+    <div class="row ancho centrar">
         <div class="col-xs-12">
-            <mat-form-field appearance="outline" class="ancho">
-                <mat-label>Nombre de Usuario</mat-label>
-                <input matInput placeholder="Ingrese su número de celular" formControlName="nombreEmpresa">
-                <mat-icon matSuffix>person_outline</mat-icon>
-                <mat-error>* Campo Obligatorio</mat-error>
-                <!-- <mat-hint>Hint</mat-hint> -->
-            </mat-form-field>
-        </div>
-    </div>
-
-    <div class="row ancho">
-        <div class="col-xs-12">
-            <mat-form-field appearance="outline" class="ancho">
-                <mat-label>Correo electrónico</mat-label>
-                <input matInput placeholder="Ingrese su correo electrónico" formControlName="correo">
-                <mat-icon matSuffix>email</mat-icon>
-                <mat-error>* Campo Obligatorio</mat-error>
-                <!-- <mat-hint>Hint</mat-hint> -->
-            </mat-form-field>
-        </div>
-    </div>
-
-    <div class="row ancho">
-        <div class="col-xs-12">
-            <mat-form-field appearance="outline" class="ancho">
-                <mat-label>Contraseña antigua</mat-label>
-                <input matInput [type]="hideA ? 'password' : 'text'" placeholder="Ingrese su contraseña antigua"
-                    formControlName="passwordOld">
-                <button mat-icon-button matSuffix (click)="hideA = !hideA" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hideA">
-                    <mat-icon>{{hideA ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-                <mat-error>* Campo Obligatorio</mat-error>
-                <!-- <mat-hint>Hint</mat-hint> -->
-            </mat-form-field>
-        </div>
-    </div>
-
-    <div class="row ancho">
-        <div class="col-xs-12">
-            <mat-form-field appearance="outline" class="ancho">
-                <mat-label>Contraseña nueva</mat-label>
-                <input matInput [type]="hideN ? 'password' : 'text'" placeholder="Ingrese su contraseña nueva"
-                    formControlName="password">
-                <button mat-icon-button matSuffix (click)="hideN = !hideN" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hideN">
-                    <mat-icon>{{hideN ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-                <mat-error>* Campo Obligatorio</mat-error>
-                <!-- <mat-hint>Hint</mat-hint> -->
-            </mat-form-field>
-        </div>
-    </div>
-
-    <div class="row ancho">
-        <div class="col-xs-12">
-            <mat-form-field appearance="outline" class="ancho">
-                <mat-label>Verificar contraseña nueva</mat-label>
-                <input matInput [type]="hideVN ? 'password' : 'text'" placeholder="Verifique su contraseña nueva"
-                    formControlName="verificarPass">
-                <button mat-icon-button matSuffix (click)="hideVN = !hideVN" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hideVN">
-                    <mat-icon>{{hideVN ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-                <mat-error>* Campo Obligatorio</mat-error>
-                <!-- <mat-hint>Hint</mat-hint> -->
-            </mat-form-field>
+            <img class="imagen" src="./assets/cyber-security.jpg" alt="Image logo para sesión">
         </div>
     </div>
 
     <div class="row ancho margTop centro centrar">
 
-        <div class="col-xs-12 col-sm-6">
-            <button mat-raised-button color="primary" (click)="saveInfo()"><mat-icon>save</mat-icon> Actualizar información</button>
+        <div class="col-xs-12">
+            <button class="botones" mat-raised-button color="primary" ><mat-icon>mail_outline</mat-icon> Cambiar correo</button>
         </div>
     </div>
-</form>
+
+    <div class="row ancho margTop centro centrar">
+
+        <div class="col-xs-12">
+            <button  class="botones " mat-raised-button color="primary" (click)="openDialogContrasena()"><mat-icon class="material-icons-outlined">privacy_tip_outline</mat-icon> Cambiar contraseña</button>
+        </div>
+    </div>
+</ng-container>
