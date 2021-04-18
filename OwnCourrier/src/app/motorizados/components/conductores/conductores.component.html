@@ -11,8 +11,10 @@
             <mat-card-content>
                 <div class="row middle-xs">
                     <div class="col-xs-12 col-sm-9">
-                        <mat-form-field appearance="outline" class="ancho">
-                            <input matInput placeholder="Ingrese su consulta" autocomplete="off">
+                        <mat-form-field class="ancho margTop" appearance="outline" autocomplete="off">
+                            <mat-label>Buscar</mat-label>
+                            <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." #input
+                                autocomplete="off">
                             <mat-icon matPrefix>search</mat-icon>
                         </mat-form-field>
                     </div>
@@ -22,9 +24,77 @@
                         </button>
                     </div>
                 </div>
-                <div class="row">
+                <table mat-table [dataSource]="dataSource" class="ancho" style="position: sticky;">
+                    <ng-container matColumnDef="ID">
+                        <th mat-header-cell *matHeaderCellDef> ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                    </ng-container>
                     
-                </div>
+                    <ng-container matColumnDef="cedula">
+                        <th mat-header-cell *matHeaderCellDef> Cédula </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="nombreCompleto">
+                        <th mat-header-cell *matHeaderCellDef> Nombre Completo </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="celular">
+                        <th mat-header-cell *matHeaderCellDef> Celular </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fecha">
+                        <th mat-header-cell *matHeaderCellDef> Fecha Nacimiento </th>
+                        <td mat-cell *matCellDef="let element"> {{element.precio | currency}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="estado">
+                        <th mat-header-cell *matHeaderCellDef> Estado </th>
+                        <td mat-cell *matCellDef="let element"> {{element.precio | currency}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="acciones">
+                        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                        <td mat-cell *matCellDef="let element; let i = index">
+                            <a [routerLink]="['../modificar', element.$key]" mat-icon-button matTooltip="Editar">
+                                <mat-icon>edit</mat-icon>
+                            </a>
+
+                            <button mat-icon-button matTooltip="Eliminar">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+
+                            <button mat-icon-button matTooltip="Copiar url">
+                                <mat-icon>file_copy</mat-icon>
+                            </button>
+
+                            <!-- <button mat-icon-button matTooltip="Vista previa">
+                                <mat-icon>visibility</mat-icon>
+                            </button> -->
+
+                            <mat-slide-toggle class="example-margin" [checked]="element.estado" color="warn">
+                            </mat-slide-toggle>
+
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="disclaimer">
+                        <td class="info centro centrar" mat-footer-cell *matFooterCellDef colspan="7">
+                            <mat-icon class="icono-punto" style="color: green;">circle</mat-icon> Disponible
+                            <mat-icon class="icono-punto" style="color: orange;">circle</mat-icon> Ausente
+                            <mat-icon class="icono-punto" style="color: red;">circle</mat-icon> Ocupado
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="7">{{'No existen envíos' | titlecase}}</td>
+                    </tr>
+                    <tr mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[15,30,50]" showFirstLastButtons></mat-paginator>
             </mat-card-content>
         </mat-card>
     </div>
