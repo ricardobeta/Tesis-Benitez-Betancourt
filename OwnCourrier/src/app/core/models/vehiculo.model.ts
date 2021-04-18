@@ -5,4 +5,5 @@ export interface Vehiculo {
     fileM?: string;
     pathMatricula?: string;
     urlMatricula?: string;
+    $key?: string;
 }

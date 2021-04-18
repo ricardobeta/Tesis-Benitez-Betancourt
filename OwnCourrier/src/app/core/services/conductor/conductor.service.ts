@@ -50,7 +50,7 @@ export class ConductorService {
   }
 
   listaConductores() {
-    return this.db.list('Conductores').snapshotChanges()
+    return this.db.list('Conductores', ref=> ref.orderByChild('keyNegocio').equalTo(this.negocioService.idNegocio.value)).snapshotChanges()
   }
 
   crearUsuarioConductor(email, password) {

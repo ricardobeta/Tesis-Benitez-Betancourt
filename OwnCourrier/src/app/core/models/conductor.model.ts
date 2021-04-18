@@ -14,4 +14,5 @@ export interface Conductor {
     //user information
     uidConductor: string;
     keyNegocio: string;
+    $key?: string;
 }
