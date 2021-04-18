@@ -14,15 +14,15 @@ export class NegocioService {
   public negocio = new BehaviorSubject<Negocio>(undefined);
 
   constructor(private db: AngularFireDatabase,
-              private storage: AngularFireStorage,
-              public auth: AngularFireAuth) { }
+    private storage: AngularFireStorage,
+    public auth: AngularFireAuth) { }
 
 
   recuperarNegocioID(id) {
-    const sub$ = this.db.object(`Negocios/${id}`).snapshotChanges().subscribe( auxNegocio => {
-       this.idNegocio.next(auxNegocio.key);
-       this.negocio.next(auxNegocio.payload.toJSON() as Negocio);
-       sub$.unsubscribe();
+    const sub$ = this.db.object(`Negocios/${id}`).snapshotChanges().subscribe(auxNegocio => {
+      this.idNegocio.next(auxNegocio.key);
+      this.negocio.next(auxNegocio.payload.toJSON() as Negocio);
+      sub$.unsubscribe();
     });
   }
 
@@ -39,22 +39,22 @@ export class NegocioService {
             negocio.urlLogo = url;
             //this.negocio.next(negocio);
             delete negocio.fileLogo;
-            return this.db.object(`Negocios/${id}`).update(negocio).then(()=>{this.recuperarNegocioID(this.idNegocio.value);});
+            return this.db.object(`Negocios/${id}`).update(negocio).then(() => { this.recuperarNegocioID(this.idNegocio.value); });
           }
         );
       }
     );
   }
 
-cambiarPassword(email: string) {
-  return this.auth.sendPasswordResetEmail(email);
-}
+  cambiarPassword(email: string) {
+    return this.auth.sendPasswordResetEmail(email);
+  }
 
-cambiarEmail(newEmail: string) {
-  return   this.auth.currentUser.then(
-    user => {
-      return user.updateEmail(newEmail)
-    }
-  )
-}
+  cambiarEmail(newEmail: string) {
+    return this.auth.currentUser.then(
+      user => {
+        return user.updateEmail(newEmail)
+      }
+    )
+  }
 }

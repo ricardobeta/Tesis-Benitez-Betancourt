@@ -1,33 +1,49 @@
 <div class="row ancho center-xs">
     <div class="col-lg-12 col-xs-12 ">
 
-        <mat-card class="ancho">
-            <form [formGroup]="form">
-                <h1 mat-dialog-title><strong>Recuperar contraseña</strong> </h1>
-                <div mat-dialog-content>
 
+        <form [formGroup]="form">
+            <mat-card-title>Recuperar contraseña</mat-card-title>
+
+            <div class="row margTop centro centrar">
+                <div class="col-xs-12">
                     <mat-form-field appearance="outline" class="ancho">
                         <mat-label>Ingrese el correo electrónico</mat-label>
                         <input matInput placeholder="Ingrese su correo" formControlName="correoRecuperacion">
                         <mat-error>* Campo obligatorio</mat-error>
                     </mat-form-field>
                 </div>
+            </div>
+
+            
 
 
-                <div mat-dialog-actions style="justify-content: center;">
-                    <button class="marg10" mat-raised-button color="primary" (click)="recuperarContrasena()">
-                        <mat-icon>check</mat-icon>&nbsp; Aceptar
-                    </button>
-                    <button class="marg10" style="margin-left: 0;" mat-raised-button color="warn"
-                        (click)="onNoClick()">
-                        <mat-icon>close</mat-icon>&nbsp;Cancelar
-                    </button>
+            <div class="row margTop centro centrar">
+                <div class="col-xs-12">
+                <button style="margin: 2px; width: 100%;" mat-raised-button color="primary" (click)="recuperarContrasena()">
+                    <mat-icon>check</mat-icon>&nbsp; Aceptar
+                </button>
+                <button style="margin: 2px; width: 100%;" mat-raised-button color="warn" (click)="onNoClick()">
+                    <mat-icon>close</mat-icon>&nbsp;Cancelar
+                </button>
                 </div>
+            </div>
 
-            </form>
+            <div class="row margTop centro centrar">
+                <div class="col-xs-12">
+
+                <p style="font-size: 10px; background-color: lightgrey; text-align: center;">
+                    <mat-icon style="margin-top: 5px;">lightbulb_outlined</mat-icon><br>
+                    <strong>Se le enviará un link por correo electrónico donde podrá hacer el cambio de su contraseña</strong>
+                </p>
+            </div>
+        </div>
 
 
-        </mat-card>
+        </form>
+
+
+
 
 
 
