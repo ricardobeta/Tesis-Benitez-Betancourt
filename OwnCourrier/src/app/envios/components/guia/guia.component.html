@@ -1,0 +1,41 @@
+<div class="row center-xs" id="print-section">
+    <div class="col-xs-12">
+        <h1>Guia de Entrega</h1>
+    </div>
+    <div class="col-xs-12">
+        <qrcode [qrdata]="envio.$key" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+    <div class="col-xs-12">
+        <p>
+            <strong>
+                Destinatario: &nbsp;
+            </strong>
+            {{envio.cliente.nombreCompleto}}
+        </p>
+        <p>
+            <strong>
+                Celular: &nbsp;
+            </strong>
+            {{envio.cliente.celular}}
+        </p>
+        <p>
+            <strong>
+                Dirección: &nbsp;
+            </strong>
+            {{envio.direccion.descripcion}}
+        </p>
+    </div>
+    <div class="col-xs-12">
+        <p>
+            <strong>
+                Fecha de Envío: &nbsp;
+            </strong>
+            {{envio.fecha}}
+        </p>
+    </div>
+</div>
+<div class="row center-xs">
+    <button mat-raised-button color="primary" [useExistingCss]="true" printSectionId="print-section" ngxPrint>
+        Imprimir
+    </button>
+</div>

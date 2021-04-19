@@ -8,4 +8,5 @@ export interface Envio {
     infoEnvio: InfoEnvio;
     fecha: string;
     // valores opcionales
+    $key?: string;
 }

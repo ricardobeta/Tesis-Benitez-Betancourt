@@ -1,0 +1,19 @@
+.loadingCard{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    background: #004bad81;
+    top: 0;
+    left: 0;
+    color: white;
+    z-index: 1;
+     h1 {
+       color: white;
+       font-weight: 900;
+       z-index: 2;
+     }
+  }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Envio } from 'src/app/core/models/envio.model';
+import { EnvioService } from 'src/app/core/services/envios/envio.service';
+import { GuiaComponent } from '../guia/guia.component';
 
 @Component({
   selector: 'app-registro-envio',
@@ -13,12 +16,12 @@ export class RegistroEnvioComponent implements OnInit {
   formCliente: FormGroup;
   formDireccion: FormGroup;
   formFecha: FormGroup;
-
+  loading = false;
 
   prioridades = ['Alta', 'Media', 'Baja'];
   tipos = ['Postal', 'Alimentos', 'Mercaderia', 'Medico']
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private envioService: EnvioService, public dialog: MatDialog) {
     this.buildFormCliente();
     this.buildFormDireccion();
     this.buildFormInfoEnvio();
@@ -79,18 +82,30 @@ export class RegistroEnvioComponent implements OnInit {
 
   guardarEnvio(event: Event) {
     if(this.formsValid()) {
+      this.loading = true;
       const envio: Envio = {
         cliente: this.formCliente.value,
         direccion: this.formDireccion.value,
         infoEnvio: this.formInfoEnvio.value,
         fecha: this.formFecha.get('fecha').value
       }
-      console.log(envio)
+      this.envioService.guardarEnvio(envio).then(
+        value => {
+          envio.$key =  value.key
+        }
+      )
     }
   }
 
   formsValid() {
     return this.formCliente.valid && this.formDireccion.valid
       && this.formInfoEnvio.valid && this.formFecha.valid;
+  }
+
+  abrirGuia(envio: Envio) {
+    const dialogRef = this.dialog.open(GuiaComponent, {
+      width: '250px',
+      data: envio
+    });
   }
 }

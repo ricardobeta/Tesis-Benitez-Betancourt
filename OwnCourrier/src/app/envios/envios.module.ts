@@ -8,16 +8,21 @@ import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { AsignarEnviosComponent } from './components/asignar-envios/asignar-envios.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GuiaComponent } from './components/guia/guia.component';
+import { QRCodeModule } from 'angularx-qrcode';
+import { NgxPrintModule } from 'ngx-print';
 
 
 @NgModule({
-  declarations: [PrincipalComponent, RegistroEnvioComponent, AsignarEnviosComponent],
+  declarations: [PrincipalComponent, RegistroEnvioComponent, AsignarEnviosComponent, GuiaComponent],
   imports: [
     CommonModule,
     EnviosRoutingModule,
     MaterialModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    QRCodeModule,
+    NgxPrintModule
   ]
 })
 export class EnviosModule { }

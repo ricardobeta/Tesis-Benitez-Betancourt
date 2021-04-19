@@ -1,7 +1,15 @@
 <div class="row center-xs margTop">
     <div class="col-xs-12 col-md-9">
+        <div class="loadingCard" *ngIf="loading">
+            <mat-spinner></mat-spinner>
+            <h1>
+                Guardando Envío
+            </h1>
+        </div>
+
         <h1>Registro de Envío</h1>
-        <mat-vertical-stepper [linear]="">
+
+        <mat-vertical-stepper [linear]="true">
             <mat-step [stepControl]="formCliente" >
                 <ng-template matStepLabel>Datos del Destinatario</ng-template>
                 <form [formGroup]="formCliente">
@@ -140,14 +148,14 @@
                             </mat-form-field>
                         </div>
                     </div>
-                </form>
-                <div class="row end-xs">
-                    <div class="col-xs-12">
-                        <button mat-raised-button color="primary">
-                            Registrar envío
-                        </button>
+                    <div class="row end-xs">
+                        <div class="col-xs-12">
+                            <button mat-raised-button color="primary">
+                                Registrar envío
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </mat-step>
         </mat-vertical-stepper>
     </div>
