@@ -24,7 +24,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="mat-elevation-z20 listaConductores">
+                <div class="listaConductores">
                     <table mat-table [dataSource]="dataSource" class="ancho" style="position: sticky;">
                         <!-- <ng-container matColumnDef="ID">
                             <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -75,7 +75,7 @@
                             </td>
                         </ng-container>
                         <ng-container matColumnDef="disclaimer">
-                            <td class="info centro centrar" mat-footer-cell *matFooterCellDef colspan="7">
+                            <td class="info centro centrar" mat-footer-cell *matFooterCellDef colspan="6">
                                 <mat-icon class="icono-punto" style="color: green;">circle</mat-icon> Disponible
                                 <mat-icon class="icono-punto" style="color: orange;">circle</mat-icon> Ausente
                                 <mat-icon class="icono-punto" style="color: red;">circle</mat-icon> Ocupado
@@ -84,7 +84,7 @@
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         <tr class="mat-row" *matNoDataRow>
-                            <td class="mat-cell" colspan="7">{{'No existen envíos' | titlecase}}</td>
+                            <td class="mat-cell" colspan="6">{{'No existen envíos' | titlecase}}</td>
                         </tr>
                         <tr mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></tr>
                     </table>
