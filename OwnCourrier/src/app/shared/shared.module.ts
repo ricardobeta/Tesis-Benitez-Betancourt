@@ -4,6 +4,7 @@ import { MapaComponent } from './mapa/mapa.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MaterialModule } from '../material/material.module';
 import { DialogPasswComponent } from './dialog-passw/dialog-passw.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { DialogPasswComponent } from './dialog-passw/dialog-passw.component';
   imports: [
     CommonModule,
     LeafletModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   exports: [
     MapaComponent,

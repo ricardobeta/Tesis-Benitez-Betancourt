@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Envio } from 'src/app/core/models/envio.model';
 
 @Component({
   selector: 'app-registro-envio',
@@ -7,18 +8,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./registro-envio.component.scss']
 })
 export class RegistroEnvioComponent implements OnInit {
-  
+
+  formInfoEnvio: FormGroup;
   formCliente: FormGroup;
   formDireccion: FormGroup;
-  formInfoEnvio: FormGroup;
   formFecha: FormGroup;
 
+
+  prioridades = ['Alta', 'Media', 'Baja'];
+  tipos = ['Postal', 'Alimentos', 'Mercaderia', 'Medico']
 
   constructor(private formBuilder: FormBuilder) {
     this.buildFormCliente();
     this.buildFormDireccion();
     this.buildFormInfoEnvio();
-    this.buildFormFecha();
+    this.buildFormFecha()
   }
 
   ngOnInit(): void {
@@ -60,7 +64,7 @@ export class RegistroEnvioComponent implements OnInit {
   }
 
   buildFormFecha() {
-    this.formInfoEnvio = this.formBuilder.group(
+    this.formFecha = this.formBuilder.group(
       {
         fecha: ['', [Validators.required]],
       }
@@ -73,5 +77,20 @@ export class RegistroEnvioComponent implements OnInit {
     console.log(this.formDireccion.dirty);
   }
 
+  guardarEnvio(event: Event) {
+    if(this.formsValid()) {
+      const envio: Envio = {
+        cliente: this.formCliente.value,
+        direccion: this.formDireccion.value,
+        infoEnvio: this.formInfoEnvio.value,
+        fecha: this.formFecha.get('fecha').value
+      }
+      console.log(envio)
+    }
+  }
 
+  formsValid() {
+    return this.formCliente.valid && this.formDireccion.valid
+      && this.formInfoEnvio.valid && this.formFecha.valid;
+  }
 }

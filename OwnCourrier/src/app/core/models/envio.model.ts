@@ -7,4 +7,5 @@ export interface Envio {
     direccion: Direccion;
     infoEnvio: InfoEnvio;
     fecha: string;
+    // valores opcionales
 }

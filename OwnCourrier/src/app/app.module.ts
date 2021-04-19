@@ -24,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
     ToastrModule.forRoot()
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

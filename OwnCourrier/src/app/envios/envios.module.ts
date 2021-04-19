@@ -7,6 +7,7 @@ import { RegistroEnvioComponent } from './components/registro-envio/registro-env
 import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { AsignarEnviosComponent } from './components/asignar-envios/asignar-envios.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AsignarEnviosComponent } from './components/asignar-envios/asignar-envi
     CommonModule,
     EnviosRoutingModule,
     MaterialModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class EnviosModule { }
