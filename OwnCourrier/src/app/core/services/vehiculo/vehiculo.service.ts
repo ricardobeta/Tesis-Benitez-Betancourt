@@ -30,6 +30,6 @@ export class VehiculoService {
     }
 
     listaVehiculos() {
-      this.db.list(`Negocios/${this.negocioService.idNegocio.value}/vehiculos`).snapshotChanges()
+      return this.db.list(`Negocios/${this.negocioService.idNegocio.value}/vehiculos`).snapshotChanges()
     }
 }
