@@ -15,11 +15,11 @@
                 <mat-card-subtitle>
                     Administra tus envíos, clientes y motorizados
                 </mat-card-subtitle>
-                <p class="info">
+                <!-- <p class="info">
                     <mat-icon class="icono-punto" style="color: green;">circle</mat-icon> Entregados <br>
                     <mat-icon class="icono-punto" style="color: orange;">circle</mat-icon> Pendientes <br>
                     <mat-icon class="icono-punto" style="color: red;">circle</mat-icon> Rechazados <br>
-                </p>
+                </p> -->
             </mat-card-header>
             <mat-card-content>
                 <!-- <div class="loader" *ngIf="loading">
@@ -45,7 +45,7 @@
                         <th mat-header-cell *matHeaderCellDef> Cédula </th>
                         <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
                     </ng-container>
-                    
+
                     <ng-container matColumnDef="Nombre_cliente">
                         <th mat-header-cell *matHeaderCellDef> Nombre cliente </th>
                         <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
@@ -96,11 +96,19 @@
 
                         </td>
                     </ng-container>
+                    <ng-container matColumnDef="disclaimer">
+                        <td class="info centro centrar" mat-footer-cell *matFooterCellDef colspan="7">
+                            <mat-icon class="icono-punto" style="color: green;">circle</mat-icon> Entregados
+                            <mat-icon class="icono-punto" style="color: orange;">circle</mat-icon> Pendientes
+                            <mat-icon class="icono-punto" style="color: red;">circle</mat-icon> Rechazados
+                        </td>
+                    </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    <tr class="mat-row" *matNoDataRow>
-                        <td class="mat-cell" colspan="5">{{'No existen envíos' | titlecase}}</td>
+                    <tr class="mat-row centro centrar" *matNoDataRow>
+                        <td class="mat-cell" colspan="7">{{'No existen envíos' | titlecase}}</td>
                     </tr>
+                    <tr mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></tr>
                 </table>
                 <mat-paginator [pageSizeOptions]="[15,30,50]" showFirstLastButtons></mat-paginator>
             </mat-card-content>
