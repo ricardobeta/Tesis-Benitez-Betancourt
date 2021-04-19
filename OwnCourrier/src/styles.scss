@@ -17,6 +17,11 @@ $custom-typography: mat-typography-config(
   $button:        mat-typography-level(15px, 14px, 500),
 );
 
+@page {
+    size: A5;
+    margin: 17px;
+  }
+
 @include angular-material-typography($custom-typography);
 @include mat-core($custom-typography);
 html, body { height: 100%; }

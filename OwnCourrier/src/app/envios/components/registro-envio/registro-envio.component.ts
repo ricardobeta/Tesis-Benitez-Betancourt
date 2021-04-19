@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Envio } from 'src/app/core/models/envio.model';
 import { EnvioService } from 'src/app/core/services/envios/envio.service';
 import { GuiaComponent } from '../guia/guia.component';
@@ -21,7 +22,8 @@ export class RegistroEnvioComponent implements OnInit {
   prioridades = ['Alta', 'Media', 'Baja'];
   tipos = ['Postal', 'Alimentos', 'Mercaderia', 'Medico']
 
-  constructor(private formBuilder: FormBuilder, private envioService: EnvioService, public dialog: MatDialog) {
+  constructor(private formBuilder: FormBuilder, private envioService: EnvioService, public dialog: MatDialog,
+    private router: Router, private ruta: ActivatedRoute) {
     this.buildFormCliente();
     this.buildFormDireccion();
     this.buildFormInfoEnvio();
@@ -92,6 +94,9 @@ export class RegistroEnvioComponent implements OnInit {
       this.envioService.guardarEnvio(envio).then(
         value => {
           envio.$key =  value.key
+          this.abrirGuia(envio);
+          this.router.navigate(['../'], {relativeTo: this.ruta})
+          this.loading = false
         }
       )
     }
@@ -104,7 +109,7 @@ export class RegistroEnvioComponent implements OnInit {
 
   abrirGuia(envio: Envio) {
     const dialogRef = this.dialog.open(GuiaComponent, {
-      width: '250px',
+      width: 'auto',
       data: envio
     });
   }
