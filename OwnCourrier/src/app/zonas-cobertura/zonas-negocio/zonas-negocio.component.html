@@ -1,10 +1,27 @@
 
-<div leaflet style="height: 400px;"
-leafletDraw
-[leafletOptions]="options"
-[leafletDrawOptions]="drawOptions"
-(leafletDrawCreated)="onDrawCreated($event)"
-[leafletLayers]="layers"
->
-    <div [leafletLayer]="drawItems"></div>
+<div class="row center-xs middle-xs" style="height: 80%;" >
+    <div class="col-xs-12 col-sm-10" >
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title class="ancho">
+                    Central y Zonas de Cobertura
+                </mat-card-title>
+                <mat-card-subtitle class="ancho">
+                    Crea una nueva zona de cobertura o selecciona una existente para modificarla o eliminarla
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div leaflet style="height: 400px; width: 100%;"
+                leafletDraw
+                [leafletOptions]="options"
+                [leafletDrawOptions]="drawOptions"
+                (leafletDrawCreated)="onDrawCreated($event)"
+                [leafletLayers]="layers"
+                >
+                    <div [leafletLayer]="drawItems"></div>
+                </div>
+                 
+            </mat-card-content>
+        </mat-card>
+    </div> 
 </div>

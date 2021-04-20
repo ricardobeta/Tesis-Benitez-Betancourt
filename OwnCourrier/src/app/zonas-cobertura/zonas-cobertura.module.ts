@@ -7,14 +7,17 @@ import { ZonasNegocioComponent } from './zonas-negocio/zonas-negocio.component';
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
+import { MaterialModule } from '../material/material.module';
+import { FormZonaComponent } from './form-zona/form-zona.component';
 
 @NgModule({
-  declarations: [ZonasNegocioComponent],
+  declarations: [ZonasNegocioComponent, FormZonaComponent],
   imports: [
     CommonModule,
     ZonasCoberturaRoutingModule,
     LeafletModule,
-    LeafletDrawModule
+    LeafletDrawModule,
+    MaterialModule
   ]
 })
 export class ZonasCoberturaModule { }
