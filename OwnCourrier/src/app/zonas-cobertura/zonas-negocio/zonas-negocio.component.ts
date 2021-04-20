@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { DrawEvents, featureGroup, FeatureGroup, latLng, Polygon, tileLayer } from 'leaflet';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { DrawEvents, featureGroup, FeatureGroup, icon, LatLng, latLng, marker, Marker, Polygon, tileLayer } from 'leaflet';
+import { Central } from 'src/app/core/models/central.model';
 import { ZonaCobertura } from 'src/app/core/models/zona-cobertura.model';
 import { NegocioService } from 'src/app/core/services/negocio/negocio.service';
+import { FormZonaComponent } from '../form-zona/form-zona.component';
 
 @Component({
   selector: 'app-zonas-negocio',
@@ -11,7 +14,8 @@ import { NegocioService } from 'src/app/core/services/negocio/negocio.service';
 export class ZonasNegocioComponent implements OnInit {
 
   drawItems: FeatureGroup = featureGroup();
-
+  iconoMovible: Marker;
+  
   streetMaps: any;
 
   drawOptions: any;
@@ -20,7 +24,7 @@ export class ZonasNegocioComponent implements OnInit {
 
   layers = []
 
-  constructor(private negocioService: NegocioService) {
+  constructor(private negocioService: NegocioService, private bottomSheet: MatBottomSheet) {
     this.streetMaps = tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     });
@@ -48,10 +52,27 @@ export class ZonasNegocioComponent implements OnInit {
       zoom: 10,
       center: latLng([-0.1834136, -78.474397]),
     };
+
+    this. iconoMovible = marker([-0.1834136, -78.474397], {
+      icon: icon({
+        iconSize: [25, 41],
+        iconAnchor: [13, 41],
+        iconUrl: '../assets/pin.png',
+      }),
+      draggable: true,
+    }).on('dragend', val => {
+      const latLng = val.target['_latlng'] as LatLng;
+      const central:Central = {
+        latitud: latLng.lat,
+        longitud: latLng.lng
+      }
+      negocioService.editarCentral(central);
+    });
   }
 
   ngOnInit(): void {
     this.options.layers.push(this.streetMaps)
+    this.options.layers.push(this.iconoMovible)
 
     this.negocioService.listaZonasCobertura().subscribe(
       zonas => {
@@ -60,11 +81,20 @@ export class ZonasNegocioComponent implements OnInit {
         })
       }
     )
+
+    const $sub = this.negocioService.recuperarCentral().subscribe(
+      (central: Central) => {
+        this.iconoMovible.setLatLng(latLng(central.latitud, central.longitud))
+        $sub.unsubscribe()
+      }
+    )
   }
 
   cargarZona(zona: ZonaCobertura) {
     const pol = new Polygon(JSON.parse(zona.vertices), {color: zona.color}).on('click', 
-      () =>{}
+      () =>{
+        console.log(zona)
+      }
     )
     this.drawItems.addLayer(pol);
   }
@@ -74,20 +104,25 @@ export class ZonasNegocioComponent implements OnInit {
     // e.layer['_latlngs'][0]  guarda los puntos en la base de datos
     const zona: ZonaCobertura = {
       vertices: JSON.stringify(e.layer['_latlngs'][0]),
-      color: '#eb445a'
+      color: '#eb445a',
+      nombre: ''
     }
 
-    this.negocioService.agregarZona(zona).then(
-        value => {
-          console.log(value)
-        }
-    )
+    // this.negocioService.agregarZona(zona).then(
+    //     value => {
+    //       console.log(value)
+    //     }
+    // )
     // this.drawItems.addLayer(new Polygon(e.layer['_latlngs'][0], {
     //      color: '#9e9e9e'
     //   }));
     // this.layers.push(new Polygon(e.layer['_latlngs'][0], {
     //   color: '#9e9e9e'
     // }))
+
+    this.bottomSheet.open(FormZonaComponent, {
+      data: zona
+    })
   }
 
 }
