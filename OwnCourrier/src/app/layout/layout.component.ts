@@ -42,7 +42,7 @@ export class LayoutComponent implements OnInit {
     this.items = [
       { link: './', icono: 'home', nombre: 'Inicio',  },
       { link: 'envios', icono: 'local_shipping', nombre: 'Envíos'  },
-      { link: 'motorizados', icono: 'directions_bike', nombre: 'Motorizados' },
+      { link: 'motorizados', icono: 'delivery_dining_outlined', nombre: 'Motorizados' },
       { link: 'clientes', icono: 'contacts', nombre: 'Clientes' },
       { link: 'zonas-cobertura', icono: 'map', nombre: 'Zonas Cobertura' },
       { link: 'informacion', icono: 'settings', nombre: 'Configuración' },

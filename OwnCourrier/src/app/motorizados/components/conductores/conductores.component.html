@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="listaConductores">
-                    <table mat-table [dataSource]="dataSource" class="ancho listaConductores" style="position: sticky;">
+                    <table mat-table [dataSource]="dataSource" class="ancho" style="position: sticky;">
                         <!-- <ng-container matColumnDef="ID">
                             <th mat-header-cell *matHeaderCellDef> ID </th>
                             <td mat-cell *matCellDef="let element"> {{element.$key}} </td>
@@ -54,7 +54,11 @@
     
                         <ng-container matColumnDef="estado">
                             <th mat-header-cell *matHeaderCellDef> Estado </th>
-                            <td mat-cell *matCellDef="let element"> <mat-icon class="icono-punto" style="color: green;">circle</mat-icon> </td>
+                            <td mat-cell *matCellDef="let element"> 
+                                <mat-icon *ngIf="false" class="icono-punto" style="color: green;">circle</mat-icon>
+                                <mat-icon *ngIf="false" class="icono-punto" style="color: orange;">circle</mat-icon> 
+                                <mat-icon *ngIf="true" class="icono-punto" style="color: red;">circle</mat-icon> 
+                            </td>
                         </ng-container>
     
                         <ng-container matColumnDef="acciones">

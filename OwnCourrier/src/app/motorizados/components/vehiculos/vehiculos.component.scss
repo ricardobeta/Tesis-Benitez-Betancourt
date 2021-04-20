@@ -31,6 +31,10 @@ table th {
     font-size: 16px;
 }
 
-.listaConductores {
-    overflow-x: scroll;
+
+@media screen and (max-width: 700px) {
+    .listaVehiculos {
+        overflow-x: scroll;
+        
+    }
 }
