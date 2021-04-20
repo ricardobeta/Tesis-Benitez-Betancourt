@@ -3,7 +3,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { BehaviorSubject } from 'rxjs';
+import { Central } from '../../models/central.model';
 import { Negocio } from '../../models/negocio';
+import { ZonaCobertura } from '../../models/zona-cobertura.model';
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +58,27 @@ export class NegocioService {
         return user.updateEmail(newEmail)
       }
     )
+  }
+
+  //Zonas Cobertura
+
+
+  agregarZona(zona: ZonaCobertura) {
+    return  this.db.list(`Negocios/${this.idNegocio.value}/zonasCobertura`).push(zona)
+  }
+
+  listaZonasCobertura() {
+    return this.db.list(`Negocios/${this.idNegocio.value}/zonasCobertura`).snapshotChanges();
+  }
+
+  eliminarZonaCobertura(key) {
+    return this.db.object(`Negocios/${this.idNegocio.value}/zonasCobertura/${key}`).remove()
+  }
+  editarCentral(central: Central)  {
+    return this.db.object(`Negocios/${this.idNegocio.value}/central`).update(central)
+  }
+
+  recuperarCentral() {
+    return this.db.object(`Negocios/${this.idNegocio.value}/central`).valueChanges()
   }
 }
