@@ -11,10 +11,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { GuiaComponent } from './components/guia/guia.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { NgxPrintModule } from 'ngx-print';
+import { InfoEnvioComponent } from './components/info-envio/info-envio.component';
 
 
 @NgModule({
-  declarations: [PrincipalComponent, RegistroEnvioComponent, AsignarEnviosComponent, GuiaComponent],
+  declarations: [PrincipalComponent, RegistroEnvioComponent, AsignarEnviosComponent, GuiaComponent, InfoEnvioComponent],
   imports: [
     CommonModule,
     EnviosRoutingModule,

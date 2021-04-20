@@ -79,11 +79,16 @@
                                 <mat-icon>file_copy</mat-icon>
                             </button>
 
+                            <button mat-icon-button matTooltip="Información envío" (click)="openBottomSheet(element.$key)">
+                                <mat-icon>info_outlined</mat-icon>
+                            </button>
+
                         </td>
                     </ng-container>
                     <ng-container matColumnDef="disclaimer">
                         <td class="info centro centrar" mat-footer-cell *matFooterCellDef colspan="7">
                             <mat-icon class="icono-punto" style="color: green;">circle</mat-icon> Entregados
+                            <mat-icon class="icono-punto" style="color: blue;">circle</mat-icon> En Proceso
                             <mat-icon class="icono-punto" style="color: orange;">circle</mat-icon> Pendientes
                             <mat-icon class="icono-punto" style="color: red;">circle</mat-icon> Rechazados
                         </td>
