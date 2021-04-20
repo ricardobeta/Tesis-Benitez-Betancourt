@@ -33,7 +33,8 @@
               "./node_modules/flexboxgrid/dist/flexboxgrid.min.css",
               "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css",
-              "./node_modules/leaflet/dist/leaflet.css"
+              "./node_modules/leaflet/dist/leaflet.css",
+              "./node_modules/leaflet-draw/dist/leaflet.draw.css"
             ],
             "scripts": []
           },

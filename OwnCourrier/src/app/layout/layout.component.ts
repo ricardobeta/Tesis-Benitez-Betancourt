@@ -20,6 +20,8 @@ export class LayoutComponent implements OnInit {
   tipo: string;
   items;
 
+  bandera = false;
+
   constructor(private breakpointObserver: BreakpointObserver,
               private router: ActivatedRoute,
               private loginService: LoginService,
@@ -27,6 +29,13 @@ export class LayoutComponent implements OnInit {
       this.router.params.subscribe(params => {
         negocioService.recuperarNegocioID(params.id);
       });
+      this.negocioService.idNegocio.subscribe(
+        idNegocio => {
+            if(idNegocio) {
+              this.bandera = true;
+            }
+        }
+      )
   }
   
   ngOnInit(): void {
