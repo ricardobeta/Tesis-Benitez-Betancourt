@@ -26,10 +26,12 @@
                 </div>
                 <div class="listaConductores">
                     <table mat-table [dataSource]="dataSource" class="ancho" style="position: sticky;">
-                        <!-- <ng-container matColumnDef="ID">
-                            <th mat-header-cell *matHeaderCellDef> ID </th>
-                            <td mat-cell *matCellDef="let element"> {{element.$key}} </td>
-                        </ng-container> -->
+                        <ng-container matColumnDef="foto">
+                            <th mat-header-cell *matHeaderCellDef> Foto </th>
+                            <td class="middle-xs" mat-cell *matCellDef="let element"> 
+                                <img mat-card-avatar src="{{element.urlFoto}}" alt="">
+                            </td>
+                        </ng-container>
                         
                         <ng-container matColumnDef="cedula">
                             <th mat-header-cell *matHeaderCellDef> Cédula </th>

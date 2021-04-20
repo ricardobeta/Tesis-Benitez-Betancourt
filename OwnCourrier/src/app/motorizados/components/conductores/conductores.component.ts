@@ -13,7 +13,7 @@ export class ConductoresComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   dataSource = new MatTableDataSource<Conductor>();
-  displayedColumns: string[] = ['cedula', 'nombreCompleto', 'celular', 'fecha', 'estado', 'acciones'];
+  displayedColumns: string[] = ['foto', 'cedula', 'nombreCompleto', 'celular', 'fecha', 'estado', 'acciones'];
   conductor: Conductor;
 
   constructor(private conductorService: ConductorService) { }
