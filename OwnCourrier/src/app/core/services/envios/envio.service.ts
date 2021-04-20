@@ -18,4 +18,8 @@ export class EnvioService {
   listaEnvios() {
     return this.db.list(`Negocios/${this.negocioService.idNegocio.value}/envios`).snapshotChanges()
   }
+
+  recuperarEnvio(key) {
+    return this.db.object(`Negocios/${this.negocioService.idNegocio.value}/envios/${key}`).snapshotChanges();
+  }
 }

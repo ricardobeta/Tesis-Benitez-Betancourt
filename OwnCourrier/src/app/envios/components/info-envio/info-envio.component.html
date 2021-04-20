@@ -1,0 +1,34 @@
+<div class="row ancho contenedor">
+    <div class="col-xs-12">
+        <div class="row ancho margTop middle-xs">
+            <div class="col-xs-12 col-sm-3 centro centrar">
+                <qrcode [elementType]="'img'" [qrdata]="data.key" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                <p><b>ID:</b> {{data.key}}</p>
+                <p><b>Nombre cliente:</b> {{clienteSeleccionado.nombreCompleto}}</p>
+                <p><b>Celular:</b> {{clienteSeleccionado.celular}}</p>
+                <p><b>Dirección:</b> {{direccion.descripcion}}</p>
+                <p><b>Fecha de entrega:</b> {{envioSeleccionado.fecha}}</p>
+                <p><b>Estado:</b> En Proceso <mat-icon class="icono-punto" style="color: blue;">circle</mat-icon></p>
+                
+            </div>
+        </div>
+        
+        <div class="row ancho">
+            <div class="col-xs-12">
+             
+                    <b>Información Envío:</b>
+                    <ul>
+                        <li><b>Descripción: </b>{{infoEnvio.descripcion}}</li>
+                        <li><b>Tipo: </b>{{infoEnvio.tipo}}</li>
+                        <li><b>Peso: </b>{{infoEnvio.peso}}</li>
+                    </ul>
+               
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+
