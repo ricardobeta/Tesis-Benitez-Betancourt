@@ -48,9 +48,9 @@ export class PrincipalComponent implements OnInit {
     });
   }
 
-  openBottomSheet(keyEnvio): void {
+  openBottomSheet(envioRecibido): void {
     const bottomSheetRef = this.bottomSheet.open(InfoEnvioComponent, {
-      data: { key: keyEnvio },
+      data: { envio: envioRecibido },
     });
   }
 

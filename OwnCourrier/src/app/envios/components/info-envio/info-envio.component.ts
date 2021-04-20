@@ -17,24 +17,10 @@ export class InfoEnvioComponent implements OnInit {
   clienteSeleccionado: Cliente;
   direccion: Direccion;
   infoEnvio: InfoEnvio;
-  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: { key: string },
+  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: { envio: Envio },
     private envioService: EnvioService) { }
 
   ngOnInit(): void {
-
-    this.envioService.recuperarEnvio(this.data.key).subscribe(envio => {
-      if (envio !== undefined) {
-        this.envioSeleccionado = envio.payload.toJSON() as Envio;
-        this.clienteSeleccionado = this.envioSeleccionado.cliente as Cliente;
-        this.direccion = this.envioSeleccionado.direccion as Direccion;
-        this.infoEnvio = this.envioSeleccionado.infoEnvio as InfoEnvio;
-      }
-
-
-
-
-    });
-
 
   }
 

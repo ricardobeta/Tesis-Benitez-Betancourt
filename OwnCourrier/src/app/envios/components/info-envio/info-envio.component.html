@@ -2,14 +2,14 @@
     <div class="col-xs-12">
         <div class="row ancho margTop middle-xs">
             <div class="col-xs-12 col-sm-3 centro centrar">
-                <qrcode [elementType]="'img'" [qrdata]="data.key" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
+                <qrcode [elementType]="'img'" [qrdata]="data.envio.$key" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
             </div>
             <div class="col-xs-12 col-sm-9">
-                <p><b>ID:</b> {{data.key}}</p>
-                <p><b>Nombre cliente:</b> {{clienteSeleccionado.nombreCompleto}}</p>
-                <p><b>Celular:</b> {{clienteSeleccionado.celular}}</p>
-                <p><b>Dirección:</b> {{direccion.descripcion}}</p>
-                <p><b>Fecha de entrega:</b> {{envioSeleccionado.fecha}}</p>
+                <p><b>ID:</b> {{data.envio.$key}}</p>
+                <p><b>Nombre cliente:</b> {{data.envio.cliente.nombreCompleto}}</p>
+                <p><b>Celular:</b> {{data.envio.cliente.celular}}</p>
+                <p><b>Dirección:</b> {{data.envio.direccion.descripcion}}</p>
+                <p><b>Fecha de entrega:</b> {{data.envio.fecha}}</p>
                 <p><b>Estado:</b> En Proceso <mat-icon class="icono-punto" style="color: blue;">circle</mat-icon></p>
                 
             </div>
@@ -20,9 +20,9 @@
              
                     <b>Información Envío:</b>
                     <ul>
-                        <li><b>Descripción: </b>{{infoEnvio.descripcion}}</li>
-                        <li><b>Tipo: </b>{{infoEnvio.tipo}}</li>
-                        <li><b>Peso: </b>{{infoEnvio.peso}}</li>
+                        <li><b>Descripción: </b>{{data.envio.infoEnvio.descripcion}}</li>
+                        <li><b>Tipo: </b>{{data.envio.infoEnvio.tipo}}</li>
+                        <li><b>Peso: </b>{{data.envio.infoEnvio.peso}}</li>
                     </ul>
                
                 
