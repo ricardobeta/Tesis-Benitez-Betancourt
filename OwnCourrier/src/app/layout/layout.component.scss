@@ -1,8 +1,18 @@
-::ng-deep .mat-drawer-inner-container {
-  overflow: hidden !important;
-}
+.sidenav-container {
+    height: 100%;
+  }
   
+  .sidenav {
+    width: 200px;
+  }
   
+  ::ng-deep .mat-drawer-inner-container {
+    overflow: hidden !important;
+  }
+  
+  .sidenav .mat-toolbar {
+    background: inherit;
+  }
   
   .mat-toolbar.mat-primary {
     position: sticky;
