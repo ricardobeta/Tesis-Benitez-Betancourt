@@ -4,10 +4,7 @@ leafletDraw
 [leafletOptions]="options"
 [leafletDrawOptions]="drawOptions"
 (leafletDrawCreated)="onDrawCreated($event)"
+[leafletLayers]="layers"
 >
-
-<ng-container>
     <div [leafletLayer]="drawItems"></div>
-</ng-container>
-
 </div>
