@@ -1,34 +1,50 @@
 <form [formGroup]="form">
-    <div class="row ancho centrar">
+    <div class="row ancho centrar margBot">
         <div class="col-xs-12">
-            <p>
-                <input class="ng-hide" id="input-file-id" accept=".png, .jpg" type="file"
-                    (change)="cargarFotoPerfil($event)" />
-                <label for="input-file-id" class="row center-xs but-upload" mat-raised-button style="cursor: pointer;"
-                    *ngIf="file.value === null">
+            <ng-container *ngIf="urlLogo.value === ''">
+                <p>
+                    <input class="ng-hide" id="input-file-id" accept=".png, .jpg" type="file"
+                        (change)="cargarFotoPerfil($event)" />
+                    <label for="input-file-id" class="row center-xs but-upload" mat-raised-button style="cursor: pointer;"
+                        *ngIf="file.value === null">
+                        <div class="col-xs-12">
+                            <mat-icon id="per">camera_alt</mat-icon>
+                        </div>
+                        <div class="col-xs-12">
+                            Subir Logo Empresa &nbsp;
+                            <mat-icon>cloud_upload</mat-icon>
+                        </div>
+                    </label>
+                </p>
+                <div class="row" class="but-suss" *ngIf="file.value !== null">
                     <div class="col-xs-12">
                         <mat-icon id="per">camera_alt</mat-icon>
                     </div>
                     <div class="col-xs-12">
-                        Subir Logo Empresa &nbsp;
-                        <mat-icon>cloud_upload</mat-icon>
+                        Logo Perfil Cargada Correctamente
                     </div>
-                </label>
-            </p>
-            <div class="row" class="but-suss" *ngIf="file.value !== null">
-                <div class="col-xs-12">
-                    <mat-icon id="per">camera_alt</mat-icon>
+                    <div class="col-xs-12">
+                        <button mat-raised-button color="primary" type="button" (click)="eliminarFotoPerfil()">
+                            Eliminar Imagen
+                        </button>
+                    </div>
                 </div>
-                <div class="col-xs-12">
-                    Logo Perfil Cargada Correctamente
+            </ng-container>
+            <ng-container *ngIf="urlLogo.value !== ''">
+                <div class="logo">
+                    <img width="200px" height="200px" src="{{urlLogo.value}}" alt="">
+                    
                 </div>
-                <div class="col-xs-12">
-                    <button mat-raised-button color="primary" type="button" (click)="eliminarFotoPerfil()">
-                        Eliminar Imagen
-                    </button>
-                </div>
-            </div>
+                <button mat-mini-fab color="primary" matTooltip="Cambiar imagen">
+                    <mat-icon  class="material-icons-outlined">
+                        image
+                    </mat-icon>
+                  </button>
+            </ng-container>
+
         </div>
+
+        
     </div>
 
     <div class="row ancho">
@@ -79,7 +95,7 @@
     <div class="row ancho margTop centro centrar">
 
         <div class="col-xs-12 col-sm-6">
-            <button mat-raised-button color="primary" (click)="saveInfo()"><mat-icon>save</mat-icon> Actualizar información</button>
+            <button mat-raised-button color="primary" (click)="guardar($event)"><mat-icon>save</mat-icon> Actualizar información</button>
         </div>
     </div>
 </form>

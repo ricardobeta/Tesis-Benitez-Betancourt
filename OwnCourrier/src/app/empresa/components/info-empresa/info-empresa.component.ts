@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { NegocioService } from 'src/app/core/services/negocio/negocio.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class InfoEmpresaComponent implements OnInit {
   auxKey;
 
   constructor(private formBuilder: FormBuilder,
-              private negociosService: NegocioService) {
+              private negociosService: NegocioService,
+              private toastr: ToastrService) {
     this.buildForm();
     this.auxKey = this.negociosService.idNegocio.value;
   }
@@ -23,7 +25,7 @@ export class InfoEmpresaComponent implements OnInit {
       negocio => {
         console.log(negocio);
         // if (negocio !== undefined || negocio !== null) {
-        //   this.form.patchValue(negocio);
+          this.form.patchValue(negocio);
         // }
       }
     );
@@ -36,18 +38,12 @@ export class InfoEmpresaComponent implements OnInit {
         nombreEmpresa: ['', Validators.required],
         celular: ['', Validators.required],
         correoAdmin: ['', Validators.required],
-        descripcion: ['', Validators.required],
+        descripcion: [''],
         fileLogo: [null, [Validators.required]],
         pathLogo: [''],
         urlLogo: ['']
       }
     );
-  }
-
-  saveInfo() {
-    if (this.form.valid) {
-      console.log(this.form.value);
-    }
   }
 
   cargarFotoPerfil(event) {
@@ -61,12 +57,25 @@ export class InfoEmpresaComponent implements OnInit {
   guardar(event: Event) {
     event.preventDefault();
     if(this.form.valid) {
-      console.log(this.form.value);
+      const auxNegocio = this.form.value;
+      console.log(auxNegocio);
+      this.negociosService.modificarInfoNegocio(auxNegocio, this.auxKey);
+      this.toastr.success('Actualizada correctamente', 'Información de la empresa', );
+    } else {
+      if (this.file.value === null) {
+        this.toastr.error('No se ha subido ninguna imagen para el logo', 'Error');
+      } else {
+        this.toastr.error('Campos obligatorios vacíos', 'Error');
+      }
     }
   }
 
   get file(): AbstractControl {
     return this.form.get('fileLogo')
+  }
+
+  get urlLogo(): AbstractControl {
+    return this.form.get('urlLogo')
   }
 
 }
