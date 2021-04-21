@@ -74,6 +74,13 @@ export class NegocioService {
   eliminarZonaCobertura(key) {
     return this.db.object(`Negocios/${this.idNegocio.value}/zonasCobertura/${key}`).remove()
   }
+
+
+  modificarZona(zona:ZonaCobertura, key) {
+    delete zona.$key;
+    return this.db.object(`Negocios/${this.idNegocio.value}/zonasCobertura/${key}`).update(zona);
+  }
+
   editarCentral(central: Central)  {
     return this.db.object(`Negocios/${this.idNegocio.value}/central`).update(central)
   }

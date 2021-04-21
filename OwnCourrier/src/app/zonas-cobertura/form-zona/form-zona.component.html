@@ -23,6 +23,15 @@
                     {{(tipo == 'guardar')? 'GUARDAR': 'MODDIFICAR'}}
                 </button>
             </div>
+            <ng-container *ngIf="tipo !== 'guardar'">
+                <div class="col-xs-12 margTop">
+                <button class="ancho margTop" mat-stroked-button color="warn" type="button" (click)="eliminar()"> 
+                    <mat-icon>
+                        delete
+                    </mat-icon>
+                    Eliminar</button>
+                </div>
+            </ng-container>
         </div>
     </form>
 </div>

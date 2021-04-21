@@ -78,6 +78,7 @@ export class ZonasNegocioComponent implements OnInit {
     this.negocioService.listaZonasCobertura().subscribe(
       zonas => {
         this.drawItems.clearLayers();
+        this.zonas = []
         zonas.forEach( zonaDB  => {
           const zona =  zonaDB.payload.toJSON() as ZonaCobertura
           zona.$key  = zonaDB.key;
@@ -111,7 +112,7 @@ public  onDrawCreated(e: DrawEvents.Created) {
     }, 100)
 }
 
-  openBS(zona: ZonaCobertura, tipo) {
+  openBS(zona: ZonaCobertura, tipo: string) {
     const ref = this.bottomSheet.open(FormZonaComponent,
       {
         data: {zona, tipo},
@@ -121,9 +122,12 @@ public  onDrawCreated(e: DrawEvents.Created) {
 
     ref.afterDismissed().subscribe(
       result => {
-        console.log(result)
         if(result === 'guardado') {
-          this.toast.success('Nueva Zona Cobertura', 'Guardado con Exito')
+          this.toast.success('Nueva Zona de Cobertura', 'Guardado con Exito')
+        } else if(result === 'modificado') {
+          this.toast.success('Se modifico la Zona de Cobertura', 'Modificado con Exito')
+        } else if( result === 'eliminado') {
+          this.toast.success('Se Elimino Zona de Cobertura', 'Eliminado con Exito')
         }
       }
     )

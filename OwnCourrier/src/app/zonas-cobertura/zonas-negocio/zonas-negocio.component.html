@@ -19,6 +19,18 @@
                 >
                     <div [leafletLayer]="drawItems"></div>
                 </div>
+
+                <mat-action-list class="ancho" *ngFor="let zona of zonas">
+                    <button mat-list-item (click)="openBS(zona, 'modificar')"> 
+                        <mat-icon  [ngStyle]="{'color': zona.color}">
+                            public
+                        </mat-icon>
+                        &nbsp;
+                        {{zona.nombre}}
+                    </button>
+                  </mat-action-list>
+
+
                  
             </mat-card-content>
         </mat-card>

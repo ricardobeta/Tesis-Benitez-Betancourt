@@ -42,14 +42,25 @@ export class FormZonaComponent implements OnInit {
         delete zona.$key
         this.negociosService.agregarZona(zona).then(
           value => {
-            console.log(value);
             this.bottomSheetRef.dismiss('guardado')
           }
         )
-      } else if(this.tipo === 'modificando') {
-        //this.negociosService.
+      } else if(this.tipo === 'modificar') {
+        this.negociosService.modificarZona(zona, zona.$key).then(
+          value => {
+            this.bottomSheetRef.dismiss('modificado')
+          }
+        )
       }
     }
+  }
+
+  eliminar() {
+    this.negociosService.eliminarZonaCobertura(this.data.zona.$key).then(
+      value => {
+        this.bottomSheetRef.dismiss('eliminado')
+      }
+    )
   }
 
   cancelar() {
