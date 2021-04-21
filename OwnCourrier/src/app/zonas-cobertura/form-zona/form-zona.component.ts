@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import { ZonaCobertura } from 'src/app/core/models/zona-cobertura.model';
+import { NegocioService } from 'src/app/core/services/negocio/negocio.service';
 
 @Component({
   selector: 'app-form-zona',
@@ -7,9 +11,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormZonaComponent implements OnInit {
 
-  constructor() { }
+  tipo = '';
+  form: FormGroup;
 
-  ngOnInit(): void {
+
+  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any, private fb: FormBuilder,
+  private negociosService: NegocioService, private bottomSheetRef: MatBottomSheetRef<FormZonaComponent>) {
+    this.buildForm();
+    this.tipo = data.tipo;
+    console.log(this.tipo)
   }
 
+  ngOnInit(): void {
+    this.form.patchValue(this.data.zona);
+  }
+
+  buildForm() {
+    this.form = this.fb.group({
+      nombre: ['', [Validators.required]],
+      color: ['', [Validators.required]],
+      vertices: ['', [Validators.required]],
+      $key: ['']
+    });
+  }
+
+  saveForm() {
+    if(this.form.valid) {
+      const zona: ZonaCobertura = this.form.value;
+      if(this.tipo === 'guardar') {
+        delete zona.$key
+        this.negociosService.agregarZona(zona).then(
+          value => {
+            console.log(value);
+            this.bottomSheetRef.dismiss('guardado')
+          }
+        )
+      } else if(this.tipo === 'modificando') {
+        //this.negociosService.
+      }
+    }
+  }
+
+  cancelar() {
+    this.bottomSheetRef.dismiss('cancelado')
+  }
 }

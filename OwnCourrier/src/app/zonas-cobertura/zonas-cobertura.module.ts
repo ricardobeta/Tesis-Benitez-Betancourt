@@ -9,6 +9,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
 import { MaterialModule } from '../material/material.module';
 import { FormZonaComponent } from './form-zona/form-zona.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ZonasNegocioComponent, FormZonaComponent],
@@ -17,7 +18,8 @@ import { FormZonaComponent } from './form-zona/form-zona.component';
     ZonasCoberturaRoutingModule,
     LeafletModule,
     LeafletDrawModule,
-    MaterialModule
-  ]
+    MaterialModule,
+    ReactiveFormsModule
+  ],
 })
 export class ZonasCoberturaModule { }

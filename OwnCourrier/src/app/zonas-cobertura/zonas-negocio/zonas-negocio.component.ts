@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { DrawEvents, featureGroup, FeatureGroup, icon, LatLng, latLng, marker, Marker, Polygon, tileLayer } from 'leaflet';
+import { ToastrService } from 'ngx-toastr';
 import { Central } from 'src/app/core/models/central.model';
 import { ZonaCobertura } from 'src/app/core/models/zona-cobertura.model';
 import { NegocioService } from 'src/app/core/services/negocio/negocio.service';
@@ -22,9 +23,9 @@ export class ZonasNegocioComponent implements OnInit {
 
   options: any;
 
-  layers = []
+  zonas = []
 
-  constructor(private negocioService: NegocioService, private bottomSheet: MatBottomSheet) {
+  constructor(private negocioService: NegocioService, private bottomSheet: MatBottomSheet, private toast: ToastrService) {
     this.streetMaps = tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     });
@@ -76,9 +77,13 @@ export class ZonasNegocioComponent implements OnInit {
 
     this.negocioService.listaZonasCobertura().subscribe(
       zonas => {
-        zonas.forEach( zona  => {
-          this.cargarZona(zona.payload.toJSON() as ZonaCobertura);
-        })
+        this.drawItems.clearLayers();
+        zonas.forEach( zonaDB  => {
+          const zona =  zonaDB.payload.toJSON() as ZonaCobertura
+          zona.$key  = zonaDB.key;
+          this.cargarZona(zona);
+          this.zonas.push(zona)
+        });
       }
     )
 
@@ -91,38 +96,37 @@ export class ZonasNegocioComponent implements OnInit {
   }
 
   cargarZona(zona: ZonaCobertura) {
-    const pol = new Polygon(JSON.parse(zona.vertices), {color: zona.color}).on('click', 
-      () =>{
-        console.log(zona)
-      }
-    )
-    this.drawItems.addLayer(pol);
+    const pol = new Polygon(JSON.parse(zona.vertices), {color: zona.color});
+    this.drawItems.addLayer(pol)
   }
 
-  public onDrawCreated(e: DrawEvents.Created) {
-    //console.log(e.layer.options['color'] = '#9e9e9e')
-    // e.layer['_latlngs'][0]  guarda los puntos en la base de datos
+public  onDrawCreated(e: DrawEvents.Created) {
     const zona: ZonaCobertura = {
       vertices: JSON.stringify(e.layer['_latlngs'][0]),
       color: '#eb445a',
       nombre: ''
     }
+    setTimeout(()=>{
+      this.openBS(zona, 'guardar');
+    }, 100)
+}
 
-    // this.negocioService.agregarZona(zona).then(
-    //     value => {
-    //       console.log(value)
-    //     }
-    // )
-    // this.drawItems.addLayer(new Polygon(e.layer['_latlngs'][0], {
-    //      color: '#9e9e9e'
-    //   }));
-    // this.layers.push(new Polygon(e.layer['_latlngs'][0], {
-    //   color: '#9e9e9e'
-    // }))
+  openBS(zona: ZonaCobertura, tipo) {
+    const ref = this.bottomSheet.open(FormZonaComponent,
+      {
+        data: {zona, tipo},
+        direction: 'ltr'
+      }      
+      );
 
-    this.bottomSheet.open(FormZonaComponent, {
-      data: zona
-    })
+    ref.afterDismissed().subscribe(
+      result => {
+        console.log(result)
+        if(result === 'guardado') {
+          this.toast.success('Nueva Zona Cobertura', 'Guardado con Exito')
+        }
+      }
+    )
   }
 
 }
