@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Conductor } from 'src/app/core/models/conductor.model';
 import { Vehiculo } from 'src/app/core/models/vehiculo.model';
 import { ZonaCobertura } from 'src/app/core/models/zona-cobertura.model';
+import { ConductorService } from 'src/app/core/services/conductor/conductor.service';
 import { NegocioService } from 'src/app/core/services/negocio/negocio.service';
 import { VehiculoService } from 'src/app/core/services/vehiculo/vehiculo.service';
 
@@ -15,7 +16,7 @@ import { VehiculoService } from 'src/app/core/services/vehiculo/vehiculo.service
 export class AsignacionComponent implements OnInit {
 
   form: FormGroup;
-
+  keyPasado = ''
   vehiculos: Vehiculo[] = [];
   zonas: ZonaCobertura[] = [];
 
@@ -24,11 +25,15 @@ export class AsignacionComponent implements OnInit {
   constructor( public dialogRef: MatDialogRef<AsignacionComponent>,
     @Inject(MAT_DIALOG_DATA) public conductor: Conductor,
     private fb: FormBuilder, private vehiculoService: VehiculoService,
-    private negocioService: NegocioService) {
+    private negocioService: NegocioService,
+    private conductorService: ConductorService) {
       this.buildForm();
     }
 
   ngOnInit(): void {
+    if(this.conductor.keyVehiculo) {
+      this.keyPasado = this.conductor.keyVehiculo
+    }
     this.form.patchValue(this.conductor)
     const $sub = this.vehiculoService.listaVehiculosNoAsignados().subscribe(
       vehiculosDB => {
@@ -67,7 +72,26 @@ export class AsignacionComponent implements OnInit {
   }
 
   saveAsignacion() {
-    
+    if (this.keyPasado !== this.form.get('keyVehiculo').value) {
+      this.conductorService.asignarVehiculo(this.form.get('keyVehiculo').value, this.conductor.$key, this.keyPasado)
+        .then(
+          () => {
+            this.conductorService.asignarZona(this.form.get('keyZona').value, this.conductor.$key)
+            .then(
+              () => {
+                this.dialogRef.close('Guardado Exitosamente')
+              }
+            )
+          }
+        )
+    } else {
+      this.conductorService.asignarZona(this.form.get('keyZona').value, this.conductor.$key)
+      .then(
+        () => {
+          this.dialogRef.close('Guardado Exitosamente')
+        }
+      )
+    }
   }
 
 }

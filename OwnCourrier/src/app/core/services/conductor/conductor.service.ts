@@ -50,10 +50,29 @@ export class ConductorService {
   }
 
   listaConductores() {
-    return this.db.list('Conductores', ref=> ref.orderByChild('keyNegocio').equalTo(this.negocioService.idNegocio.value)).snapshotChanges()
+    return this.db.list('Conductores', ref => ref.orderByChild('keyNegocio').equalTo(this.negocioService.idNegocio.value)).snapshotChanges()
   }
 
   crearUsuarioConductor(email, password) {
     return this.auth.createUserWithEmailAndPassword(email, password)
+  }
+
+  asignarVehiculo(keyVehiculo, keyConductor, keyVehiculoP) {
+    return this.db.object(`Conductores/${keyConductor}`).update({ keyVehiculo }).then(
+      () => {
+        return this.db.object(`Negocios/${this.negocioService.idNegocio.value}/vehiculos/${keyVehiculo}`).update({ asignado: true })
+          .then(
+            () => {
+                if(keyVehiculoP !== '') {
+                  return this.db.object(`Negocios/${this.negocioService.idNegocio.value}/vehiculos/${keyVehiculoP}`).update({ asignado: false })
+                }
+            }
+          )
+      }
+    )
+  }
+
+  asignarZona(keyZona, keyConductor) {
+    return this.db.object(`Conductores/${keyConductor}`).update({ keyZona })
   }
 }

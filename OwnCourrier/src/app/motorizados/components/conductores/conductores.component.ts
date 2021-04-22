@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
 import { Conductor } from 'src/app/core/models/conductor.model';
 import { ConductorService } from 'src/app/core/services/conductor/conductor.service';
 import { AsignacionComponent } from '../asignacion/asignacion.component';
@@ -18,7 +19,8 @@ export class ConductoresComponent implements OnInit {
   displayedColumns: string[] = ['foto', 'cedula', 'nombreCompleto', 'celular', 'fecha', 'estado', 'acciones'];
   conductor: Conductor;
 
-  constructor(private conductorService: ConductorService, public dialog: MatDialog) { }
+  constructor(private conductorService: ConductorService, public dialog: MatDialog,
+              private toast: ToastrService) { }
 
   ngOnInit(): void {
     this.conductorService.listaConductores().subscribe(conductores => {
@@ -45,7 +47,9 @@ export class ConductoresComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
+        if(result === 'Guardado Exitosamente') {
+          this.toast.success('Se Asigno Correctamente')
+        }
     });
   }
 }
