@@ -29,6 +29,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatCheckboxModule } from '@angular/material/checkbox';
  
 
 @NgModule({
@@ -62,7 +64,9 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     ReactiveFormsModule,
     MatStepperModule,
     MatDatepickerModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatTreeModule,
+    MatCheckboxModule
   ],
   exports: [
     LayoutModule,
@@ -93,7 +97,9 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatTreeModule,
+    MatCheckboxModule
   ]
 })
 export class MaterialModule { }

@@ -1,0 +1,120 @@
+<div class="row around-xs">
+    <div class="col-xs-12 col-md-11">
+        <mat-card class="margTop margBot">
+            <mat-card-header class="margBot">
+                <mat-card-title>
+                    <mat-icon>article</mat-icon> Configuración de envíos
+                </mat-card-title>
+                <mat-card-subtitle>
+                    Administra y controla tus envíos
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="row ancho">
+                    <div class="col-xs-12 col-sm-6">
+                        <mat-form-field appearance="outline" class="ancho">
+                            <mat-label>Cantidad máxima</mat-label>
+                            <input matInput placeholder="Ingrese la cantidad máxima">
+                            <mat-icon class="material-icons-outlined" matSuffix>inventory_outlined</mat-icon>
+                            <mat-hint>Ingrese la cantidad máxima de envíos por conductor</mat-hint>
+                            <mat-error>* Campo Obligatorio</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <mat-form-field appearance="outline" class="ancho">
+                            <mat-label>Peso máximo</mat-label>
+                            <input matInput placeholder="Ingrese el peso máximo">
+                            <mat-icon matSuffix>production_quantity_limits</mat-icon>
+                            <mat-hint>Ingrese el peso máximo del envío por conductor</mat-hint>
+                            <mat-error>* Campo Obligatorio</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row ancho">
+                    <div class="col-xs-12 col-sm-6">
+                        <mat-form-field appearance="outline" class="ancho">
+                            <mat-label> Fecha de envío </mat-label>
+                            <input matInput type="date" placeholder="Ingrese la fecha del envío" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 centro centrar">
+                        <a mat-raised-button class="tertiary ancho margTop">
+                            <mat-icon>add_task</mat-icon> Asignar envíos
+                        </a>
+                    </div>
+                </div>
+                <div class="row ancho">
+                    <div class="col-xs-12 ">
+                        <div class="example-action-buttons end-xs">
+                            <button mat-button (click)="accordion.openAll()">Expandir</button>
+                            <button mat-button (click)="accordion.closeAll()">Contraer</button>
+                        </div>
+                        <mat-accordion class="example-headers-align" multi>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <b>Envíos por zona de cobertura</b>
+                                    </mat-panel-title>
+                                    <mat-panel-description class="end-xs">
+                                        <mat-icon>map</mat-icon>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto odio obcaecati, recusandae quod et ducimus nesciunt architecto aliquam hic voluptatum rerum, tempore cupiditate quaerat sunt provident, ab facere perspiciatis totam?
+                                </p>
+
+                            </mat-expansion-panel>
+
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <b>Información y asignación de envíos</b>
+                                    </mat-panel-title>
+                                    <mat-panel-description class="end-xs">
+                                        <mat-icon>manage_accounts</mat-icon>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+
+                                <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+                                      <button mat-icon-button disabled></button>
+                                      <mat-checkbox class="checklist-leaf-node"
+                                                    [checked]="checklistSelection.isSelected(node)"
+                                                    color="primary"
+                                                    (change)="todoLeafItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
+                                    </mat-tree-node>
+                                  
+                                    <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
+                                      <button mat-icon-button disabled></button>
+                                      <mat-form-field>
+                                        <mat-label>New item...</mat-label>
+                                        <input matInput #itemValue placeholder="Ex. Lettuce">
+                                      </mat-form-field>
+                                      <button mat-button (click)="saveNode(node, itemValue.value)">Save</button>
+                                    </mat-tree-node>
+                                  
+                                    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+                                      <button mat-icon-button matTreeNodeToggle
+                                              [attr.aria-label]="'Toggle ' + node.item">
+                                        <mat-icon class="mat-icon-rtl-mirror">
+                                          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                                        </mat-icon>
+                                      </button>
+                                      <mat-checkbox [checked]="descendantsAllSelected(node)"
+                                                    [indeterminate]="descendantsPartiallySelected(node)"
+                                                    color="primary"
+                                                    (change)="todoItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
+                                      <button mat-icon-button (click)="addNewItem(node)"><mat-icon>add</mat-icon></button>
+                                    </mat-tree-node>
+                                  </mat-tree>
+                                  
+                            </mat-expansion-panel>
+                        </mat-accordion>
+
+                    </div>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
