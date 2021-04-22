@@ -42,7 +42,7 @@ export class ConductoresComponent implements OnInit {
 
   openDialogAsignacion(conductor: Conductor): void {
     const dialogRef = this.dialog.open(AsignacionComponent, {
-      width: '250px',
+      width: '30rem',
       data: conductor
     });
 
