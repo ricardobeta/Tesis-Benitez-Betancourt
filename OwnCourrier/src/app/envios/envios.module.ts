@@ -12,10 +12,11 @@ import { GuiaComponent } from './components/guia/guia.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { NgxPrintModule } from 'ngx-print';
 import { InfoEnvioComponent } from './components/info-envio/info-envio.component';
+import { AsignacionEnviosxconductorComponent } from './components/asignacion-enviosxconductor/asignacion-enviosxconductor.component';
 
 
 @NgModule({
-  declarations: [PrincipalComponent, RegistroEnvioComponent, AsignarEnviosComponent, GuiaComponent, InfoEnvioComponent],
+  declarations: [PrincipalComponent, RegistroEnvioComponent, AsignarEnviosComponent, GuiaComponent, InfoEnvioComponent, AsignacionEnviosxconductorComponent],
   imports: [
     CommonModule,
     EnviosRoutingModule,
