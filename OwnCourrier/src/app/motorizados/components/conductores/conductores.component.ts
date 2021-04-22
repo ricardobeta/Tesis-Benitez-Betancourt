@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Conductor } from 'src/app/core/models/conductor.model';
 import { ConductorService } from 'src/app/core/services/conductor/conductor.service';
+import { AsignacionComponent } from '../asignacion/asignacion.component';
 
 @Component({
   selector: 'app-conductores',
@@ -16,7 +18,7 @@ export class ConductoresComponent implements OnInit {
   displayedColumns: string[] = ['foto', 'cedula', 'nombreCompleto', 'celular', 'fecha', 'estado', 'acciones'];
   conductor: Conductor;
 
-  constructor(private conductorService: ConductorService) { }
+  constructor(private conductorService: ConductorService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.conductorService.listaConductores().subscribe(conductores => {
@@ -35,4 +37,15 @@ export class ConductoresComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+
+  openDialogAsignacion(conductor: Conductor): void {
+    const dialogRef = this.dialog.open(AsignacionComponent, {
+      width: '250px',
+      data: conductor
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
 }

@@ -31,7 +31,8 @@ export class CrearConductorComponent implements OnInit {
       fechaNacimiento: ['', [Validators.required]],
       nombreCompleto: ['', [Validators.required]],
       fileF: [null, [Validators.required]],
-      fileL: [null, [Validators.required]]
+      fileL: [null, [Validators.required]],
+      estado: 'disponible'
     });
   }
 

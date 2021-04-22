@@ -32,4 +32,8 @@ export class VehiculoService {
     listaVehiculos() {
       return this.db.list(`Negocios/${this.negocioService.idNegocio.value}/vehiculos`).snapshotChanges()
     }
+
+    listaVehiculosNoAsignados() {
+      return this.db.list(`Negocios/${this.negocioService.idNegocio.value}/vehiculos`, ref => ref.orderByChild('asignado').equalTo(false)).snapshotChanges()
+    }
 }

@@ -15,4 +15,8 @@ export interface Conductor {
     uidConductor: string;
     keyNegocio: string;
     $key?: string;
+    //
+    estado?: string;
+    keyVehiculo?: string;
+    keyZona?: string
 }

@@ -28,7 +28,8 @@ export class CrearVehiculoComponent implements OnInit {
         placa: ['', [Validators.required]],
         color: ['', [Validators.required]],
         fileM: [null, [Validators.required]],
-        pathMatricula: ['', [Validators.required]]
+        pathMatricula: ['', [Validators.required]],
+        estado: 'disponible'
       }
     );
   }
