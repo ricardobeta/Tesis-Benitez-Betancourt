@@ -75,4 +75,5 @@ export class ConductorService {
   asignarZona(keyZona, keyConductor) {
     return this.db.object(`Conductores/${keyConductor}`).update({ keyZona })
   }
+
 }

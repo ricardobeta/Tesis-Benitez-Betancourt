@@ -19,5 +19,8 @@ export class EnvioService {
     return this.db.list(`Negocios/${this.negocioService.idNegocio.value}/envios`).snapshotChanges()
   }
 
+  enviosFecha(fecha: string) {
+    return this.db.list(`Negocios/${this.negocioService.idNegocio.value}/envios`, ref => ref.orderByChild('fecha').equalTo(fecha)).snapshotChanges()
+  }
 
 }
