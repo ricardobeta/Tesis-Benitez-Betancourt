@@ -60,14 +60,20 @@ export class ConductorService {
   asignarVehiculo(keyVehiculo, keyConductor, keyVehiculoP) {
     return this.db.object(`Conductores/${keyConductor}`).update({ keyVehiculo }).then(
       () => {
-        return this.db.object(`Negocios/${this.negocioService.idNegocio.value}/vehiculos/${keyVehiculo}`).update({ asignado: true })
-          .then(
-            () => {
-                if(keyVehiculoP !== '') {
+        if (keyVehiculo === '') {
+          if (keyVehiculoP !== '') {
+            return this.db.object(`Negocios/${this.negocioService.idNegocio.value}/vehiculos/${keyVehiculoP}`).update({ asignado: false })
+          }
+        } else {
+          return this.db.object(`Negocios/${this.negocioService.idNegocio.value}/vehiculos/${keyVehiculo}`).update({ asignado: true })
+            .then(
+              () => {
+                if (keyVehiculoP !== '') {
                   return this.db.object(`Negocios/${this.negocioService.idNegocio.value}/vehiculos/${keyVehiculoP}`).update({ asignado: false })
                 }
-            }
-          )
+              }
+            )
+        }
       }
     )
   }
