@@ -32,7 +32,7 @@
                                     <mat-label>
                                        Placa
                                     </mat-label>
-                                    <input matInput placeholder="Ingrese la placa del vehículo" formControlName="placa" autocomplete="off">
+                                    <input matInput placeholder="Ingrese la placa del vehículo" formControlName="placa" autocomplete="off" (keyup)="form.patchValue({placa: $event.target.value.toUpperCase()})">
                                 </mat-form-field>
                             </div>
                             <div class="col-xs-12">
