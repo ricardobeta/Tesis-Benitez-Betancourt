@@ -1,3 +1,5 @@
+import { Envio } from "./envio.model";
+
 export interface Conductor {
     cedula: string;
     celular: string;
@@ -19,4 +21,6 @@ export interface Conductor {
     estado?: string;
     keyVehiculo?: string;
     keyZona?: string
+    //envios Asignado
+    envios: Envio[]
 }

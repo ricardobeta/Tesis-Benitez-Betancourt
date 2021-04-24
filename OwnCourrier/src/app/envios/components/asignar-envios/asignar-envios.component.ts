@@ -1,6 +1,10 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
+import { latLng, LatLng } from 'leaflet';
 import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { Central } from 'src/app/core/models/central.model';
 import { Conductor } from 'src/app/core/models/conductor.model';
 import { Envio } from 'src/app/core/models/envio.model';
 import { ZonaCobertura } from 'src/app/core/models/zona-cobertura.model';
@@ -23,12 +27,22 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
   $subC: Subscription;
   $subF: Subscription;
   $subZ: Subscription;
-  constructor(private negocioService:NegocioService, private conductorService: ConductorService, private envioService: EnvioService) { }
+
+
+  form: FormGroup;
+
+  central: LatLng
+
+
+  constructor(private negocioService:NegocioService, private conductorService: ConductorService, private envioService: EnvioService, private fb: FormBuilder) { 
+    this.buildForm();
+  }
 
 
   ngOnInit(): void {
     this.conseguirConductoresDisponibles();
     this.conseguirZonas();
+    this.centralNegocio();
   }
 
   conseguirConductoresDisponibles() {
@@ -41,14 +55,13 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
             return conductor
           }
         ).filter( conductor => conductor.estado === 'disponible' && conductor.keyVehiculo!== '' && conductor.keyZona !== '' );
-        console.log(this.conductoresDisponibles);
       }
     );
   }
 
 
   conseguirEnvios(fecha: string) {
-    this.envioService.enviosFecha(fecha).subscribe(
+    return this.envioService.enviosFecha(fecha).pipe(first()).toPromise().then(
       enviosDB => {
         this.envios = enviosDB.map(
           envioDB => {
@@ -57,7 +70,6 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
             return envio
           }
         );
-        console.log(this.envios)
       }
     )
   }
@@ -68,6 +80,8 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
         this.zonas = zonasDB.map(
           zonaDB => {
             const zona = zonaDB.payload.toJSON() as ZonaCobertura;
+            zona.envios = [];
+            zona.conductores = [];
             zona.$key = zonaDB.key;
             return zona;
           }
@@ -76,6 +90,59 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
     )
   }
 
+  centralNegocio() {
+    this.negocioService.recuperarCentral().pipe(first()).toPromise().then(
+      (centralDB:Central) => {
+        this.central = latLng(centralDB.latitud,centralDB.longitud);
+      }
+    )
+  }
+
+  buildForm() {
+    this.form = this.fb.group({
+      maxEnvios: ['', [Validators.required]],
+      maxPeso: ['', [Validators.required]],
+      fecha: ['', [Validators.required]],
+    });
+  }
+
+
+  asignar() {
+    if(this.form.valid) {
+      this.conseguirEnvios(this.fecha)
+      .then(
+        () => {
+          // calculo de todo :D
+          // primero ver que envios se encuentran en cada zona
+          this.envios.forEach(envio => {
+            for (const key in this.zonas) {
+              if (Object.prototype.hasOwnProperty.call(this.zonas, key)) {
+                const zona = this.zonas[key];
+                if(this.comprobarEnvioEnZona(envio, zona)) {
+                  break;
+                }
+              }
+            }
+          })
+          this.agregarConductoresEnZona();
+          this.asignarEnviosConductor();
+          console.log('zonas', this.zonas);
+        }
+      );
+    }
+  }
+
+
+  get maxEnvios() {
+    return this.form.get('maxEnvios').value;
+  }
+
+  get maxPeso() {
+    return this.form.get('maxPeso').value;
+  }
+  get fecha() {
+    return this.form.get('fecha').value;
+  }
 
   ngOnDestroy(): void {
     this.$subC.unsubscribe();
@@ -85,4 +152,95 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
     }
   }
 
+
+  comprobarEnvioEnZona(envio: Envio, zona: ZonaCobertura) {
+    // console.log("poligono");
+    var puntosPoligono: any[] = JSON.parse(zona.vertices);
+    // for (let pol in poligono.figura.coordenadas) {
+    //   puntosPoligono.push(poligono.figura.coordenadas[pol]);
+    // }
+    var x = envio.direccion.latitud;
+    var y = envio.direccion.longitud;
+
+    var dentro = false;
+    for (var i = 0, j = puntosPoligono.length - 1; i < puntosPoligono.length; j = i++) {
+      var xi = puntosPoligono[i].lat;
+      var yi = puntosPoligono[i].lng;
+      var xj = puntosPoligono[j].lat;
+      var yj = puntosPoligono[j].lng;
+
+      var interseccion = ((yi > y) != (yj > y))
+        && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+      if (interseccion) dentro = !dentro;
+    }
+    //console.log(zona.nombre, envio.direccion.descripcion, dentro)
+   if(dentro) {
+    zona.envios.push(envio);
+   }
+    return dentro;
+  };
+
+  agregarConductoresEnZona() {
+    this.conductoresDisponibles.forEach(
+      conductor => 
+      {
+        conductor.envios = []
+        this.zonas.filter( zona => zona.$key == conductor.keyZona)[0].conductores.push(conductor)
+      }
+    );
+  }
+
+  asignarEnviosConductor() {
+    console.log(this.zonas)
+    this.zonas.forEach( zona => {
+      // a cada Conductor disponible se le de minimo 1 envio
+      console.log(zona.nombre);
+      zona.conductores.forEach(
+        conductor => {
+          const enviosC: Envio[] = [];
+          let peso = 0;
+          let  ultimoNodo;
+          while(enviosC.length < this.maxEnvios && zona.envios.length > 0) {
+            let key;
+            console.log(key)
+            if(!ultimoNodo) {
+              key = this.enviosCercano(zona.envios, this.central);
+              ultimoNodo = latLng(zona.envios[key].direccion.latitud, zona.envios[key].direccion.longitud)
+            } else {
+              key = this.enviosCercano(zona.envios, ultimoNodo);
+              ultimoNodo = latLng(zona.envios[key].direccion.latitud, zona.envios[key].direccion.longitud)
+            }
+            peso += zona.envios[key].infoEnvio.peso;
+            if(peso <= this.maxPeso) {
+              enviosC.push(zona.envios[key]);
+              zona.envios.splice(key,1);
+            } else {
+              break;
+            }
+            console.log(zona.envios)
+          }
+          conductor.envios = enviosC;
+        }
+      );
+
+
+    })
+  }
+
+
+
+  enviosCercano(envios: Envio[], punto: LatLng) {
+    console.log(punto);
+    let key;
+    let distanciatmp: number = Number.MAX_SAFE_INTEGER;
+    for (let keyA in envios) {
+      const auxEnvio = envios[keyA]
+      let distance: number = punto.distanceTo(latLng(auxEnvio.direccion.latitud, auxEnvio.direccion.longitud));
+      if (distance <= distanciatmp) {
+        distanciatmp = distance;
+        key = keyA;
+      }
+    }
+    return key;
+  }
 }

@@ -37,14 +37,13 @@ export class AsignacionComponent implements OnInit {
     this.form.patchValue(this.conductor)
     const $sub = this.vehiculoService.listaVehiculosNoAsignados().subscribe(
       vehiculosDB => {
-        this.vehiculos = [];
-         vehiculosDB.forEach(
-           vehiculoDB => {
+        this.vehiculos = vehiculosDB.map(
+          vehiculoDB => {
             const vehiculo  = vehiculoDB.payload.toJSON() as Vehiculo;
             vehiculo.$key = vehiculoDB.key;
-            this.vehiculos.push(vehiculo);
-           }
-         );
+            return vehiculo
+          }
+        )
          $sub.unsubscribe();
       }
     );
