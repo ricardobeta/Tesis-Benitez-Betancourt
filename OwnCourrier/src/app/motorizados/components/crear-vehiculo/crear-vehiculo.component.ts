@@ -66,4 +66,8 @@ export class CrearVehiculoComponent implements OnInit {
   get fileMField(): AbstractControl {
     return this.form.get('fileM')
   }
+
+  get placaField(): AbstractControl {
+    return this.form.get('placa')
+  }
 }
