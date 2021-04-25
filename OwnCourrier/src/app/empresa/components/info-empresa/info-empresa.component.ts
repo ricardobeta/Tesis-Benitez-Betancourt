@@ -12,6 +12,7 @@ export class InfoEmpresaComponent implements OnInit {
 
   form: FormGroup;
   auxKey;
+  imagenCargada = false;
 
   constructor(private formBuilder: FormBuilder,
               private negociosService: NegocioService,
@@ -24,9 +25,10 @@ export class InfoEmpresaComponent implements OnInit {
     this.negociosService.negocio.subscribe(
       negocio => {
         console.log(negocio);
-        // if (negocio !== undefined || negocio !== null) {
-          this.form.patchValue(negocio);
-        // }
+        this.form.patchValue(negocio);
+        if (this.urlLogo.value !== '') {
+          this.imagenCargada = true;
+        }
       }
     );
     console.log(this.auxKey);
@@ -48,6 +50,7 @@ export class InfoEmpresaComponent implements OnInit {
 
   cargarFotoPerfil(event) {
     this.file.setValue(event.target.files[0]);
+    this.imagenCargada = false;
   }
 
   eliminarFotoPerfil() {
@@ -60,6 +63,7 @@ export class InfoEmpresaComponent implements OnInit {
       const auxNegocio = this.form.value;
       console.log(auxNegocio);
       this.negociosService.modificarInfoNegocio(auxNegocio, this.auxKey);
+      this.imagenCargada = true;
       this.toastr.success('Actualizada correctamente', 'Información de la empresa', );
     } else {
       if (this.file.value === null) {

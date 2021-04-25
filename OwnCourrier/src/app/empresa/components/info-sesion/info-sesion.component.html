@@ -1,21 +1,30 @@
 <ng-container>
-    <div class="row ancho centrar">
+    <div class="row ancho margTop centro centrar">
+
         <div class="col-xs-12">
-            <img class="imagen" src="./assets/cyber-security.jpg" alt="Image logo para sesión">
+            <button class="botones" mat-raised-button (click)="openDialogContrasena()">
+                <div class="row centro centrar">
+                    <mat-icon class="material-icons-outlined">mail_outline</mat-icon>
+                </div>
+                <div class="row centro centrar">
+                    Cambiar contraseña
+                    
+                </div>
+            </button>
         </div>
     </div>
 
     <div class="row ancho margTop centro centrar">
 
         <div class="col-xs-12">
-            <button class="botones" mat-raised-button color="primary" (click)="openDialogCorreo()"><mat-icon>mail_outline</mat-icon> Cambiar correo</button>
-        </div>
-    </div>
-
-    <div class="row ancho margTop centro centrar">
-
-        <div class="col-xs-12">
-            <button  class="botones " mat-raised-button color="primary" (click)="openDialogContrasena()"><mat-icon class="material-icons-outlined">privacy_tip_outline</mat-icon> Cambiar contraseña</button>
+            <button class="botones" mat-raised-button (click)="openDialogCorreo()">
+                <div class="row centro centrar">
+                    <mat-icon class="material-icons-outlined">privacy_tip_outline</mat-icon>
+                </div>
+                <div class="row centro centrar">
+                    Cambiar correo
+                </div>
+            </button>
         </div>
     </div>
 </ng-container>

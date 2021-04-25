@@ -44,8 +44,8 @@ export class DialogCorreoComponent implements OnInit {
       console.log(error.code);
       if (error.code === "auth/invalid-email") {
         this.toastr.error('Correo mal formateado', 'Error');
-      } else if (error.code === "auth/user-not-found") {
-        this.toastr.error('Correo no registrado', 'Error');
+      } else if (error.code === "auth/user-not-found" || error.code ==='auth/requires-recent-login') {
+        this.toastr.error('Correo no registrado o no se encuentra logueado con ese correo', 'Error');
       } else {
         this.toastr.error('Problemas con el correo electrónico', 'Error');
       }

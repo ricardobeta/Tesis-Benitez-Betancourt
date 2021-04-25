@@ -5,8 +5,8 @@
                 <p>
                     <input class="ng-hide" id="input-file-id" accept=".png, .jpg" type="file"
                         (change)="cargarFotoPerfil($event)" />
-                    <label for="input-file-id" class="row center-xs but-upload" mat-raised-button style="cursor: pointer;"
-                        *ngIf="file.value === null">
+                    <label for="input-file-id" class="row center-xs but-upload" mat-raised-button
+                        style="cursor: pointer;" *ngIf="file.value === null">
                         <div class="col-xs-12">
                             <mat-icon id="per">camera_alt</mat-icon>
                         </div>
@@ -16,7 +16,7 @@
                         </div>
                     </label>
                 </p>
-                <div class="row" class="but-suss" *ngIf="file.value !== null">
+                <div class="row" class="but-suss" *ngIf="file.value !== null && urlLogo.value === ''">
                     <div class="col-xs-12">
                         <mat-icon id="per">camera_alt</mat-icon>
                     </div>
@@ -31,29 +31,36 @@
                 </div>
             </ng-container>
             <ng-container *ngIf="urlLogo.value !== ''">
-                <div class="logo">
-                    <img style="border-radius: 20px;"  height="200px" src="{{urlLogo.value}}" alt="">
-                    
-                </div>
-                <div>
+                <div class="logo" *ngIf="file.value === null">
+                    <img style="border-radius: 20px;" height="200px" src="{{urlLogo.value}}" alt="">
 
-                    <input class="ng-hide " id="input-file-id" accept=".png, .jpg"
-                    (change)="cargarFotoPerfil($event)" type="file" />
-                    <label for="input-file-id"  mat-raised-button style="cursor: pointer">
+                </div>
+                <div *ngIf="file.value === null && imagenCargada === true">
+
+                    <input class="ng-hide " id="input-file-id" accept=".png, .jpg" (change)="cargarFotoPerfil($event)"
+                        type="file" />
+                    <label for="input-file-id" mat-raised-button style="cursor: pointer">
                         <mat-icon>camera_alt</mat-icon>
                     </label>
-              </div>
-                <!-- <button mat-mini-fab color="primary" matTooltip="Cambiar imagen">
-                    
-                    <mat-icon  class="material-icons-outlined">
-                        image
-                    </mat-icon>
-                  </button> -->
-            </ng-container>
+                </div>
 
+            </ng-container>
+            <div class="row" class="but-suss" *ngIf="file.value !== null && imagenCargada === false">
+                <div class="col-xs-12">
+                    <mat-icon id="per">camera_alt</mat-icon>
+                </div>
+                <div class="col-xs-12">
+                    Imagen Cargada Correctamente
+                </div>
+                <div class="col-xs-12">
+                    <button mat-raised-button color="primary" type="button" (click)="eliminarFotoPerfil()">
+                        Eliminar Imagen
+                    </button>
+                </div>
+            </div>
         </div>
 
-        
+
     </div>
 
     <div class="row ancho">
@@ -104,7 +111,9 @@
     <div class="row ancho margTop centro centrar">
 
         <div class="col-xs-12 col-sm-6">
-            <button mat-raised-button color="primary" (click)="guardar($event)"><mat-icon>save</mat-icon> Actualizar información</button>
+            <button mat-raised-button color="primary" (click)="guardar($event)">
+                <mat-icon>save</mat-icon> Actualizar información
+            </button>
         </div>
     </div>
 </form>
