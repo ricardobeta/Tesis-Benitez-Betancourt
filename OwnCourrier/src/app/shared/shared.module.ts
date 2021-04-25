@@ -5,10 +5,11 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MaterialModule } from '../material/material.module';
 import { DialogPasswComponent } from './dialog-passw/dialog-passw.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DialogCorreoComponent } from './dialog-correo/dialog-correo.component';
 
 
 @NgModule({
-  declarations: [MapaComponent, DialogPasswComponent],
+  declarations: [MapaComponent, DialogPasswComponent, DialogCorreoComponent],
   imports: [
     CommonModule,
     LeafletModule,

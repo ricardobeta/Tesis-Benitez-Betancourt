@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { DialogCorreoComponent } from 'src/app/shared/dialog-correo/dialog-correo.component';
 import { DialogPasswComponent } from 'src/app/shared/dialog-passw/dialog-passw.component';
 
 
@@ -24,6 +25,13 @@ export class InfoSesionComponent implements OnInit {
 
   openDialogContrasena() {
     this.dialogRef = this.dialog.open(DialogPasswComponent);
+    this.dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openDialogCorreo() {
+    this.dialogRef = this.dialog.open(DialogCorreoComponent);
     this.dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
