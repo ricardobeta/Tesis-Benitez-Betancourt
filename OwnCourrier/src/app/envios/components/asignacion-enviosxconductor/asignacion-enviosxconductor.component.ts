@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import { ZonaCobertura } from 'src/app/core/models/zona-cobertura.model';
 
 export interface Section {
   name: string;
@@ -11,6 +12,10 @@ export interface Section {
   styleUrls: ['./asignacion-enviosxconductor.component.scss']
 })
 export class AsignacionEnviosxconductorComponent {
+
+  @Input() zonas: ZonaCobertura[];
+
+
   folders: Section[] = [
     {
       name: 'Photos',
