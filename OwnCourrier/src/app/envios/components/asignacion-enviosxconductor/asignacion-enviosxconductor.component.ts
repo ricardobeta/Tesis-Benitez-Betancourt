@@ -40,4 +40,11 @@ export class AsignacionEnviosxconductorComponent {
       updated: new Date('1/18/16'),
     }
   ];
+
+  constructor() {
+    }
+
+  ngOnInit(): void {
+    console.log(this.zonas);
+  }
 }
