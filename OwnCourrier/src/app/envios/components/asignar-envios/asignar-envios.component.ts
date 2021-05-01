@@ -32,6 +32,7 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
   central: LatLng
+  asignado = false;
 
 
   constructor(private negocioService:NegocioService, private conductorService: ConductorService, private envioService: EnvioService, private fb: FormBuilder) { 
@@ -127,6 +128,7 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
           this.agregarConductoresEnZona();
           this.asignarEnviosConductor();
           console.log('zonas', this.zonas);
+          this.asignado = true;
         }
       );
     }
