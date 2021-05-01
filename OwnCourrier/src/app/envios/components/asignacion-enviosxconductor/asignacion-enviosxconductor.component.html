@@ -32,12 +32,50 @@
                 </p>
     
               </div>
+
             </div>
           </ng-container>
-          
+
 
         </div>
       </ng-container>
+      <!-- <ng-container *ngIf="zona.envios.length === 0 && zona.conductores.length !== 0">
+        <div class="row ancho centro centrar">
+          <div class="col-xs-12">
+            <p class="mensaje">
+              <mat-icon>info</mat-icon>
+              <br>
+              No existen envíos registrados para: <b>{{zona.nombre}}</b>
+            </p>
+          </div>
+        </div>
+      </ng-container> -->
+
+      <ng-container *ngIf="zona.envios.length !== 0 && zona.conductores.length === 0">
+        <div class="row ancho centro centrar">
+          <div class="col-xs-12">
+            <p class="mensaje">
+              <mat-icon>info</mat-icon>
+              <br>
+              No existen conductores registrados para: <b>{{zona.nombre}}</b>
+            </p>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="zona.envios.length === 0 && zona.conductores.length === 0">
+        <div class="row ancho centro centrar">
+          <div class="col-xs-12">
+            <p class="mensaje">
+              <mat-icon>info</mat-icon>
+              <br>
+              No existen conductores ni envíos registrados para: <b>{{zona.nombre}}</b>
+            </p>
+          </div>
+        </div>
+      </ng-container>
+      
+ 
       
 
 
