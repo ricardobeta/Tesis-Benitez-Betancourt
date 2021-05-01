@@ -4,90 +4,46 @@
     <mat-card-title style="font-size: 18px;" class="margTop centro centrar">
       <mat-icon style="color: orangered;" mat-list-icon class="material-icons-outlined">place</mat-icon> {{zona.nombre}}
     </mat-card-title>
-    <div *ngFor="let folder of folders; let i = index">
 
 
 
-      <div class="row ancho">
-        <div class="col-xs-12">
-          <div mat-subheader>
-            <mat-icon>account_box</mat-icon> Nombre conductor {{i}}
+      <ng-container *ngFor="let conductor of zona.conductores; let i = index">
+        <div class="row ancho">
+          <div class="col-xs-12">
+            <div mat-subheader>
+              <mat-icon>account_box</mat-icon> {{i+1}} {{conductor.nombreCompleto}} 
+            </div>
+  
           </div>
+          <ng-container *ngFor="let envio of conductor.envios">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <div mat-line class="linea">
+                <p style="display: grid;">
+                  <span>
+                    <mat-icon style="font-size: 18px; color: green;" class="material-icons-outlined">schedule_send
+                    </mat-icon>
+                    Envío {{i+1}} <small>({{envio.fecha}})</small>
+                  </span>
+    
+                  <span><b>Cliente:</b> {{envio.cliente.nombreCompleto}}</span>
+                  <span><b>Celular:</b> {{envio.cliente.celular}}</span>
+                  <span><b>Descripción envío:</b> {{envio.infoEnvio.descripcion}}</span>
+                  <span><b>Peso:</b> {{envio.infoEnvio.peso}} gr</span>
+                </p>
+    
+              </div>
+            </div>
+          </ng-container>
+          
 
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div mat-line class="linea">
-            <p style="display: grid;">
-              <span>
-                <mat-icon style="font-size: 18px; color: green;" class="material-icons-outlined">schedule_send
-                </mat-icon>
-                Envío {{i+1}} <small>(2021-04-24)</small>
-              </span>
+      </ng-container>
+      
 
-              <span><b>Cliente:</b> Nombre del cliente</span>
-              <span><b>Celular:</b> 0999249966</span>
-              <span><b>Descripción envío:</b> Catalogos Varios</span>
-              <span><b>Peso:</b> 1200 gr</span>
-            </p>
-
-          </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div mat-line class="linea">
-            <p style="display: grid;">
-              <span>
-                <mat-icon matTooltip="Error envío: Sobrepasa peso máximo de envío." style="font-size: 18px; color: red;"
-                  class="material-icons-outlined">schedule_send</mat-icon>
-                Envío {{i+1}} <small>(2021-04-24)</small>
-              </span>
-              <span><b>Cliente:</b> Nombre del cliente</span>
-              <span><b>Celular:</b> 0999249966</span>
-              <span><b>Descripción envío:</b> Catalogos Varios</span>
-              <span><b>Peso:</b> 1200 gr</span>
-            </p>
-
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div mat-line class="linea">
-            <p style="display: grid;">
-              <span>
-                <mat-icon style="font-size: 18px; color: green;" class="material-icons-outlined">schedule_send
-                </mat-icon>
-                Envío {{i+1}} <small>(2021-04-24)</small>
-              </span>
-              <span><b>Cliente:</b> Nombre del cliente</span>
-              <span><b>Celular:</b> 0999249966</span>
-              <span><b>Descripción envío:</b> Catalogos Varios</span>
-              <span><b>Peso:</b> 1200 gr</span>
-            </p>
-
-          </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div mat-line class="linea">
-            <p style="display: grid;">
-              <span>
-                <mat-icon style="font-size: 18px; color: green;" class="material-icons-outlined">schedule_send
-                </mat-icon>
-                Envío {{i+1}} <small>(2021-04-24)</small>
-              </span>
-              <span><b>Cliente:</b> Nombre del cliente</span>
-              <span><b>Celular:</b> 0999249966</span>
-              <span><b>Descripción envío:</b> Catalogos Varios</span>
-              <span><b>Peso:</b> 1200 gr</span>
-            </p>
-
-          </div>
-        </div>
-      </div>
 
       <!-- <mat-divider></mat-divider> -->
 
 
-    </div>
   </ng-container>
 
 </mat-list>
