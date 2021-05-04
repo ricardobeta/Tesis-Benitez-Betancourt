@@ -6,12 +6,50 @@
     </mat-card-title>
 
 
+    <ng-container *ngIf="zona.envios.length !== 0">
 
-      <ng-container *ngFor="let conductor of zona.conductores; let i = index">
+      <div class="row ancho">
+        <div class="col-xs-12">
+          <div mat-subheader>
+            <mat-icon>account_box</mat-icon> Envíos sin asignar o con problemas
+          </div>
+
+        </div>
+        <ng-container *ngFor="let envioP of zona.envios; let i = index">
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div mat-line class="linea">
+              <p style="display: grid;">
+                <span>
+                  <mat-icon matTooltip="Error en envío" style="font-size: 18px; color: red;"
+                    class="material-icons-outlined">schedule_send
+                  </mat-icon>
+                  Envío {{i+1}} <small>({{envioP.fecha}})</small>
+                </span>
+
+                <span><b>Cliente:</b> {{envioP.cliente.nombreCompleto}}</span>
+                <span><b>Dirección:</b> {{envioP.direccion.descripcion}}</span>
+                <span><b>Celular:</b> {{envioP.cliente.celular}}</span>
+                <span><b>Descripción envío:</b> {{envioP.infoEnvio.descripcion}}</span>
+                <span><b>Peso:</b> {{envioP.infoEnvio.peso}} gr</span>
+              </p>
+
+            </div>
+          </div>
+        </ng-container>
+
+      </div>
+    </ng-container>
+
+
+
+
+
+    <ng-container *ngFor="let conductor of zona.conductores; let i = index">
+      <ng-container *ngIf="conductor.envios.length !== 0">
         <div class="row ancho">
           <div class="col-xs-12">
             <div mat-subheader>
-              <mat-icon>account_box</mat-icon> {{i+1}} {{conductor.nombreCompleto}} 
+              <mat-icon>account_box</mat-icon> {{i+1}} {{conductor.nombreCompleto}}
             </div>
   
           </div>
@@ -24,22 +62,26 @@
                     </mat-icon>
                     Envío {{i+1}} <small>({{envio.fecha}})</small>
                   </span>
-    
+  
                   <span><b>Cliente:</b> {{envio.cliente.nombreCompleto}}</span>
+                  <span><b>Dirección:</b> {{envio.direccion.descripcion}}</span>
                   <span><b>Celular:</b> {{envio.cliente.celular}}</span>
                   <span><b>Descripción envío:</b> {{envio.infoEnvio.descripcion}}</span>
                   <span><b>Peso:</b> {{envio.infoEnvio.peso}} gr</span>
                 </p>
-    
+  
               </div>
-
+  
             </div>
           </ng-container>
-
-
+  
+  
         </div>
       </ng-container>
-      <!-- <ng-container *ngIf="zona.envios.length === 0 && zona.conductores.length !== 0">
+      
+
+    </ng-container>
+    <!-- <ng-container *ngIf="zona.envios.length === 0 && zona.conductores.length !== 0">
         <div class="row ancho centro centrar">
           <div class="col-xs-12">
             <p class="mensaje">
@@ -51,35 +93,35 @@
         </div>
       </ng-container> -->
 
-      <ng-container *ngIf="zona.envios.length !== 0 && zona.conductores.length === 0">
-        <div class="row ancho centro centrar">
-          <div class="col-xs-12">
-            <p class="mensaje">
-              <mat-icon>info</mat-icon>
-              <br>
-              No existen conductores registrados para: <b>{{zona.nombre}}</b>
-            </p>
-          </div>
+    <ng-container *ngIf="zona.envios.length !== 0 && zona.conductores.length === 0">
+      <div class="row ancho centro centrar">
+        <div class="col-xs-12">
+          <p class="mensaje">
+            <mat-icon>info</mat-icon>
+            <br>
+            No existen conductores registrados para: <b>{{zona.nombre}}</b>
+          </p>
         </div>
-      </ng-container>
+      </div>
+    </ng-container>
 
-      <ng-container *ngIf="zona.envios.length === 0 && zona.conductores.length === 0">
-        <div class="row ancho centro centrar">
-          <div class="col-xs-12">
-            <p class="mensaje">
-              <mat-icon>info</mat-icon>
-              <br>
-              No existen conductores ni envíos registrados para: <b>{{zona.nombre}}</b>
-            </p>
-          </div>
+    <ng-container *ngIf="zona.envios.length === 0 && zona.conductores.length === 0">
+      <div class="row ancho centro centrar">
+        <div class="col-xs-12">
+          <p class="mensaje">
+            <mat-icon>info</mat-icon>
+            <br>
+            No existen conductores ni envíos registrados para: <b>{{zona.nombre}}</b>
+          </p>
         </div>
-      </ng-container>
-      
- 
-      
+      </div>
+    </ng-container>
 
 
-      <!-- <mat-divider></mat-divider> -->
+
+
+
+    <!-- <mat-divider></mat-divider> -->
 
 
   </ng-container>
