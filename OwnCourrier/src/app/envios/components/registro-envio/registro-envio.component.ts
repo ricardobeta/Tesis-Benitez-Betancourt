@@ -89,7 +89,8 @@ export class RegistroEnvioComponent implements OnInit {
         cliente: this.formCliente.value,
         direccion: this.formDireccion.value,
         infoEnvio: this.formInfoEnvio.value,
-        fecha: this.formFecha.get('fecha').value
+        fecha: this.formFecha.get('fecha').value,
+        estado: 'pendiente'
       }
       this.envioService.guardarEnvio(envio).then(
         value => {

@@ -7,6 +7,8 @@ export interface Envio {
     direccion: Direccion;
     infoEnvio: InfoEnvio;
     fecha: string;
+    estado: string;
     // valores opcionales
     $key?: string;
+    keyConductor?: string;
 }

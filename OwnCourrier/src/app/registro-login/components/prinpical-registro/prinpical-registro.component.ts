@@ -9,16 +9,17 @@ import { LoginService } from 'src/app/core/services/login/login.service';
 export class PrinpicalRegistroComponent implements OnInit {
   bandera = false;
   constructor(private loginService: LoginService) {
-      this.loginService.usuarioConecteado().then(
-        usuario => {
-          console.log(usuario)
-          if(usuario) {
-            this.loginService.irNegocio(usuario.uid);
-          } else {
-            this.bandera = true;
-          }
-        }
-      );
+      // this.loginService.usuarioConecteado().then(
+      //   usuario => {
+      //     console.log(usuario)
+      //     if(usuario) {
+      //       this.loginService.irNegocioADM(usuario.uid);
+      //     } else {
+      //       this.bandera = true;
+      //     }
+      //   }
+      // );
+      this.bandera = true;
   }
 
   ngOnInit(): void {

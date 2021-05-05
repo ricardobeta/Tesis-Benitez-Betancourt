@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="row ancho margTop centro centrar" *ngIf="asignado === true">
-                    <button class="tertiary margenbtn" mat-raised-button color="primary">
+                    <button class="tertiary margenbtn" mat-raised-button color="primary" (click)="procesarEnvios()">
                         <mat-icon>play_arrow</mat-icon> Empezar
                     </button>
 
@@ -96,4 +96,11 @@
             </mat-card-content>
         </mat-card>
     </div>
+</div>
+
+<div class="loadingCard" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+    <h1>
+        Procesando y Notificando Envios
+    </h1>
 </div>

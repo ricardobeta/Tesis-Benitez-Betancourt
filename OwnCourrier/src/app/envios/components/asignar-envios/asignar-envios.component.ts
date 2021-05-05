@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
+import { ActivatedRoute, Router } from '@angular/router';
 import { latLng, LatLng } from 'leaflet';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
@@ -27,7 +28,7 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
   $subC: Subscription;
   $subF: Subscription;
   $subZ: Subscription;
-
+  loading = false;
 
   form: FormGroup;
 
@@ -35,7 +36,8 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
   asignado = false;
 
 
-  constructor(private negocioService:NegocioService, private conductorService: ConductorService, private envioService: EnvioService, private fb: FormBuilder) { 
+  constructor(private negocioService:NegocioService, private conductorService: ConductorService, private envioService: EnvioService, private fb: FormBuilder,
+    private router: Router, private ruta: ActivatedRoute) { 
     this.buildForm();
   }
 
@@ -70,7 +72,7 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
             envio.$key = envioDB.key;
             return envio
           }
-        );
+        ).filter(envio=> envio.estado === 'pendiente');
       }
     )
   }
@@ -244,5 +246,28 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
       }
     }
     return key;
+  }
+
+  procesarEnvios() {
+    this.loading = true;
+    this.zonas.forEach(
+      zona => {
+        zona.conductores.forEach(
+          conductor => {
+            conductor.envios.forEach(
+              envio => {
+                const auxEnvio = {key: envio.$key, escanear: false};
+                this.envioService.procesar(auxEnvio, conductor.$key,envio.$key).then(
+                  bool => {
+                    this.loading =false;
+                     this.router.navigate(['../'], {relativeTo: this.ruta})
+                  }
+                );
+              }
+            );
+          }
+        );
+      }
+    );
   }
 }

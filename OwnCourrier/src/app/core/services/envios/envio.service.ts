@@ -23,4 +23,17 @@ export class EnvioService {
     return this.db.list(`Negocios/${this.negocioService.idNegocio.value}/envios`, ref => ref.orderByChild('fecha').equalTo(fecha)).snapshotChanges()
   }
 
+  procesar(envio, keyConductor, keyEnvio) {
+    return this.db.list(`Conductores/${keyConductor}/envios`).push(envio).then(
+      () => {
+        return this.db.object(`Negocios/${this.negocioService.idNegocio.value}/envios/${keyEnvio}`).update({estado: 'enProceso',keyConductor: keyConductor})
+          .then(
+            () => { 
+              // Notificación Push Conductor
+              return true}
+          );
+      }
+    )
+  }
+
 }

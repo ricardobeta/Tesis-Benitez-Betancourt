@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       if (rol === 'Administrador') {
         	this.loginService.iniciarSesionAdm(this.valueCorreo, this.valuePassword)
       } else if(rol === 'Conductor') {
-        
+        this.loginService.iniciarSesionConductor(this.valueCorreo, this.valuePassword)
       }
     } else {
       this.form.markAllAsTouched();
