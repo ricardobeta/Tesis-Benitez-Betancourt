@@ -82,4 +82,8 @@ export class ConductorService {
     return this.db.object(`Conductores/${keyConductor}`).update({ keyZona })
   }
 
+  conseguirConductor(key){
+    return this.db.object(`Conductores/${key}`).snapshotChanges();
+  }
+
 }

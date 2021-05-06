@@ -5,22 +5,33 @@
                 <div class="col-xs-12 col-sm-4">
                     <mat-card class="sombra" style="margin: 15px;">
                         <mat-card-header>
-                            <div mat-card-avatar class="example-header-image"></div>
-                            <mat-card-title>Nombre de la empresa</mat-card-title>
-                            <mat-card-subtitle>Usuario empresa</mat-card-subtitle>
+                            <img mat-card-avatar src="{{conductor.urlFoto}}" >
+                            <mat-card-title>{{conductor.nombreCompleto}}</mat-card-title>
+                            <mat-card-subtitle>{{conductor.cedula}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
                             
                             <p>
                                 <mat-icon>email</mat-icon>&nbsp;&nbsp;
                                 <b> Correo electrónico:</b> <br>
-                                ejemplo@hotmail.com
+                                {{conductor.correo}}
                             </p>
                             <p>
                                 <mat-icon>phone_enabled</mat-icon>&nbsp;&nbsp;
                                 <b>Número de celular:</b> <br>
-                                0987321654
+                                {{conductor.celular}}
                             </p>
+                            <p>
+                                <mat-icon>calendar_today</mat-icon>&nbsp;&nbsp;
+                                <b>Fecha de nacimiento:</b> <br>
+                                {{conductor.fechaNacimiento}}
+                            </p>
+                            <p>
+                                <mat-icon>place</mat-icon>&nbsp;&nbsp;
+                                <b>Dirección:</b> <br>
+                                {{conductor.direccion}}
+                            </p>
+
                         </mat-card-content>
                         <mat-divider></mat-divider>
                         <mat-card-actions class="centrar">
