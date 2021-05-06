@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { first, map, take } from 'rxjs/operators';
+import { Conductor } from '../../models/conductor.model';
 import { RegistroNegocio } from '../../models/registro.model';
 import { NegocioService } from '../negocio/negocio.service';
 
@@ -42,11 +43,14 @@ export class LoginService {
   }
 
   irNegocioConductor(uidC) {
-    return  this.db.list('Conductores', ref => ref.orderByChild('uidConductor').equalTo(uidC).limitToFirst(1)).snapshotChanges().pipe(map(
-      conductorDB => conductorDB[0].key
+    return  this.db.list('Conductores', ref => ref.orderByChild('uidConductor').equalTo(uidC)).snapshotChanges().pipe(map(
+      (conductorDB) => {
+        const conductor = conductorDB[0].payload.toJSON() as Conductor;
+        conductor.$key = conductorDB[0].key;
+        return conductor }
     ),first()).toPromise()
     .then(
-      keyConductor => this.navegarConductor(keyConductor)
+      conductor => this.navegarConductor(conductor)
     )
   }
 
@@ -77,9 +81,11 @@ export class LoginService {
     this.router.navigate(['/empresa', keyEmpresa]);
   }
 
-  navegarConductor(keyConductor) {
-    this.negocioService.idNegocio.next(keyConductor);
-    this.router.navigate(['/conductor', keyConductor]);
+  navegarConductor(conductor: Conductor) {
+    this.negocioService.idConductor.next(conductor.$key);
+    this.negocioService.idNegocio.next(conductor.keyNegocio);
+    console.log(this.negocioService.idNegocio.value)
+    this.router.navigate(['/conductor', conductor.$key]);
   }
 
   olvidoPassword(email: string) {

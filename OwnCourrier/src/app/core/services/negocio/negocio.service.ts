@@ -11,7 +11,7 @@ import { ZonaCobertura } from '../../models/zona-cobertura.model';
   providedIn: 'root'
 })
 export class NegocioService {
-
+  public idConductor= new BehaviorSubject<string>(undefined);
   public idNegocio = new BehaviorSubject<string>(undefined);
   public negocio = new BehaviorSubject<Negocio>(undefined);
 
