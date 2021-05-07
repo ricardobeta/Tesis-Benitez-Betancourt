@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Conductor } from 'src/app/core/models/conductor.model';
 import { Negocio } from 'src/app/core/models/negocio';
+import { ConductorService } from 'src/app/core/services/conductor/conductor.service';
 import { NegocioService } from 'src/app/core/services/negocio/negocio.service';
 
 @Component({
@@ -10,15 +12,20 @@ import { NegocioService } from 'src/app/core/services/negocio/negocio.service';
 export class InicioComponent implements OnInit {
 
   banderaCargando = true;
-  negocio: Negocio;
+  conductor: Conductor;
 
-  constructor(private negociosService: NegocioService) { }
+
+  constructor(private negociosService: NegocioService,
+              private conductorService: ConductorService) { }
 
   ngOnInit(): void {
-    this.negociosService.negocio.subscribe(
-      negocioAux => {
-        console.log(negocioAux);
-        this.negocio = negocioAux;
+    this.negociosService.idConductor.subscribe(
+      idConductor => {
+        console.log(idConductor);
+        this.conductorService.conseguirConductor(idConductor).subscribe(auxConductor => {
+          console.log(auxConductor.payload.toJSON());
+          this.conductor = auxConductor.payload.toJSON() as Conductor;
+        });
         setTimeout(() => { this.banderaCargando = false;}, 800)
       }
     );
