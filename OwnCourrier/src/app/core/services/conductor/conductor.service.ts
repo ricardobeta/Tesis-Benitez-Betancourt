@@ -16,7 +16,6 @@ export class ConductorService {
 
   }
 
-
   crearConductor(conductor: Conductor) {
     conductor.keyNegocio = this.negocioService.idNegocio.value;
     return this.crearUsuarioConductor(conductor.correo, conductor.cedula).then(
