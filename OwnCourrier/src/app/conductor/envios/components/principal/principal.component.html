@@ -1,98 +1,64 @@
 <div class="row around-xs">
     <div class="col-xs-12 col-md-11">
         <mat-card class="margTop margBot">
-            <div class="row end-xs">
-                <div class="col-xs-12 margBot">
-                    <a mat-raised-button class="tertiary" [routerLink]="['../crearplato']">
-                        <mat-icon>add_circle_outline</mat-icon> Nuevo envío
-                    </a>
-                </div>
-            </div>
             <mat-card-header class="margBot">
                 <mat-card-title>
                     <mat-icon>article</mat-icon> Listado de envíos
                 </mat-card-title>
                 <mat-card-subtitle>
-                    Todos los envíos
+                    Información sobre sus envíos asignados
                 </mat-card-subtitle>
-                <p class="info">
-                    <mat-icon class="icono-punto" style="color: green;">circle</mat-icon> Entregados <br>
-                    <mat-icon class="icono-punto" style="color: orange;">circle</mat-icon> Pendientes <br>
-                    <mat-icon class="icono-punto" style="color: red;">circle</mat-icon> Rechazados <br>
-                </p>
             </mat-card-header>
             <mat-card-content>
-                <!-- <div class="loader" *ngIf="loading">
-                    <div class="row center-xs bottom-xs" style="height: 100%;">
-                        <mat-spinner></mat-spinner>
-                        <div class="col-xs-12">
-                            <h1>Cargando..</h1>
+                <div class="row ancho contenedor">
+                    <ng-container *ngFor="let envio of envios">
+                        <div class="col-xs-12 col-sm-6">
+                            <mat-card>
+                                <p class="centro centrar"><small>Envío en proceso</small></p>
+                                <mat-progress-bar mode="buffer"></mat-progress-bar>
+                                <div class="row ancho margTop middle-xs">
+                                    <div class="col-xs-12 col-sm-4 centro centrar">
+                                        <qrcode [elementType]="'img'" [qrdata]="envio.$key" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-8 parrafo">
+                                        <b>ID:</b> {{envio.$key}} <br>
+                                        <b>Nombre cliente:</b> {{envio.cliente.nombreCompleto}} <br>
+                                        <b>Celular:</b> {{envio.cliente.celular}} <br>
+                                        <b>Dirección:</b> {{envio.direccion.descripcion}} <br>
+                                        <b>Fecha de entrega:</b> {{envio.fecha}} <br>
+                                        <b>Estado:</b> En Proceso <mat-icon class="icono-punto" style="color: blue;">circle</mat-icon>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="row ancho">
+                                    <div class="col-xs-12">
+                                     
+                                            <b>Información Envío:</b>
+                                            <ul>
+                                                <li><b>Descripción: </b>{{envio.infoEnvio.descripcion}}</li>
+                                                <li><b>Tipo: </b>{{envio.infoEnvio.tipo}}</li>
+                                                <li><b>Peso: </b>{{envio.infoEnvio.peso}} gr</li>
+                                            </ul>  
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                                <mat-card-actions class="centrar">
+                                    <button style="color: green;" mat-button><mat-icon>done</mat-icon> Entregado</button>
+                                    <button mat-button><mat-icon>map</mat-icon> Ver mapa</button>
+                                    <button style="color: red;" mat-button><mat-icon class="material-icons-outlined">info</mat-icon> Reportar</button>
+                                </mat-card-actions>
+                            </mat-card>
+    
                         </div>
-                    </div>
-                </div> -->
-                <div class="row ancho center-xs margTop">
-                    <div class="col-xs-8">
-                        <mat-form-field class="ancho margTop" appearance="outline" autocomplete="off">
-                            <mat-label>Buscar</mat-label>
-                            <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." #input
-                                autocomplete="off">
-                            <mat-icon matPrefix>search</mat-icon>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <table mat-table [dataSource]="dataSource" class="ancho" style="position: sticky;">
-                    <ng-container matColumnDef="Cliente">
-                        <th mat-header-cell *matHeaderCellDef> Cliente </th>
-                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
                     </ng-container>
                     
-                    <ng-container matColumnDef="Destino">
-                        <th mat-header-cell *matHeaderCellDef> Destino </th>
-                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-                    </ng-container>
+                </div>
+                
+                
 
-
-                    <ng-container matColumnDef="Celular">
-                        <th mat-header-cell *matHeaderCellDef> Celular </th>
-                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="Placa">
-                        <th mat-header-cell *matHeaderCellDef> Placa Vehículo </th>
-                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="Acciones">
-                        <th mat-header-cell *matHeaderCellDef> Acciones </th>
-                        <td mat-cell *matCellDef="let element; let i = index">
-                            <a [routerLink]="['../modificar', element.$key]" mat-icon-button matTooltip="Editar">
-                                <mat-icon>edit</mat-icon>
-                            </a>
-
-                            <button mat-icon-button matTooltip="Eliminar">
-                                <mat-icon>delete</mat-icon>
-                            </button>
-
-                            <button mat-icon-button matTooltip="Copiar url">
-                                <mat-icon>file_copy</mat-icon>
-                            </button>
-
-                            <!-- <button mat-icon-button matTooltip="Vista previa">
-                                <mat-icon>visibility</mat-icon>
-                            </button> -->
-
-                            <mat-slide-toggle class="example-margin" [checked]="element.estado" color="warn">
-                            </mat-slide-toggle>
-
-                        </td>
-                    </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    <tr class="mat-row" *matNoDataRow>
-                        <td class="mat-cell" colspan="5">{{'No existen envíos' | titlecase}}</td>
-                    </tr>
-                </table>
-                <mat-paginator [pageSizeOptions]="[15,30,50]" showFirstLastButtons></mat-paginator>
             </mat-card-content>
             <mat-card-footer>
                 <div class="row ancho mat-footer margBot">

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
 .info{
     right: 10%;
     font-size: 12px;
@@ -18,4 +19,40 @@
     background-color: lavender;
     border-radius: 20px;
     padding: 0;
+}
+
+
+.contenedor {
+    margin: 0;
+}
+
+p, li, .parrafo{
+    color: gray;
+}
+
+b{
+    color: black;
+}
+
+.color-entregado{
+    background-color: palegreen;
+}
+
+.entregado{
+    opacity: 25%;
+
+}
+
+.icono-texto-entregado {
+    position: absolute;
+    top: 25%;
+    right: 50%;
+    color: black;
+    font-size: 25px;
+}
+
+mat-card{
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

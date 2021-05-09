@@ -85,4 +85,8 @@ export class ConductorService {
     return this.db.object(`Conductores/${key}`).snapshotChanges();
   }
 
+  conseguirEnviosXConductor(conductor: Conductor) {
+    return this.db.list(`Negocios/${conductor.keyNegocio}/envios`, ref => ref.orderByChild('keyConductor').equalTo(this.negocioService.idConductor.value)).snapshotChanges()
+  }
+
 }

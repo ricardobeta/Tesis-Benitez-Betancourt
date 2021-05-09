@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Conductor } from 'src/app/core/models/conductor.model';
 import { Envio } from 'src/app/core/models/envio.model';
+import { ConductorService } from 'src/app/core/services/conductor/conductor.service';
+import { NegocioService } from 'src/app/core/services/negocio/negocio.service';
 
 @Component({
   selector: 'app-principal',
@@ -9,16 +12,30 @@ import { Envio } from 'src/app/core/models/envio.model';
 })
 export class PrincipalComponent implements OnInit {
 
-  dataSource = new MatTableDataSource<Envio>();
-  displayedColumns: string[] = ['Cliente', 'Destino', 'Placa', 'Acciones'];
+  envios: any[] = [];
+  conductor;
 
-  constructor() { }
+  constructor(private conductorService: ConductorService,
+              private negociosService: NegocioService) { }
 
   ngOnInit(): void {
+    this.negociosService.idConductor.subscribe(idConductor => {
+        this.conductorService.conseguirConductor(idConductor).subscribe(auxConductor => {
+          this.conductor = auxConductor.payload.toJSON() as Conductor;
+          this.envios = [];
+          this.conductorService.conseguirEnviosXConductor(this.conductor).subscribe(envios => {
+            envios.forEach(envio => {
+              const auxEnvio = envio.payload.toJSON() as Envio;
+              auxEnvio.$key = envio.key;
+              this.envios.push(auxEnvio);
+            });
+          });
+        });
+        console.log(this.envios);
+      }
+    );
+
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+
 }
