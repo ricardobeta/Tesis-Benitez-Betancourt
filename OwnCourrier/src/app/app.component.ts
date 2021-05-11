@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFireMessaging } from '@angular/fire/messaging';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'OwnCourrier';
+
+  constructor(private messaging: AngularFireMessaging) {
+    this.listenNotifications();
+  }
+
+  listenNotifications() {
+    this.messaging.messages
+    .subscribe(message => {
+      console.log(message);
+    });
+  }
 }

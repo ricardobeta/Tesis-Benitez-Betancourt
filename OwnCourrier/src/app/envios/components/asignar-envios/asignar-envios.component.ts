@@ -264,10 +264,11 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
                   }
                 );
             }
-             await this.envioService.enviarMensaje(conductor.$key);
+             await this.envioService.enviarMensaje(conductor.$key).then( bool => console.log(bool));
         }
     }
-
+    this.toast.success('Envios Asignados Correctamente');
+    this.router.navigate(['../'], {relativeTo: this.ruta})
     // this.zonas.forEach(
     //   zona => {
     //     zona.conductores.forEach(

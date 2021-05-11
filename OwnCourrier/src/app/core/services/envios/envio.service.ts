@@ -42,38 +42,44 @@ export class EnvioService {
 
   enviarMensaje(keyConductor) {
     return this.db.list(`Conductores/${keyConductor}/dispositivos`).valueChanges().pipe(
-      map( (dispositivos: any)  => dispositivos.token as string),
+      map( (dispositivos: any)  => dispositivos.token as string[]),
       first()
     ).toPromise().then(
-      token => {
-        let data = {
-          "notification": {
-            "title": 'Envio Asignados',
-            "body": 'La empresa te ha asignado un nuevo trabajo para la fecha',
-            "click_action": '',
-            "icon": '',
-            "sound": 'default',
-            "image": ''
-          },
-          "to": token
-        };
-    
-        let postData = JSON.stringify(data);
-        let url = "https://fcm.googleapis.com/fcm/send";
-        this.httpClient.post(url, postData, {
-          headers: new HttpHeaders()
-            // put the server key here
-            .set('Authorization', `key=${environment.keyAutorizacion}`)
-            .set('Content-Type', 'application/json'),
-        })
-          .subscribe((response: Response) => {
-            console.log(response);
-          },
-            (error: Response) => {
-              console.log(error);
-              console.log("error" + error);
-            });
-
+      tokens => {
+        if(tokens && tokens.length > 0) {
+          for (const key in tokens) {
+            if (Object.prototype.hasOwnProperty.call(tokens, key)) {
+              const token = tokens[key];
+              let data = {
+                "notification": {
+                  "title": 'Envio Asignados',
+                  "body": 'La empresa te ha asignado un nuevo trabajo para la fecha',
+                  "click_action": '',
+                  "icon": '',
+                  "sound": 'default',
+                  "image": ''
+                },
+                "to": token
+              };
+          
+              let postData = JSON.stringify(data);
+              let url = "https://fcm.googleapis.com/fcm/send";
+              this.httpClient.post(url, postData, {
+                headers: new HttpHeaders()
+                  // put the server key here
+                  .set('Authorization', `key=${environment.keyAutorizacion}`)
+                  .set('Content-Type', 'application/json'),
+              })
+                .subscribe((response: Response) => {
+                  console.log(response);
+                },
+                  (error: Response) => {
+                    console.log(error);
+                    console.log("error" + error);
+                  });
+            }
+          }
+        }
          return true
       }
     )
