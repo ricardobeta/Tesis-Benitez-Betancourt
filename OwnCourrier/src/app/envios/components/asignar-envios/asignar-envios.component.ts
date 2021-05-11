@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 import { ActivatedRoute, Router } from '@angular/router';
 import { latLng, LatLng } from 'leaflet';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Central } from 'src/app/core/models/central.model';
@@ -37,7 +38,7 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
 
 
   constructor(private negocioService:NegocioService, private conductorService: ConductorService, private envioService: EnvioService, private fb: FormBuilder,
-    private router: Router, private ruta: ActivatedRoute) { 
+    private router: Router, private ruta: ActivatedRoute, private toast: ToastrService) { 
     this.buildForm();
   }
 
@@ -248,26 +249,45 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
     return key;
   }
 
-  procesarEnvios() {
+  async procesarEnvios() {
     this.loading = true;
-    this.zonas.forEach(
-      zona => {
-        zona.conductores.forEach(
-          conductor => {
-            conductor.envios.forEach(
-              envio => {
+    for (const key in this.zonas) {
+        const zona = this.zonas[key];
+        for (const key in zona.conductores) {
+            const conductor = zona.conductores[key];
+            for (const key in conductor.envios) {
+                const envio = conductor.envios[key];
                 const auxEnvio = {key: envio.$key, escanear: false};
-                this.envioService.procesar(auxEnvio, conductor.$key,envio.$key).then(
-                  bool => {
-                    this.loading =false;
-                     this.router.navigate(['../'], {relativeTo: this.ruta})
+                await this.envioService.procesar(auxEnvio, conductor.$key,envio.$key).then(
+                  (bool) => {
+                    console.log(bool, auxEnvio.key)
                   }
                 );
-              }
-            );
-          }
-        );
-      }
-    );
+            }
+             await this.envioService.enviarMensaje(conductor.$key);
+        }
+    }
+
+    // this.zonas.forEach(
+    //   zona => {
+    //     zona.conductores.forEach(
+    //       conductor => {
+    //         conductor.envios.forEach(
+    //           envio => {
+    //             const auxEnvio = {key: envio.$key, escanear: false};
+    //             this.envioService.procesar(auxEnvio, conductor.$key,envio.$key)
+    //             // .then(
+    //             //   bool => {
+    //             //     this.loading =false;
+    //             //     this.toast.success('Envios Asignados Correctamente');
+    //             //     this.router.navigate(['../'], {relativeTo: this.ruta})
+    //             //   }
+    //             // );
+    //           }
+    //         );
+    //       }
+    //     );
+    //   }
+    // );
   }
 }

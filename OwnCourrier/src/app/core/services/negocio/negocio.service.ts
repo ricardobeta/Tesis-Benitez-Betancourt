@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireMessaging } from '@angular/fire/messaging';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { BehaviorSubject } from 'rxjs';
+import { first, mergeMapTo } from 'rxjs/operators';
 import { Central } from '../../models/central.model';
 import { Negocio } from '../../models/negocio';
 import { ZonaCobertura } from '../../models/zona-cobertura.model';
@@ -17,7 +19,8 @@ export class NegocioService {
 
   constructor(private db: AngularFireDatabase,
     private storage: AngularFireStorage,
-    public auth: AngularFireAuth) { }
+    public auth: AngularFireAuth,
+    private afMessaging: AngularFireMessaging) { }
 
 
   recuperarNegocioID(id) {
@@ -87,5 +90,25 @@ export class NegocioService {
 
   recuperarCentral() {
     return this.db.object(`Negocios/${this.idNegocio.value}/central`).valueChanges()
+  }
+
+  registrarToken() {
+    this.afMessaging.requestPermission
+    .pipe(mergeMapTo(this.afMessaging.tokenChanges))
+    .subscribe(
+      (token) => {
+        const p = `Conductores/${this.idConductor.value}/dispositivos`; 
+        this.db.list(p, ref => ref.orderByChild('token').equalTo(token)).valueChanges().pipe(first()).toPromise()
+        .then(
+          val => {
+            console.log(val)
+            if(val.length == 0) {
+              this.db.list(p).push({token})
+            }
+          }
+        )
+      },
+      (error) => { console.error(error); }
+    );
   }
 }

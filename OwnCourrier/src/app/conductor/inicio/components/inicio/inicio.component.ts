@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { ToastrService } from 'ngx-toastr';
+import { mergeMapTo } from 'rxjs/operators';
 import { Conductor } from 'src/app/core/models/conductor.model';
 import { Negocio } from 'src/app/core/models/negocio';
 import { ConductorService } from 'src/app/core/services/conductor/conductor.service';
@@ -16,7 +19,12 @@ export class InicioComponent implements OnInit {
 
 
   constructor(private negociosService: NegocioService,
-              private conductorService: ConductorService) { }
+              private conductorService: ConductorService,
+              private toast: ToastrService,
+              
+              ) {
+
+              }
 
   ngOnInit(): void {
     this.negociosService.idConductor.subscribe(
@@ -31,4 +39,7 @@ export class InicioComponent implements OnInit {
     );
   }
 
+  requestPermission() {
+    this.negociosService.registrarToken();
+  }
 }
