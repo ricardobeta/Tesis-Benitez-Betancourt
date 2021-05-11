@@ -41,15 +41,18 @@ export class EnvioService {
 
 
   enviarMensaje(keyConductor) {
+    console.log(keyConductor)
     return this.db.list(`Conductores/${keyConductor}/dispositivos`).valueChanges().pipe(
-      map( (dispositivos: any)  => dispositivos.token as string[]),
+      map( (dispositivos)  => dispositivos.map( (dispositivo: any) =>  dispositivo.token as string)),
       first()
     ).toPromise().then(
       tokens => {
-        if(tokens && tokens.length > 0) {
+        console.log(tokens)
+        if(tokens) {
           for (const key in tokens) {
             if (Object.prototype.hasOwnProperty.call(tokens, key)) {
               const token = tokens[key];
+              console.log(token)
               let data = {
                 "notification": {
                   "title": 'Envio Asignados',
