@@ -4,6 +4,10 @@ import { Conductor } from 'src/app/core/models/conductor.model';
 import { Envio } from 'src/app/core/models/envio.model';
 import { ConductorService } from 'src/app/core/services/conductor/conductor.service';
 import { NegocioService } from 'src/app/core/services/negocio/negocio.service';
+import { ViewChild } from '@angular/core';
+import { ZXingScannerComponent } from '@zxing/ngx-scanner';
+import { MatDialog } from '@angular/material/dialog';
+import { ScannerComponent } from '../scanner/scanner.component';
 
 @Component({
   selector: 'app-principal',
@@ -14,9 +18,12 @@ export class PrincipalComponent implements OnInit {
 
   envios: any[] = [];
   conductor;
+  encendido = false;
+
 
   constructor(private conductorService: ConductorService,
-              private negociosService: NegocioService) { }
+              private negociosService: NegocioService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.negociosService.idConductor.subscribe(idConductor => {
@@ -36,6 +43,16 @@ export class PrincipalComponent implements OnInit {
     );
 
   }
+
+  openDialog() {
+    this.dialog.open(ScannerComponent, {
+      data: {
+        escanear: true
+      }
+    });
+  }
+
+  
 
 
 }

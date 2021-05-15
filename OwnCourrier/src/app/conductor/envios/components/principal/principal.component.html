@@ -18,7 +18,15 @@
                                 <mat-progress-bar mode="buffer"></mat-progress-bar>
                                 <div class="row ancho margTop middle-xs">
                                     <div class="col-xs-12 col-sm-4 centro centrar">
-                                        <qrcode [elementType]="'img'" [qrdata]="envio.$key" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
+                                        <div class="codigoQR" (click)="openDialog()">
+                                            <p>
+                                                <mat-icon>qr_code_scanner</mat-icon>
+                                            </p>
+                                            <p class="centro centrar">
+                                                Escanea el código QR
+                                            </p>
+                                        </div>
+                                        <!-- <qrcode [elementType]="'img'" [qrdata]="envio.$key" [width]="100" [errorCorrectionLevel]="'M'"></qrcode> -->
                                     </div>
                                     <div class="col-xs-12 col-sm-8 parrafo">
                                         <b>ID:</b> {{envio.$key}} <br>
@@ -26,38 +34,46 @@
                                         <b>Celular:</b> {{envio.cliente.celular}} <br>
                                         <b>Dirección:</b> {{envio.direccion.descripcion}} <br>
                                         <b>Fecha de entrega:</b> {{envio.fecha}} <br>
-                                        <b>Estado:</b> En Proceso <mat-icon class="icono-punto" style="color: blue;">circle</mat-icon>
-                                        
+                                        <b>Estado:</b> En Proceso <mat-icon class="icono-punto" style="color: blue;">
+                                            circle</mat-icon>
+
                                     </div>
+
                                 </div>
-                                
+
                                 <div class="row ancho">
                                     <div class="col-xs-12">
-                                     
-                                            <b>Información Envío:</b>
-                                            <ul>
-                                                <li><b>Descripción: </b>{{envio.infoEnvio.descripcion}}</li>
-                                                <li><b>Tipo: </b>{{envio.infoEnvio.tipo}}</li>
-                                                <li><b>Peso: </b>{{envio.infoEnvio.peso}} gr</li>
-                                            </ul>  
+
+                                        <b>Información Envío:</b>
+                                        <ul>
+                                            <li><b>Descripción: </b>{{envio.infoEnvio.descripcion}}</li>
+                                            <li><b>Tipo: </b>{{envio.infoEnvio.tipo}}</li>
+                                            <li><b>Peso: </b>{{envio.infoEnvio.peso}} gr</li>
+                                        </ul>
                                     </div>
                                 </div>
-                                
-                                
-                                
+
+
+
                                 <mat-card-actions class="centrar">
-                                    <button style="color: green;" mat-button><mat-icon>done</mat-icon> Entregado</button>
-                                    <button mat-button><mat-icon>map</mat-icon> Ver mapa</button>
-                                    <button style="color: red;" mat-button><mat-icon class="material-icons-outlined">info</mat-icon> Reportar</button>
+                                    <button style="color: green;" mat-button>
+                                        <mat-icon>done</mat-icon> Entregado
+                                    </button>
+                                    <button mat-button>
+                                        <mat-icon>map</mat-icon> Ver mapa
+                                    </button>
+                                    <button style="color: red;" mat-button>
+                                        <mat-icon class="material-icons-outlined">info</mat-icon> Reportar
+                                    </button>
                                 </mat-card-actions>
                             </mat-card>
-    
+
                         </div>
                     </ng-container>
-                    
+
                 </div>
-                
-                
+
+
 
             </mat-card-content>
             <mat-card-footer>
@@ -69,7 +85,7 @@
                         <p>53.000km</p>
                     </div>
                 </div>
-               
+
             </mat-card-footer>
         </mat-card>
     </div>

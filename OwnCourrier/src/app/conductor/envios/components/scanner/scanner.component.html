@@ -1,0 +1,16 @@
+<div class="row ancho">
+    <div class="colsx-12">
+        <mat-dialog-content>
+            <zxing-scanner [enable]="data.escanear"></zxing-scanner>
+        </mat-dialog-content>
+        <mat-dialog-actions class="centro centrar">
+            <button style="color: green;" mat-button [mat-dialog-close]="true" cdkFocusInitial>
+                <mat-icon>done</mat-icon> Aceptar envío
+            </button>
+            <button style="color: red;" mat-button (click)="onNoClick()">
+                <mat-icon class="material-icons-outlined">info</mat-icon> Cancelar
+            </button>
+        </mat-dialog-actions>
+    </div>
+
+</div>

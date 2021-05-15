@@ -5,15 +5,18 @@ import { EnviosRoutingModule } from './envios-routing.module';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { QRCodeModule } from 'angularx-qrcode';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { ScannerComponent } from './components/scanner/scanner.component';
 
 
 @NgModule({
-  declarations: [PrincipalComponent],
+  declarations: [PrincipalComponent, ScannerComponent],
   imports: [
     CommonModule,
     EnviosRoutingModule,
     MaterialModule,
-    QRCodeModule
+    QRCodeModule,
+    ZXingScannerModule
   ]
 })
 export class EnviosModule { }
