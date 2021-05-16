@@ -14,8 +14,21 @@
                     <ng-container *ngFor="let envio of envios">
                         <div class="col-xs-12 col-sm-6">
                             <mat-card>
-                                <p class="centro centrar"><small>Envío en proceso</small></p>
-                                <mat-progress-bar mode="buffer"></mat-progress-bar>
+                                <ng-container *ngIf="envio.estado === 'enRuta'">
+                                    <p class="centro centrar"><small>Envío en proceso</small></p>
+                                    <mat-progress-bar mode="buffer"></mat-progress-bar>
+                                </ng-container>
+                                <ng-container *ngIf="envio.estado === 'enProceso'">
+                                    <p class="centro centrar" style="color: orange;"><mat-icon>watch_later</mat-icon><br><small>Envío pendiente</small></p>
+                                </ng-container>
+                                <ng-container *ngIf="envio.estado === 'entregado'">
+                                    <p class="centro centrar" style="color: green;"><mat-icon>check_circle</mat-icon><br><small>Envío entregado</small></p>
+                                </ng-container>
+                                <ng-container *ngIf="envio.estado === 'rechazado'">
+                                    <p class="centro centrar" style="color: red;"><mat-icon>cancel</mat-icon><br><small>Envío rechazado</small></p>
+                                </ng-container>
+
+
                                 <div class="row ancho margTop middle-xs">
                                     <div class="col-xs-12 col-sm-4 centro centrar">
                                         <div class="codigoQR" (click)="openDialog()">
@@ -34,8 +47,26 @@
                                         <b>Celular:</b> {{envio.cliente.celular}} <br>
                                         <b>Dirección:</b> {{envio.direccion.descripcion}} <br>
                                         <b>Fecha de entrega:</b> {{envio.fecha}} <br>
-                                        <b>Estado:</b> En Proceso <mat-icon class="icono-punto" style="color: blue;">
-                                            circle</mat-icon>
+                                        <ng-container *ngIf="envio.estado === 'enProceso'">
+                                            <b>Estado:</b> En Proceso <mat-icon class="icono-punto"
+                                                style="color: blue;">
+                                                circle</mat-icon>
+                                        </ng-container>
+                                        <ng-container *ngIf="envio.estado === 'enRuta'">
+                                            <b>Estado:</b> En Ruta <mat-icon class="icono-punto" style="color: yellow;">
+                                                circle</mat-icon>
+                                        </ng-container>
+                                        <ng-container *ngIf="envio.estado === 'entregado'">
+                                            <b>Estado:</b> Entregado <mat-icon class="icono-punto"
+                                                style="color: green;">
+                                                circle</mat-icon>
+                                        </ng-container>
+                                        <ng-container *ngIf="envio.estado === 'rechazado'">
+                                            <b>Estado:</b> Rechazado <mat-icon class="icono-punto" style="color: red;">
+                                                circle</mat-icon>
+                                        </ng-container>
+
+
 
                                     </div>
 
