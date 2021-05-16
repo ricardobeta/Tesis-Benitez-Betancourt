@@ -87,4 +87,8 @@ export class EnvioService {
       }
     )
   }
+
+  envioEnruta(keyEnvio) {
+    return this.db.object(`Negocios/${this.negocioService.idNegocio.value}/envios/${keyEnvio}`).update({estado: 'enRuta'});
+  }
 }

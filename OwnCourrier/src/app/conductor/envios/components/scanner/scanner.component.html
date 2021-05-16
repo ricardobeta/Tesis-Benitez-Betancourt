@@ -1,7 +1,7 @@
 <div class="row ancho">
     <div class="colsx-12">
         <mat-dialog-content>
-            <zxing-scanner  [enable]="data.escanear" (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
+            <zxing-scanner  [enable]="escanear" (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
             <hr>
             {{id}}
         </mat-dialog-content>
