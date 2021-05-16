@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 
@@ -7,27 +7,38 @@ import { ZXingScannerComponent } from '@zxing/ngx-scanner';
   templateUrl: './scanner.component.html',
   styleUrls: ['./scanner.component.scss']
 })
-export class ScannerComponent implements OnInit {
+export class ScannerComponent implements OnInit, OnDestroy {
 
   @ViewChild('scanner', { static: false })
   scanner: ZXingScannerComponent;
-
-  constructor(public dialogRef: MatDialogRef<ScannerComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+  devices = []
+  desiredDevice;
+  id = ''
+  escanear = true;
+  constructor(public dialogRef: MatDialogRef<ScannerComponent>) { }
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
 
   ngOnInit(): void {
-    console.log(this.data.escanear);
+    
   }
 
   onNoClick(): void {
-    this.data.escanear = false;
+    this.escanear = false;
     this.dialogRef.close();
     
     // setTimeout(() => { 
     //   this.dialogRef.close();
     // }, 500)
-    
-    
   }
+
+  scanSuccessHandler(event) {
+    this.id = event
+    this.escanear = false;
+    this.dialogRef.close(this.id);
+  }
+
+
 
 }

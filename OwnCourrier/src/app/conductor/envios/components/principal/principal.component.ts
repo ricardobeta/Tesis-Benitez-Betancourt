@@ -8,6 +8,8 @@ import { ViewChild } from '@angular/core';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { MatDialog } from '@angular/material/dialog';
 import { ScannerComponent } from '../scanner/scanner.component';
+import { EnvioService } from 'src/app/core/services/envios/envio.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-principal',
@@ -23,7 +25,9 @@ export class PrincipalComponent implements OnInit {
 
   constructor(private conductorService: ConductorService,
               private negociosService: NegocioService,
-              public dialog: MatDialog) { }
+              private envioService: EnvioService,
+              public dialog: MatDialog,
+              private toast: ToastrService) { }
 
   ngOnInit(): void {
     this.negociosService.idConductor.subscribe(idConductor => {
@@ -45,11 +49,16 @@ export class PrincipalComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(ScannerComponent, {
-      data: {
-        escanear: true
+    const ref = this.dialog.open(ScannerComponent);
+    ref.afterClosed().subscribe(
+      id => {
+        if(id) {
+          this.envioService.envioEnruta(id).then(
+            () => this.toast.success("Envio cargado correctamente")
+          )
+        }
       }
-    });
+    )
   }
 
   

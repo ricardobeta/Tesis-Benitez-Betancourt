@@ -1,18 +1,18 @@
 <div class="row ancho">
     <div class="colsx-12">
         <mat-dialog-content>
-            <zxing-scanner [enable]="data.escanear"></zxing-scanner>
-            <mat-list>
+            <zxing-scanner [enable]="escanear" (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
+            <mat-list *ngIf="id !== ''">
                 <div mat-subheader>Pedido</div>
                 <mat-list-item >
                   <mat-icon mat-list-icon>qr_code</mat-icon>
                   <div mat-line><b>Identificador del pedido</b> </div>
-                  <div mat-line><small>-M_EWGSbFuv9HYeCofsg</small></div>
+                  <div mat-line><small>{{id}}</small></div>
                 </mat-list-item>
               </mat-list>
         </mat-dialog-content>
         <mat-dialog-actions class="centro centrar">
-            <button style="color: green;" mat-button [mat-dialog-close]="true" cdkFocusInitial>
+            <button style="color: green;" mat-button  cdkFocusInitial>
                 <mat-icon>done</mat-icon> Aceptar envío
             </button>
             <button style="color: red;" mat-button (click)="onNoClick()">
