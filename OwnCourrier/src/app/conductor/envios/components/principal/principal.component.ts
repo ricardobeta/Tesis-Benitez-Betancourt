@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ScannerComponent } from '../scanner/scanner.component';
 import { EnvioService } from 'src/app/core/services/envios/envio.service';
 import { ToastrService } from 'ngx-toastr';
+import { DialogProblemasComponent } from '../dialog-problemas/dialog-problemas.component';
 
 @Component({
   selector: 'app-principal',
@@ -59,6 +60,11 @@ export class PrincipalComponent implements OnInit {
         }
       }
     )
+  }
+
+
+  openDialogProblemas() {
+    const dialogRef = this.dialog.open(DialogProblemasComponent);
   }
 
   

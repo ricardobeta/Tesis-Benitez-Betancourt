@@ -13,7 +13,7 @@
                 <div class="row ancho contenedor">
                     <ng-container *ngFor="let envio of envios">
                         <div class="col-xs-12 col-sm-6">
-                            <mat-card>
+                            <mat-card class="sombra">
                                 <ng-container *ngIf="envio.estado === 'enRuta'">
                                     <p class="centro centrar"><small>Envío en proceso</small></p>
                                     <mat-progress-bar mode="buffer"></mat-progress-bar>
@@ -93,7 +93,7 @@
                                     <button mat-button>
                                         <mat-icon>map</mat-icon> Ver mapa
                                     </button>
-                                    <button style="color: red;" mat-button>
+                                    <button style="color: red;" mat-button (click)="openDialogProblemas()">
                                         <mat-icon class="material-icons-outlined">info</mat-icon> Reportar
                                     </button>
                                 </mat-card-actions>
@@ -107,7 +107,7 @@
 
 
             </mat-card-content>
-            <mat-card-footer>
+            <!-- <mat-card-footer>
                 <div class="row ancho mat-footer margBot">
                     <div class="col-xs-4 centrar col-footer">
                         <h2 style="margin-top: 10px;">Envíos realizados</h2>
@@ -117,7 +117,7 @@
                     </div>
                 </div>
 
-            </mat-card-footer>
+            </mat-card-footer> -->
         </mat-card>
     </div>
 </div>
