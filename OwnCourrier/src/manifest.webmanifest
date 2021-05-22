@@ -38,6 +38,12 @@
       "purpose": "maskable any"
     },
     {
+      "src": "assets/icons/icon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
       "src": "assets/icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
@@ -61,17 +67,17 @@
     {
       "src": "assets/screenshots/1.png",
       "type": "image/png",
-      "sizes": "576x1280"
+      "sizes": "576x1150"
     },
     {
       "src": "assets/screenshots/2.png",
       "type": "image/png",
-      "sizes": "576x1280"
+      "sizes": "576x1150"
     },
     {
       "src": "assets/screenshots/4.png",
       "type": "image/png",
-      "sizes": "576x1280"
+      "sizes": "576x1150"
     }
   ]
 
