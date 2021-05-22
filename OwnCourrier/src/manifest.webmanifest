@@ -55,5 +55,24 @@
       "type": "image/png",
       "purpose": "maskable any"
     }
+  ],
+  "description": "OwnCourrier es una aplicación de gestion de courrier para microempresas de Quito.",
+  "screenshots": [
+    {
+      "src": "assets/screenshots/1.png",
+      "type": "image/png",
+      "sizes": "576x1280"
+    },
+    {
+      "src": "assets/screenshots/2.png",
+      "type": "image/png",
+      "sizes": "576x1280"
+    },
+    {
+      "src": "assets/screenshots/4.png",
+      "type": "image/png",
+      "sizes": "576x1280"
+    }
   ]
+
 }
