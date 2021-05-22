@@ -32,6 +32,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatRadioModule } from '@angular/material/radio';
  
 
 @NgModule({
@@ -68,7 +69,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatBottomSheetModule,
     MatTreeModule,
     MatCheckboxModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatRadioModule
   ],
   exports: [
     LayoutModule,
@@ -102,7 +104,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatBottomSheetModule,
     MatTreeModule,
     MatCheckboxModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatRadioModule
   ]
 })
 export class MaterialModule { }

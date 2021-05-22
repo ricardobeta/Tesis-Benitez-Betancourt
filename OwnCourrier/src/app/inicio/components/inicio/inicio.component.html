@@ -10,7 +10,7 @@
                             <mat-card-subtitle>Administrador</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
-                            
+
                             <p>
                                 <mat-icon>email</mat-icon>&nbsp;&nbsp;
                                 <b> Correo electrónico:</b> <br>
@@ -24,8 +24,12 @@
                         </mat-card-content>
                         <mat-divider></mat-divider>
                         <mat-card-actions class="centrar">
-                            <a mat-button [routerLink]="['informacion']"><mat-icon>info_outlined</mat-icon> INFO</a>
-                            <button mat-button (click)="cerrarSesion()"><mat-icon>logout</mat-icon> SALIR</button>
+                            <a mat-button [routerLink]="['informacion']">
+                                <mat-icon>info_outlined</mat-icon> INFO
+                            </a>
+                            <button mat-button (click)="cerrarSesion()">
+                                <mat-icon>logout</mat-icon> SALIR
+                            </button>
                         </mat-card-actions>
                     </mat-card>
                 </div>
@@ -41,10 +45,10 @@
                                     <mat-icon style="font-size: 60px">verified</mat-icon>
                                 </span>
                             </p>
-    
+
                             <a class="button" [routerLink]="['envios']">
                                 <div class="button__text">Más información</div>
-    
+
                                 <div class="button__wrapper">
                                     <div class="button__arrow"></div>
                                     <div class="button__border-circle"></div>
@@ -53,8 +57,8 @@
                                     </div>
                                 </div>
                             </a>
-    
-    
+
+
                         </mat-card>
                     </div>
                     <div class="row ancho">
@@ -68,10 +72,10 @@
                                     <mat-icon style="font-size: 60px">two_wheeler</mat-icon>
                                 </span>
                             </p>
-    
+
                             <a class="button" [routerLink]="['motorizados/vehiculos']">
                                 <div class="button__text">Más información</div>
-    
+
                                 <div class="button__wrapper">
                                     <div class="button__arrow"></div>
                                     <div class="button__border-circle"></div>
@@ -95,10 +99,10 @@
                                     <mat-icon style="font-size: 60px">person_pin</mat-icon>
                                 </span>
                             </p>
-    
+
                             <a class="button" [routerLink]="['clientes']">
                                 <div class="button__text">Más información</div>
-    
+
                                 <div class="button__wrapper">
                                     <div class="button__arrow"></div>
                                     <div class="button__border-circle"></div>
@@ -120,10 +124,10 @@
                                     <mat-icon style="font-size: 60px">sports_motorsports</mat-icon>
                                 </span>
                             </p>
-    
+
                             <a class="button" [routerLink]="['motorizados/conductores']">
                                 <div class="button__text">Más información</div>
-    
+
                                 <div class="button__wrapper">
                                     <div class="button__arrow"></div>
                                     <div class="button__border-circle"></div>
@@ -136,6 +140,48 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row ancho margTop">
+                <div class="col-xs-12">
+                    <mat-card-subtitle>Problemas reportados</mat-card-subtitle>
+                    <mat-accordion class="example-headers-align" multi>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Listado de problemas recientes
+                                </mat-panel-title>
+                                <mat-panel-description class="alineado-der">
+
+                                    <mat-icon>dangerous</mat-icon>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+
+                            <div>
+                                <mat-list>
+                                    <div mat-subheader>Envíos reportados</div>
+                                    <mat-list-item *ngFor="let folder of folders">
+                                        <mat-icon mat-list-icon style="color: red;">label</mat-icon>
+                                        <div mat-line> Producto dañado <mat-icon class="icono-visto">check_circle</mat-icon></div>
+                                        <div mat-line> <small><b>Fecha de entrega:</b>  2021-04-24</small></div>
+                                        <div mat-line> <b>Cliente:</b>  Christian Benítez (0988477262)</div>
+                                        <div mat-line> <b>Dirección:</b>  Quipu y S33E </div>
+                                        <div mat-line> <b>Descripción envío:</b>  Catalogos Varios </div>
+                                        <mat-divider></mat-divider>
+                                    </mat-list-item>
+
+                                </mat-list>
+
+                            </div>
+
+                        </mat-expansion-panel>
+
+
+
+                    </mat-accordion>
+                </div>
+
+
+            </div>
         </mat-card-content>
     </mat-card>
 </ng-container>
@@ -143,9 +189,9 @@
 
 <ng-container *ngIf="banderaCargando">
     <div class="row center-xs middle-xs contenedorL">
-       
+
         <mat-spinner id="loadingr"></mat-spinner>
-        <h1>CARGANDO...</h1> 
-    
+        <h1>CARGANDO...</h1>
+
     </div>
 </ng-container>

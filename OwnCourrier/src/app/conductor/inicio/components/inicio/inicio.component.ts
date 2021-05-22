@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
+import { MatAccordion } from '@angular/material/expansion';
 import { ToastrService } from 'ngx-toastr';
 import { mergeMapTo } from 'rxjs/operators';
 import { Conductor } from 'src/app/core/models/conductor.model';
@@ -13,6 +14,8 @@ import { NegocioService } from 'src/app/core/services/negocio/negocio.service';
   styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent implements OnInit {
+
+  @ViewChild(MatAccordion) accordion: MatAccordion;
 
   banderaCargando = true;
   conductor: Conductor;

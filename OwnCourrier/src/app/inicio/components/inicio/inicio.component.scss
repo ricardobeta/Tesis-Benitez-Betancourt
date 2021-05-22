@@ -216,3 +216,15 @@ a{
 ::ng-deep .mat-progress-spinner#loadingr circle, .mat-spinner circle {
   stroke: blue !important;
 }
+
+.alineado-der{
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.icono-visto {
+  right: 10%;
+  position: absolute;
+  color: green;
+  cursor: pointer;
+}
