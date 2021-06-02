@@ -6,7 +6,6 @@ export interface ZonaCobertura {
         color: string,
         vertices: string
         $key?: string;
-
         envios?: Envio[];
         conductores ?: Conductor[];
 }

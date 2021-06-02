@@ -19,7 +19,5 @@ describe('PrinpicalRegistroComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+
 });
