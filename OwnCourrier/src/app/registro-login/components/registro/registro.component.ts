@@ -14,22 +14,21 @@ export class RegistroComponent implements OnInit, AfterViewInit {
   form: FormGroup;
   recaptchaVerifier: firebase.default.auth.RecaptchaVerifier;
   errorCap = false;
-  constructor(public dialog: MatDialog,
-    private registroService: RegistroService,
+  constructor(
     private fromBuilder: FormBuilder) {
       this.buildForm();
     }
 
   ngAfterViewInit(): void {
-    this.recaptchaVerifier = this.registroService.recaptcha();
+    // this.recaptchaVerifier = this.registroService.recaptcha();
     this.recaptchaVerifier.render();
   }
 
   ngOnInit(): void {
-    this.registroService.verificado.subscribe(value => {
-      this.captchaField.setValue(value);
-      this.errorCap = false;
-    })
+    // this.registroService.verificado.subscribe(value => {
+    //   this.captchaField.setValue(value);
+    //   this.errorCap = false;
+    // })
   }
 
   buildForm() {
@@ -48,20 +47,20 @@ export class RegistroComponent implements OnInit, AfterViewInit {
 
   registrarEmpresa(event: Event) {
     event.preventDefault();
-    if (this.form.valid) {
-      const dialogRef = this.dialog.open(ConfirmacionComponent, {
-        minWidth: '200px',
-        data: {
-          registro: (this.form.value as RegistroNegocio),
-          recaptchaVerifier: this.recaptchaVerifier
-        },
-        closeOnNavigation: true
-      });
-    } else {
-      this.form.markAsTouched();
-      if (!this.captchaField.valid) {
-        this.errorCap = true;
-      }
-    }
+    // if (this.form.valid) {
+    //   const dialogRef = this.dialog.open(ConfirmacionComponent, {
+    //     minWidth: '200px',
+    //     data: {
+    //       registro: (this.form.value as RegistroNegocio),
+    //       recaptchaVerifier: this.recaptchaVerifier
+    //     },
+    //     closeOnNavigation: true
+    //   });
+    // } else {
+    //   this.form.markAsTouched();
+    //   if (!this.captchaField.valid) {
+    //     this.errorCap = true;
+    //   }
+    // }
   }
 }

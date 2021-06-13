@@ -18,10 +18,7 @@ export class LoginComponent implements OnInit {
     'Conductor'
   ];
   dialogRef;
-  constructor(private formBuilder: FormBuilder, 
-              private loginService: LoginService,
-              private toastr: ToastrService,
-              public dialog: MatDialog) {
+  constructor(private formBuilder: FormBuilder) {
     this.buildForm();
   }
 
@@ -32,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.form = this.formBuilder.group(
       {
         rol: ['', Validators.required],
-        correo: ['', Validators.required],
+        correo: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required]
       }
     );
@@ -40,22 +37,22 @@ export class LoginComponent implements OnInit {
 
 
   loginUsuario(event: Event) {
-    event.preventDefault();
-    if(this.form.valid) {
-      const rol = this.form.get('rol').value;
-      if (rol === 'Administrador') {
-        	this.loginService.iniciarSesionAdm(this.valueCorreo, this.valuePassword)
-      } else if(rol === 'Conductor') {
-        this.loginService.iniciarSesionConductor(this.valueCorreo, this.valuePassword)
-      }
-    } else {
-      this.form.markAllAsTouched();
-      if (this.form.invalid) {
-        this.toastr.error('Campos obligatorios', 'Error Iniciar sesión');
-      } else {
-        this.toastr.error('Correo o contraseña incorrectos', 'Error Iniciar sesión');
-      } 
-    }
+    // event.preventDefault();
+    // if(this.form.valid) {
+    //   const rol = this.form.get('rol').value;
+    //   if (rol === 'Administrador') {
+    //     	this.loginService.iniciarSesionAdm(this.valueCorreo, this.valuePassword)
+    //   } else if(rol === 'Conductor') {
+    //     this.loginService.iniciarSesionConductor(this.valueCorreo, this.valuePassword)
+    //   }
+    // } else {
+    //   this.form.markAllAsTouched();
+    //   if (this.form.invalid) {
+    //     this.toastr.error('Campos obligatorios', 'Error Iniciar sesión');
+    //   } else {
+    //     this.toastr.error('Correo o contraseña incorrectos', 'Error Iniciar sesión');
+    //   } 
+    // }
   }
 
   get valueCorreo() {
@@ -67,9 +64,9 @@ export class LoginComponent implements OnInit {
   }
 
   openDialogContrasena() {
-    this.dialogRef = this.dialog.open(DialogPasswComponent);
-    this.dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    // this.dialogRef = this.dialog.open(DialogPasswComponent);
+    // this.dialogRef.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
   }
 }
