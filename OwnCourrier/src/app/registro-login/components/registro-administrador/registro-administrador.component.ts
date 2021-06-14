@@ -28,7 +28,7 @@ export class RegistroAdministradorComponent implements OnInit {
   buildForm() {
     this.form = this.formBuilder.group(
       {
-        correoAdmin: ['', Validators.required],
+        correoAdmin: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required],
         verificarPass: ['', [Validators.required]]
       }

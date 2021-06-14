@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Envio } from 'src/app/core/models/envio.model';
 import { EnvioService } from 'src/app/core/services/envios/envio.service';
+import { MyValidations } from 'src/app/core/utils/validadores';
 import { GuiaComponent } from '../guia/guia.component';
 
 @Component({
@@ -37,8 +38,8 @@ export class RegistroEnvioComponent implements OnInit {
     this.formCliente = this.formBuilder.group(
       {
         nombreCompleto: ['', [Validators.required]],
-        cedula: ['', [Validators.required]],
-        correo: ['', [Validators.required]],
+        cedula: ['', [Validators.required, MyValidations.cedula]],
+        correo: ['', [Validators.required, Validators.email]],
         telefonoD: ['', [Validators.required]],
         celular: ['', [Validators.required]],
       }

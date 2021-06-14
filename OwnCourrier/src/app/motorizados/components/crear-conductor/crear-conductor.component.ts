@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Conductor } from 'src/app/core/models/conductor.model';
 import { ConductorService } from 'src/app/core/services/conductor/conductor.service';
+import { MyValidations } from 'src/app/core/utils/validadores';
 
 @Component({
   selector: 'app-crear-conductor',
@@ -24,9 +25,9 @@ export class CrearConductorComponent implements OnInit {
 
   buildForm() {
     this.form = this.formBuilder.group({
-      cedula: ['', [Validators.required]],
+      cedula: ['', [Validators.required, MyValidations.cedula]],
       celular: ['', [Validators.required]],
-      correo: ['', [Validators.required]],
+      correo: ['', [Validators.required, Validators.email]],
       direccion: ['', [Validators.required]],
       fechaNacimiento: ['', [Validators.required]],
       nombreCompleto: ['', [Validators.required]],
