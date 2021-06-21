@@ -34,7 +34,11 @@ describe('RegistroComponent', () => {
     expect(component.form.value).toEqual({nombreEmpresa: '', celular: '', captcha: false})
   });
 
-
+  it('Validar Captcha true', () => {
+    const captchaField = component.form.get('captcha');
+    captchaField.setValue(true);
+    expect(captchaField.valid).toBeTruthy();
+  });
 
 });
 

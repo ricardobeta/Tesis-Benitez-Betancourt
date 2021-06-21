@@ -41,4 +41,10 @@ describe('LoginComponent', () => {
         expect(component.form.get('correo').valid).toBeFalsy();
       });
 
+      it('Correo Formato Correcto', () => {
+        component.form.get('correo').setValue('ricardo@gmail.com')
+        console.log(component.form.get('correo').value)
+        expect(component.form.get('correo').valid).toBeTruthy();
+      });
+
 });
