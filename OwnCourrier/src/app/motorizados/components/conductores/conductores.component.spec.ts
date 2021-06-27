@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+
 import { ConductoresComponent } from './conductores.component';
 
 describe('ConductoresComponent', () => {
@@ -19,5 +20,9 @@ describe('ConductoresComponent', () => {
     fixture.detectChanges();
   });
 
+  it('Renderizar Headers Tabla', () => {
+    const headers = ['foto', 'cedula', 'nombreCompleto', 'celular', 'fecha', 'estado', 'acciones'];
+    expect(component.displayedColumns).toEqual(headers);
+  })
 
 });

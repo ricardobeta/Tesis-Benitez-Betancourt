@@ -14,13 +14,12 @@ import { MyValidations } from 'src/app/core/utils/validadores';
 export class CrearConductorComponent implements OnInit {
   form: FormGroup;
   loading = false;
-  constructor(private formBuilder: FormBuilder, private conductorService: ConductorService, private toastService: ToastrService,
-              private router: Router, private ruta: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder) {
     this.buildForm();
   }
 
   ngOnInit(): void {
-    console.log(this.ruta)
+    // console.log(this.ruta)
   }
 
   buildForm() {
@@ -55,21 +54,21 @@ export class CrearConductorComponent implements OnInit {
   }
 
   guardarConductor(event: Event) {
-    event.preventDefault();
-    if(this.form.valid) {
-      this.loading = true;
-      this.conductorService.crearConductor(this.form.value as Conductor).
-      then(
-        value => {
-          console.log(value);
-          this.toastService.success('Conductor Guardado Correctamente', 'Nuevo Conductor')
-          this.router.navigate(['../conductores'], {relativeTo: this.ruta})
-          this.loading = false
-        }
-      )
-    } else {
-      this.form.markAllAsTouched()
-    }
+    // event.preventDefault();
+    // if(this.form.valid) {
+    //   this.loading = true;
+    //   this.conductorService.crearConductor(this.form.value as Conductor).
+    //   then(
+    //     value => {
+    //       console.log(value);
+    //       this.toastService.success('Conductor Guardado Correctamente', 'Nuevo Conductor')
+    //       this.router.navigate(['../conductores'], {relativeTo: this.ruta})
+    //       this.loading = false
+    //     }
+    //   )
+    // } else {
+    //   this.form.markAllAsTouched()
+    // }
   }
 
   get filefField(): AbstractControl {

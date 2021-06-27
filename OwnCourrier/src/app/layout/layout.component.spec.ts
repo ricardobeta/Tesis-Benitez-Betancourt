@@ -19,4 +19,17 @@ describe('LayoutComponent', () => {
     fixture.detectChanges();
   });
 
+  it('Menú Principal Administrador formateado correctamente', () => {
+    const menu = [
+      { link: './', icono: 'home', nombre: 'Inicio',  },
+      { link: 'envios', icono: 'local_shipping', nombre: 'Envíos'  },
+      { link: 'motorizados', icono: 'delivery_dining_outlined', nombre: 'Motorizados' },
+      { link: 'clientes', icono: 'contacts', nombre: 'Clientes' },
+      { link: 'zonas-cobertura', icono: 'map', nombre: 'Zonas Cobertura' },
+      { link: 'informacion', icono: 'settings', nombre: 'Configuración' },
+      { link: '', icono: 'login', nombre: 'Cerrar Sesión', f: true }
+    ]
+    expect(component.items).toEqual(menu)
+  })
+
 });

@@ -37,8 +37,7 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
   asignado = false;
 
 
-  constructor(private negocioService:NegocioService, private conductorService: ConductorService, private envioService: EnvioService, private fb: FormBuilder,
-    private router: Router, private ruta: ActivatedRoute, private toast: ToastrService) { 
+  constructor( private fb: FormBuilder) { 
     this.buildForm();
   }
 
@@ -50,56 +49,56 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
   }
 
   conseguirConductoresDisponibles() {
-    this.$subC = this.conductorService.listaConductores().subscribe(
-      conductoresDB => {
-        this.conductoresDisponibles = conductoresDB.map(
-          conductorDB => {
-            const conductor  = conductorDB.payload.toJSON() as Conductor;
-            conductor.$key = conductorDB.key;
-            return conductor
-          }
-        ).filter( conductor => conductor.estado === 'disponible' && conductor.keyVehiculo!== '' && conductor.keyZona !== '' );
-      }
-    );
+    // this.$subC = this.conductorService.listaConductores().subscribe(
+    //   conductoresDB => {
+    //     this.conductoresDisponibles = conductoresDB.map(
+    //       conductorDB => {
+    //         const conductor  = conductorDB.payload.toJSON() as Conductor;
+    //         conductor.$key = conductorDB.key;
+    //         return conductor
+    //       }
+    //     ).filter( conductor => conductor.estado === 'disponible' && conductor.keyVehiculo!== '' && conductor.keyZona !== '' );
+    //   }
+    // );
   }
 
 
   conseguirEnvios(fecha: string) {
-    return this.envioService.enviosFecha(fecha).pipe(first()).toPromise().then(
-      enviosDB => {
-        this.envios = enviosDB.map(
-          envioDB => {
-            const envio = envioDB.payload.toJSON() as Envio;
-            envio.$key = envioDB.key;
-            return envio
-          }
-        ).filter(envio=> envio.estado === 'pendiente');
-      }
-    )
+    // return this.envioService.enviosFecha(fecha).pipe(first()).toPromise().then(
+    //   enviosDB => {
+    //     this.envios = enviosDB.map(
+    //       envioDB => {
+    //         const envio = envioDB.payload.toJSON() as Envio;
+    //         envio.$key = envioDB.key;
+    //         return envio
+    //       }
+    //     ).filter(envio=> envio.estado === 'pendiente');
+    //   }
+    // )
   }
 
   conseguirZonas() {
-    this.$subZ = this.negocioService.listaZonasCobertura().subscribe(
-      zonasDB => {
-        this.zonas = zonasDB.map(
-          zonaDB => {
-            const zona = zonaDB.payload.toJSON() as ZonaCobertura;
-            zona.envios = [];
-            zona.conductores = [];
-            zona.$key = zonaDB.key;
-            return zona;
-          }
-        )
-      }
-    )
+    // this.$subZ = this.negocioService.listaZonasCobertura().subscribe(
+    //   zonasDB => {
+    //     this.zonas = zonasDB.map(
+    //       zonaDB => {
+    //         const zona = zonaDB.payload.toJSON() as ZonaCobertura;
+    //         zona.envios = [];
+    //         zona.conductores = [];
+    //         zona.$key = zonaDB.key;
+    //         return zona;
+    //       }
+    //     )
+    //   }
+    // )
   }
 
   centralNegocio() {
-    this.negocioService.recuperarCentral().pipe(first()).toPromise().then(
-      (centralDB:Central) => {
-        this.central = latLng(centralDB.latitud,centralDB.longitud);
-      }
-    )
+    // this.negocioService.recuperarCentral().pipe(first()).toPromise().then(
+    //   (centralDB:Central) => {
+    //     this.central = latLng(centralDB.latitud,centralDB.longitud);
+    //   }
+    // )
   }
 
   buildForm() {
@@ -112,29 +111,29 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
 
 
   asignar() {
-    if(this.form.valid) {
-      this.conseguirEnvios(this.fecha)
-      .then(
-        () => {
-          // calculo de todo :D
-          // primero ver que envios se encuentran en cada zona
-          this.envios.forEach(envio => {
-            for (const key in this.zonas) {
-              if (Object.prototype.hasOwnProperty.call(this.zonas, key)) {
-                const zona = this.zonas[key];
-                if(this.comprobarEnvioEnZona(envio, zona)) {
-                  break;
-                }
-              }
-            }
-          })
-          this.agregarConductoresEnZona();
-          this.asignarEnviosConductor();
-          console.log('zonas', this.zonas);
-          this.asignado = true;
-        }
-      );
-    }
+    // if(this.form.valid) {
+    //   this.conseguirEnvios(this.fecha)
+    //   .then(
+    //     () => {
+    //       // calculo de todo :D
+    //       // primero ver que envios se encuentran en cada zona
+    //       this.envios.forEach(envio => {
+    //         for (const key in this.zonas) {
+    //           if (Object.prototype.hasOwnProperty.call(this.zonas, key)) {
+    //             const zona = this.zonas[key];
+    //             if(this.comprobarEnvioEnZona(envio, zona)) {
+    //               break;
+    //             }
+    //           }
+    //         }
+    //       })
+    //       this.agregarConductoresEnZona();
+    //       this.asignarEnviosConductor();
+    //       console.log('zonas', this.zonas);
+    //       this.asignado = true;
+    //     }
+    //   );
+    // }
   }
 
 
@@ -235,40 +234,40 @@ export class AsignarEnviosComponent implements OnInit, OnDestroy {
 
 
   enviosCercano(envios: Envio[], punto: LatLng) {
-    console.log(punto);
-    let key;
-    let distanciatmp: number = Number.MAX_SAFE_INTEGER;
-    for (let keyA in envios) {
-      const auxEnvio = envios[keyA]
-      let distance: number = punto.distanceTo(latLng(auxEnvio.direccion.latitud, auxEnvio.direccion.longitud));
-      if (distance <= distanciatmp) {
-        distanciatmp = distance;
-        key = keyA;
-      }
-    }
-    return key;
-  }
+  //   console.log(punto);
+  //   let key;
+  //   let distanciatmp: number = Number.MAX_SAFE_INTEGER;
+  //   for (let keyA in envios) {
+  //     const auxEnvio = envios[keyA]
+  //     let distance: number = punto.distanceTo(latLng(auxEnvio.direccion.latitud, auxEnvio.direccion.longitud));
+  //     if (distance <= distanciatmp) {
+  //       distanciatmp = distance;
+  //       key = keyA;
+  //     }
+  //   }
+  //   return key;
+  // }
 
-  async procesarEnvios() {
-    this.loading = true;
-    for (const key in this.zonas) {
-        const zona = this.zonas[key];
-        for (const key in zona.conductores) {
-            const conductor = zona.conductores[key];
-            for (const key in conductor.envios) {
-                const envio = conductor.envios[key];
-                const auxEnvio = {key: envio.$key, escanear: false};
-                await this.envioService.procesar(auxEnvio, conductor.$key,envio.$key).then(
-                  (bool) => {
-                    console.log(bool, auxEnvio.key)
-                  }
-                );
-            }
-             await this.envioService.enviarMensaje(conductor.$key).then( bool => console.log(bool));
-        }
-    }
-    this.toast.success('Envios Asignados Correctamente');
-    this.router.navigate(['../'], {relativeTo: this.ruta})
+  // async procesarEnvios() {
+  //   this.loading = true;
+  //   for (const key in this.zonas) {
+  //       const zona = this.zonas[key];
+  //       for (const key in zona.conductores) {
+  //           const conductor = zona.conductores[key];
+  //           for (const key in conductor.envios) {
+  //               const envio = conductor.envios[key];
+  //               const auxEnvio = {key: envio.$key, escanear: false};
+  //               await this.envioService.procesar(auxEnvio, conductor.$key,envio.$key).then(
+  //                 (bool) => {
+  //                   console.log(bool, auxEnvio.key)
+  //                 }
+  //               );
+  //           }
+  //            await this.envioService.enviarMensaje(conductor.$key).then( bool => console.log(bool));
+  //       }
+  //   }
+  //   this.toast.success('Envios Asignados Correctamente');
+  //   this.router.navigate(['../'], {relativeTo: this.ruta})
     // this.zonas.forEach(
     //   zona => {
     //     zona.conductores.forEach(

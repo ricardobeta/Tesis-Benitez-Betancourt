@@ -15,18 +15,18 @@ export class VehiculosComponent implements OnInit {
   dataSource = new MatTableDataSource<Vehiculo>();
   displayedColumns: string[] = ['placa', 'marca', 'color', 'responsable', 'estado', 'acciones'];
 
-  constructor(private vehiculoService: VehiculoService) { }
+  constructor() {}
 
   ngOnInit(): void {
-    this.vehiculoService.listaVehiculos().subscribe(vehiculos => {
-      this.dataSource.data = [];
-      vehiculos.forEach(vehiculo => {
-        const auxVehiculo: any = vehiculo.payload.toJSON();
-        auxVehiculo.$key = vehiculo.key;
-        this.dataSource.data.push(auxVehiculo as Vehiculo);
-      })
-      this.dataSource.paginator = this.paginator;
-    });
+    // this.vehiculoService.listaVehiculos().subscribe(vehiculos => {
+    //   this.dataSource.data = [];
+    //   vehiculos.forEach(vehiculo => {
+    //     const auxVehiculo: any = vehiculo.payload.toJSON();
+    //     auxVehiculo.$key = vehiculo.key;
+    //     this.dataSource.data.push(auxVehiculo as Vehiculo);
+    //   })
+    //   this.dataSource.paginator = this.paginator;
+    // });
   }
 
   applyFilter(event: Event) {

@@ -15,14 +15,12 @@ export class RegistroAdministradorComponent implements OnInit {
   registroN: RegistroNegocio;
   nocoincide: boolean = false;
   constructor(private formBuilder: FormBuilder,
-              private registroService: RegistroService,
-              private negocioService: NegocioService,
-              private router: Router) {
+) {
                 this.buildForm();
               }
 
   ngOnInit(): void {
-    this.registroN = this.registroService.negocio.value;
+    //this.registroN = this.registroService.negocio.value;
   }
 
   buildForm() {
@@ -35,32 +33,32 @@ export class RegistroAdministradorComponent implements OnInit {
     );
   }
 
-  registrarEmpresaFinal(event: Event) {
-    event.preventDefault();
-    if(this.passwordField.value === this.verificarpasswordField.value) {
-      if(this.form.valid) {
-        this.registroService.registroAdmin(this.correoAdminField.value, this.passwordField.value)
-          .then(
-            usuarioAdmin => {
-              this.registroN.correoAdmin = this.correoAdminField.value;
-              this.registroN.uidAdmin = usuarioAdmin.user.uid;
-              this.registroService.registrarNegocio(this.registroN)
-                .then(
-                  negocio => {
-                    this.registroN.$key = negocio.key;
-                    this.negocioService.idNegocio.next(this.registroN.$key);
-                    this.router.navigate(['/empresa',this.registroN.$key]);
-                  }
-                );
-            }
-          );
-      } else {
-        this.form.markAsDirty();
-      }
-    } else {
-      this.nocoincide = true;
-    }
-  }
+  // registrarEmpresaFinal(event: Event) {
+  //   event.preventDefault();
+  //   if(this.passwordField.value === this.verificarpasswordField.value) {
+  //     if(this.form.valid) {
+  //       this.registroService.registroAdmin(this.correoAdminField.value, this.passwordField.value)
+  //         .then(
+  //           usuarioAdmin => {
+  //             this.registroN.correoAdmin = this.correoAdminField.value;
+  //             this.registroN.uidAdmin = usuarioAdmin.user.uid;
+  //             this.registroService.registrarNegocio(this.registroN)
+  //               .then(
+  //                 negocio => {
+  //                   this.registroN.$key = negocio.key;
+  //                   this.negocioService.idNegocio.next(this.registroN.$key);
+  //                   this.router.navigate(['/empresa',this.registroN.$key]);
+  //                 }
+  //               );
+  //           }
+  //         );
+  //     } else {
+  //       this.form.markAsDirty();
+  //     }
+  //   } else {
+  //     this.nocoincide = true;
+  //   }
+  // }
 
   get passwordField() {
     return this.form.get('password');

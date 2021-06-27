@@ -23,19 +23,17 @@ export class LayoutComponent implements OnInit {
   bandera = false;
 
   constructor(private breakpointObserver: BreakpointObserver,
-              private router: ActivatedRoute,
-              private loginService: LoginService,
-              private negocioService: NegocioService) {
-      this.router.params.subscribe(params => {
-        negocioService.recuperarNegocioID(params.id);
-      });
-      this.negocioService.idNegocio.subscribe(
-        idNegocio => {
-            if(idNegocio) {
-              this.bandera = true;
-            }
-        }
-      )
+              ) {
+      // this.router.params.subscribe(params => {
+      //   negocioService.recuperarNegocioID(params.id);
+      // });
+      // this.negocioService.idNegocio.subscribe(
+      //   idNegocio => {
+      //       if(idNegocio) {
+      //         this.bandera = true;
+      //       }
+      //   }
+      // )
   }
   
   ngOnInit(): void {
@@ -51,7 +49,7 @@ export class LayoutComponent implements OnInit {
   }
 
   cerrarSesion() {
-    this.loginService.logout();
+    // this.loginService.logout();
   }
   nada() {
   }

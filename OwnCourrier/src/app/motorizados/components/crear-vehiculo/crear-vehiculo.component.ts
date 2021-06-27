@@ -13,8 +13,7 @@ export class CrearVehiculoComponent implements OnInit {
   form: FormGroup
   loading = false
 
-  constructor(private formBuilder: FormBuilder, private toastService: ToastrService,
-    private router: Router, private ruta: ActivatedRoute, private vehiculoService: VehiculoService) {
+  constructor(private formBuilder: FormBuilder) {
     this.buildForm();
   }
 
@@ -46,22 +45,22 @@ export class CrearVehiculoComponent implements OnInit {
   }
 
 
-  guardarVehiculo(event: Event) {
-    event.preventDefault();
-    if(this.form.valid) {
-      this.loading = true
-      this.vehiculoService.crearVehiculo(this.form.value).then(
-        value => {
-          console.log(value);
-          this.loading = false;
-          this.router.navigate(['../vehiculos'], {relativeTo: this.ruta})
-          this.toastService.success('Se guardo tu vehículo Correctamente', 'Nuevo Vehículo')
-        }
-      )
-    } else {
-      this.form.markAllAsTouched()
-    }
-  }
+  // guardarVehiculo(event: Event) {
+  //   event.preventDefault();
+  //   if(this.form.valid) {
+  //     this.loading = true
+  //     this.vehiculoService.crearVehiculo(this.form.value).then(
+  //       value => {
+  //         console.log(value);
+  //         this.loading = false;
+  //         this.router.navigate(['../vehiculos'], {relativeTo: this.ruta})
+  //         this.toastService.success('Se guardo tu vehículo Correctamente', 'Nuevo Vehículo')
+  //       }
+  //     )
+  //   } else {
+  //     this.form.markAllAsTouched()
+  //   }
+  // }
 
   get fileMField(): AbstractControl {
     return this.form.get('fileM')

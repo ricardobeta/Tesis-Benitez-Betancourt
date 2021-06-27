@@ -19,19 +19,18 @@ export class ConductoresComponent implements OnInit {
   displayedColumns: string[] = ['foto', 'cedula', 'nombreCompleto', 'celular', 'fecha', 'estado', 'acciones'];
   conductor: Conductor;
 
-  constructor(private conductorService: ConductorService, public dialog: MatDialog,
-              private toast: ToastrService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.conductorService.listaConductores().subscribe(conductores => {
-      this.dataSource.data = [];
-      conductores.forEach(conductor => {
-        const auxConductor: any = conductor.payload.toJSON();
-        auxConductor.$key = conductor.key;
-        this.dataSource.data.push(auxConductor as Conductor);
-      })
-      this.dataSource.paginator = this.paginator;
-    });
+    // this.conductorService.listaConductores().subscribe(conductores => {
+    //   this.dataSource.data = [];
+    //   conductores.forEach(conductor => {
+    //     const auxConductor: any = conductor.payload.toJSON();
+    //     auxConductor.$key = conductor.key;
+    //     this.dataSource.data.push(auxConductor as Conductor);
+    //   })
+    //   this.dataSource.paginator = this.paginator;
+    // });
   }
 
   applyFilter(event: Event) {
@@ -40,16 +39,16 @@ export class ConductoresComponent implements OnInit {
   }
 
 
-  openDialogAsignacion(conductor: Conductor): void {
-    const dialogRef = this.dialog.open(AsignacionComponent, {
-      width: '30rem',
-      data: conductor
-    });
+  // openDialogAsignacion(conductor: Conductor): void {
+  //   const dialogRef = this.dialog.open(AsignacionComponent, {
+  //     width: '30rem',
+  //     data: conductor
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-        if(result === 'Guardado Exitosamente') {
-          this.toast.success('Se Asigno Correctamente')
-        }
-    });
-  }
+  //   dialogRef.afterClosed().subscribe(result => {
+  //       if(result === 'Guardado Exitosamente') {
+  //         this.toast.success('Se Asigno Correctamente')
+  //       }
+  //   });
+  // }
 }

@@ -22,45 +22,41 @@ export class AsignacionComponent implements OnInit {
 
 
 
-  constructor( public dialogRef: MatDialogRef<AsignacionComponent>,
-    @Inject(MAT_DIALOG_DATA) public conductor: Conductor,
-    private fb: FormBuilder, private vehiculoService: VehiculoService,
-    private negocioService: NegocioService,
-    private conductorService: ConductorService) {
+  constructor( private fb: FormBuilder) {
       this.buildForm();
     }
 
   ngOnInit(): void {
-    if(this.conductor.keyVehiculo) {
-      this.keyPasado = this.conductor.keyVehiculo
-    }
-    this.form.patchValue(this.conductor)
-    const $sub = this.vehiculoService.listaVehiculosNoAsignados().subscribe(
-      vehiculosDB => {
-        this.vehiculos = vehiculosDB.map(
-          vehiculoDB => {
-            const vehiculo  = vehiculoDB.payload.toJSON() as Vehiculo;
-            vehiculo.$key = vehiculoDB.key;
-            return vehiculo
-          }
-        )
-         $sub.unsubscribe();
-      }
-    );
+    // if(this.conductor.keyVehiculo) {
+    //   this.keyPasado = this.conductor.keyVehiculo
+    // }
+    // this.form.patchValue(this.conductor)
+    // const $sub = this.vehiculoService.listaVehiculosNoAsignados().subscribe(
+    //   vehiculosDB => {
+    //     this.vehiculos = vehiculosDB.map(
+    //       vehiculoDB => {
+    //         const vehiculo  = vehiculoDB.payload.toJSON() as Vehiculo;
+    //         vehiculo.$key = vehiculoDB.key;
+    //         return vehiculo
+    //       }
+    //     )
+    //      $sub.unsubscribe();
+    //   }
+    // );
 
-    const $sub2 = this.negocioService.listaZonasCobertura().subscribe(
-      zonasDB => {
-        this.zonas = [];
-         zonasDB.forEach(
-           zonaDB => {
-            const zona  = zonaDB.payload.toJSON() as ZonaCobertura;
-            zona.$key = zonaDB.key;
-            this.zonas.push(zona);
-           }
-         );
-         $sub2.unsubscribe();
-      }
-    );
+    // const $sub2 = this.negocioService.listaZonasCobertura().subscribe(
+    //   zonasDB => {
+    //     this.zonas = [];
+    //      zonasDB.forEach(
+    //        zonaDB => {
+    //         const zona  = zonaDB.payload.toJSON() as ZonaCobertura;
+    //         zona.$key = zonaDB.key;
+    //         this.zonas.push(zona);
+    //        }
+    //      );
+    //      $sub2.unsubscribe();
+    //   }
+    // );
   }
 
   buildForm() {
@@ -71,26 +67,26 @@ export class AsignacionComponent implements OnInit {
   }
 
   saveAsignacion() {
-    if (this.keyPasado !== this.form.get('keyVehiculo').value) {
-      this.conductorService.asignarVehiculo(this.form.get('keyVehiculo').value, this.conductor.$key, this.keyPasado)
-        .then(
-          () => {
-            this.conductorService.asignarZona(this.form.get('keyZona').value, this.conductor.$key)
-            .then(
-              () => {
-                this.dialogRef.close('Guardado Exitosamente')
-              }
-            )
-          }
-        )
-    } else {
-      this.conductorService.asignarZona(this.form.get('keyZona').value, this.conductor.$key)
-      .then(
-        () => {
-          this.dialogRef.close('Guardado Exitosamente')
-        }
-      )
-    }
+    // if (this.keyPasado !== this.form.get('keyVehiculo').value) {
+    //   this.conductorService.asignarVehiculo(this.form.get('keyVehiculo').value, this.conductor.$key, this.keyPasado)
+    //     .then(
+    //       () => {
+    //         this.conductorService.asignarZona(this.form.get('keyZona').value, this.conductor.$key)
+    //         .then(
+    //           () => {
+    //             this.dialogRef.close('Guardado Exitosamente')
+    //           }
+    //         )
+    //       }
+    //     )
+    // } else {
+    //   this.conductorService.asignarZona(this.form.get('keyZona').value, this.conductor.$key)
+    //   .then(
+    //     () => {
+    //       this.dialogRef.close('Guardado Exitosamente')
+    //     }
+    //   )
+    // }
   }
 
 }
