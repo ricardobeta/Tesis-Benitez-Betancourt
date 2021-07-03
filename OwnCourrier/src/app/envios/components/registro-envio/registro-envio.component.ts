@@ -23,11 +23,10 @@ export class RegistroEnvioComponent implements OnInit {
   prioridades = ['Alta', 'Media', 'Baja'];
   tipos = ['Postal', 'Alimentos', 'Mercaderia', 'Medico']
 
-  constructor(private formBuilder: FormBuilder, private envioService: EnvioService, public dialog: MatDialog,
-    private router: Router, private ruta: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder) {
+    this.buildFormInfoEnvio();
     this.buildFormCliente();
     this.buildFormDireccion();
-    this.buildFormInfoEnvio();
     this.buildFormFecha()
   }
 
@@ -84,24 +83,24 @@ export class RegistroEnvioComponent implements OnInit {
   }
 
   guardarEnvio(event: Event) {
-    if(this.formsValid()) {
-      this.loading = true;
-      const envio: Envio = {
-        cliente: this.formCliente.value,
-        direccion: this.formDireccion.value,
-        infoEnvio: this.formInfoEnvio.value,
-        fecha: this.formFecha.get('fecha').value,
-        estado: 'pendiente'
-      }
-      this.envioService.guardarEnvio(envio).then(
-        value => {
-          envio.$key =  value.key
-          this.abrirGuia(envio);
-          this.router.navigate(['../'], {relativeTo: this.ruta})
-          this.loading = false
-        }
-      )
-    }
+    // if(this.formsValid()) {
+    //   this.loading = true;
+    //   const envio: Envio = {
+    //     cliente: this.formCliente.value,
+    //     direccion: this.formDireccion.value,
+    //     infoEnvio: this.formInfoEnvio.value,
+    //     fecha: this.formFecha.get('fecha').value,
+    //     estado: 'pendiente'
+    //   }
+    //   this.envioService.guardarEnvio(envio).then(
+    //     value => {
+    //       envio.$key =  value.key
+    //       this.abrirGuia(envio);
+    //       this.router.navigate(['../'], {relativeTo: this.ruta})
+    //       this.loading = false
+    //     }
+    //   )
+    // }
   }
 
   formsValid() {
@@ -110,9 +109,9 @@ export class RegistroEnvioComponent implements OnInit {
   }
 
   abrirGuia(envio: Envio) {
-    const dialogRef = this.dialog.open(GuiaComponent, {
-      width: 'auto',
-      data: envio
-    });
+    // const dialogRef = this.dialog.open(GuiaComponent, {
+    //   width: 'auto',
+    //   data: envio
+    // });
   }
 }

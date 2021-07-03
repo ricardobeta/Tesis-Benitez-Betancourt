@@ -14,24 +14,22 @@ export class InfoEmpresaComponent implements OnInit {
   auxKey;
   imagenCargada = false;
 
-  constructor(private formBuilder: FormBuilder,
-              private negociosService: NegocioService,
-              private toastr: ToastrService) {
+  constructor(private formBuilder: FormBuilder) {
     this.buildForm();
-    this.auxKey = this.negociosService.idNegocio.value;
+    //this.auxKey = this.negociosService.idNegocio.value;
   }
 
   ngOnInit(): void {
-    this.negociosService.negocio.subscribe(
-      negocio => {
-        console.log(negocio);
-        this.form.patchValue(negocio);
-        if (this.urlLogo.value !== '') {
-          this.imagenCargada = true;
-        }
-      }
-    );
-    console.log(this.auxKey);
+    // this.negociosService.negocio.subscribe(
+    //   negocio => {
+    //     console.log(negocio);
+    //     this.form.patchValue(negocio);
+    //     if (this.urlLogo.value !== '') {
+    //       this.imagenCargada = true;
+    //     }
+    //   }
+    // );
+    // console.log(this.auxKey);
   }
 
   buildForm() {
@@ -58,20 +56,20 @@ export class InfoEmpresaComponent implements OnInit {
   }
 
   guardar(event: Event) {
-    event.preventDefault();
-    if(this.form.valid) {
-      const auxNegocio = this.form.value;
-      console.log(auxNegocio);
-      this.negociosService.modificarInfoNegocio(auxNegocio, this.auxKey);
-      this.imagenCargada = true;
-      this.toastr.success('Actualizada correctamente', 'Información de la empresa', );
-    } else {
-      if (this.file.value === null) {
-        this.toastr.error('No se ha subido ninguna imagen para el logo', 'Error');
-      } else {
-        this.toastr.error('Campos obligatorios vacíos', 'Error');
-      }
-    }
+    // event.preventDefault();
+    // if(this.form.valid) {
+    //   const auxNegocio = this.form.value;
+    //   console.log(auxNegocio);
+    //   this.negociosService.modificarInfoNegocio(auxNegocio, this.auxKey);
+    //   this.imagenCargada = true;
+    //   this.toastr.success('Actualizada correctamente', 'Información de la empresa', );
+    // } else {
+    //   if (this.file.value === null) {
+    //     this.toastr.error('No se ha subido ninguna imagen para el logo', 'Error');
+    //   } else {
+    //     this.toastr.error('Campos obligatorios vacíos', 'Error');
+    //   }
+    // }
   }
 
   get file(): AbstractControl {
