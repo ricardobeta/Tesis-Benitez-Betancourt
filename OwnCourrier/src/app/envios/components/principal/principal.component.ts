@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Envio } from 'src/app/core/models/envio.model';
 import { EnvioService } from 'src/app/core/services/envios/envio.service';
@@ -14,6 +15,7 @@ import { InfoEnvioComponent } from '../info-envio/info-envio.component';
 })
 export class PrincipalComponent implements OnInit {
 
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   dataSource = new MatTableDataSource<Envio>();
   displayedColumns: string[] = ['Cedula', 'Nombre_cliente', 'Celular', 'Dir_url', 'Fecha', 'Estado', 'Acciones'];
 
@@ -32,6 +34,7 @@ export class PrincipalComponent implements OnInit {
             this.dataSource._updateChangeSubscription()
           }
         );
+        this.dataSource.paginator = this.paginator;
       }
     );
   }
