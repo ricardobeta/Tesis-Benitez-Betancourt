@@ -1,1 +1,103 @@
-<p>envio-cliente works!</p>
+<ng-container *ngIf="!banderaCargando">
+    <div class="row ancho margTop pad10 rowUP">
+        <div class="col-xs-12 center-xs">
+            <div class="row middle-xs ">
+                <div class="col-xs-12 col-md-4">
+                    <img class="margBot imagenLogo sombra" src="{{empresa.urlLogo}}" width="150px" alt="">
+                </div>
+    
+                <div class="col-xs-12 col-md-8">
+                    <mat-card class="sombra" style="border-radius: 25px;">
+                        <mat-card-title class="center-xs">{{empresa.nombreEmpresa}}</mat-card-title>
+                        <mat-card-subtitle class="margTop">Cliente</mat-card-subtitle>
+                        <div>
+                            <p>
+                                <b>Nombre:</b> {{envioR.cliente.nombreCompleto}} <br>
+                                <b>Correo:</b> {{envioR.cliente.correo}} <br>
+                                <b>Celular:</b> {{envioR.cliente.celular}} <br>
+                                <b>Cédula:</b> {{envioR.cliente.cedula}} <br>
+                                <b>Dirección:</b> {{envioR.direccion.descripcion}} <br>
+                            </p>
+                        </div>
+                    </mat-card>
+                </div>
+            </div>
+    
+            <mat-card class="margTop sombra " style="border-radius: 25px;">
+                <div class="row ancho middle-xs ">
+    
+                    <div class="col-xs-12 col-md-4">
+    
+                        <mat-card-subtitle>Conductor</mat-card-subtitle>
+                        <img class="imagenLogo" src="{{conductor.urlFoto}}" width="100px" alt="">
+                        <mat-card-content>
+                            <div>
+                                <p>
+                                    <b>Nombre:</b> {{conductor.nombreCompleto}} <br>
+                                    <b>Cédula:</b> {{conductor.cedula}} <br>
+                                    <b>Correo:</b> {{conductor.correo}} <br>
+                                    <b>Celular:</b> {{conductor.celular}} <br>
+                                    <b>Fecha de nacimiento:</b> {{conductor.fechaNacimiento}} <br>
+                                    
+                                    <b>Dirección:</b> Av. Norte <br>
+                                </p>
+                            </div>
+                        </mat-card-content>
+    
+                    </div>
+    
+                    <div class="col-xs-12 col-md-8" >
+                        <div class="row  margBot centro centrar">
+                            <div class="col-xs-12" >
+    
+                                <mat-card-subtitle>Información Envío</mat-card-subtitle>
+                                <mat-card-content>
+                                    <div>
+                                        <p>
+                                            <b>ID:</b> {{idEnvio}} <br>
+                                            <b>Descripción:</b>  {{envioR.infoEnvio.descripcion}} <br>
+                                            <b>Peso:</b>  {{envioR.infoEnvio.peso}} <br>
+                                            <b>Tipo:</b>  {{envioR.infoEnvio.tipo}} <br>
+                                        </p>
+                                    </div>
+                                </mat-card-content>
+                                <ng-container *ngIf="envioR.estado === 'enRuta'">
+                                    <p class="centro centrar letra"><small>Envío en proceso</small></p>
+                                    <mat-progress-bar mode="buffer"></mat-progress-bar>
+                                </ng-container>
+                                <ng-container *ngIf="envioR.estado === 'enProceso'">
+                                    <p class="centro centrar letra" style="color: orange;"><mat-icon>watch_later</mat-icon><br><small>Envío pendiente</small></p>
+                                </ng-container>
+                                <ng-container *ngIf="envioR.estado === 'entregado'">
+                                    <p class="centro centrar letra" style="color: green;"><mat-icon>check_circle</mat-icon><br><small>Envío entregado</small></p>
+                                </ng-container>
+                                <ng-container *ngIf="envioR.estado === 'rechazado'">
+                                    <p class="centro centrar letra" style="color: red;"><mat-icon>cancel</mat-icon><br><small>Envío rechazado</small></p>
+                                </ng-container>
+                            </div>
+                            
+                        </div>
+                        <div class="row  margTop margBot">
+                            <div class="col-xs-12">
+                                <button mat-raised-button ><mat-icon>launch</mat-icon> SUBSCRIBIRSE</button>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+    
+                </div>
+                <mat-hint class="margTop"><small>Si desea recibir notificaciones del estado de su pedido, presione sobre </small>SUBSCRIBIRSE</mat-hint>
+            </mat-card>
+    
+    
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="banderaCargando">
+    <div class="row center-xs middle-xs contenedorL margTop">
+        <mat-spinner id="loadingr"></mat-spinner>
+        <h1>CARGANDO INFORMACIÓN...</h1> 
+    </div>
+</ng-container>
