@@ -22,6 +22,26 @@ export class PrincipalComponent implements OnInit {
   envios: any[] = [];
   conductor;
   encendido = false;
+  //estados = ['enRuta', 'enProceso', 'entregado', 'rechazado']
+
+  estados = [
+    {
+      value: 'enRuta',
+      text: 'En Ruta'
+    },
+    {
+      value: 'enProceso',
+      text: 'En Proceso'
+    },
+    {
+      value: 'entregado',
+      text: 'Entregado'
+    },
+    {
+      value: 'rechazado',
+      text: 'Rechazado'
+    }
+  ]
 
 
   constructor(private conductorService: ConductorService,

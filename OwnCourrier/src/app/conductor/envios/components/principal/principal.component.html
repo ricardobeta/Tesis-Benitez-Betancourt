@@ -10,99 +10,110 @@
                 </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
-                <div class="row ancho contenedor">
-                    <ng-container *ngFor="let envio of envios">
-                        <div class="col-xs-12 col-sm-6">
-                            <mat-card class="sombra">
-                                <ng-container *ngIf="envio.estado === 'enRuta'">
-                                    <p class="centro centrar"><small>Envío en proceso</small></p>
-                                    <mat-progress-bar mode="buffer"></mat-progress-bar>
-                                </ng-container>
-                                <ng-container *ngIf="envio.estado === 'enProceso'">
-                                    <p class="centro centrar" style="color: orange;"><mat-icon>watch_later</mat-icon><br><small>Envío pendiente</small></p>
-                                </ng-container>
-                                <ng-container *ngIf="envio.estado === 'entregado'">
-                                    <p class="centro centrar" style="color: green;"><mat-icon>check_circle</mat-icon><br><small>Envío entregado</small></p>
-                                </ng-container>
-                                <ng-container *ngIf="envio.estado === 'rechazado'">
-                                    <p class="centro centrar" style="color: red;"><mat-icon>cancel</mat-icon><br><small>Envío rechazado</small></p>
-                                </ng-container>
-
-
-                                <div class="row ancho margTop middle-xs">
-                                    <div class="col-xs-12 col-sm-4 centro centrar">
-                                        <div class="codigoQR" (click)="openDialog()">
-                                            <p>
-                                                <mat-icon>qr_code_scanner</mat-icon>
-                                            </p>
-                                            <p class="centro centrar">
-                                                Escanea el código QR
-                                            </p>
-                                        </div>
-                                        <!-- <qrcode [elementType]="'img'" [qrdata]="envio.$key" [width]="100" [errorCorrectionLevel]="'M'"></qrcode> -->
-                                    </div>
-                                    <div class="col-xs-12 col-sm-8 parrafo">
-                                        <b>ID:</b> {{envio.$key}} <br>
-                                        <b>Nombre cliente:</b> {{envio.cliente.nombreCompleto}} <br>
-                                        <b>Celular:</b> {{envio.cliente.celular}} <br>
-                                        <b>Dirección:</b> {{envio.direccion.descripcion}} <br>
-                                        <b>Fecha de entrega:</b> {{envio.fecha}} <br>
-                                        <ng-container *ngIf="envio.estado === 'enProceso'">
-                                            <b>Estado:</b> En Proceso <mat-icon class="icono-punto"
-                                                style="color: blue;">
-                                                circle</mat-icon>
-                                        </ng-container>
+                <ng-container *ngFor="let estado of estados">
+                    <h2 class="marg10">
+                        Estado: {{estado.text}}
+                    </h2>
+                    <div class="row ancho contenedor">
+                        <ng-container *ngFor="let envio of envios">
+                            <div class="col-xs-12 col-sm-6">
+                                <ng-container *ngIf="estado.value == envio.estado">
+                                    <mat-card class="sombra">
                                         <ng-container *ngIf="envio.estado === 'enRuta'">
-                                            <b>Estado:</b> En Ruta <mat-icon class="icono-punto" style="color: yellow;">
-                                                circle</mat-icon>
+                                            <p class="centro centrar"><small>Envío en proceso</small></p>
+                                            <mat-progress-bar mode="buffer"></mat-progress-bar>
+                                        </ng-container>
+                                        <ng-container *ngIf="envio.estado === 'enProceso'">
+                                            <p class="centro centrar" style="color: orange;"><mat-icon>watch_later</mat-icon><br><small>Envío pendiente</small></p>
                                         </ng-container>
                                         <ng-container *ngIf="envio.estado === 'entregado'">
-                                            <b>Estado:</b> Entregado <mat-icon class="icono-punto"
-                                                style="color: green;">
-                                                circle</mat-icon>
+                                            <p class="centro centrar" style="color: green;"><mat-icon>check_circle</mat-icon><br><small>Envío entregado</small></p>
                                         </ng-container>
                                         <ng-container *ngIf="envio.estado === 'rechazado'">
-                                            <b>Estado:</b> Rechazado <mat-icon class="icono-punto" style="color: red;">
-                                                circle</mat-icon>
+                                            <p class="centro centrar" style="color: red;"><mat-icon>cancel</mat-icon><br><small>Envío rechazado</small></p>
                                         </ng-container>
+        
+        
+                                        <div class="row ancho margTop middle-xs">
+                                            <div class="col-xs-12 col-sm-4 centro centrar">
+                                                <div class="codigoQR" (click)="openDialog()">
+                                                    <p>
+                                                        <mat-icon>qr_code_scanner</mat-icon>
+                                                    </p>
+                                                    <p class="centro centrar">
+                                                        Escanea el código QR
+                                                    </p>
+                                                </div>
+                                                <!-- <qrcode [elementType]="'img'" [qrdata]="envio.$key" [width]="100" [errorCorrectionLevel]="'M'"></qrcode> -->
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 parrafo">
+                                                <b>ID:</b> {{envio.$key}} <br>
+                                                <b>Nombre cliente:</b> {{envio.cliente.nombreCompleto}} <br>
+                                                <b>Celular:</b> {{envio.cliente.celular}} <br>
+                                                <b>Dirección:</b> {{envio.direccion.descripcion}} <br>
+                                                <b>Fecha de entrega:</b> {{envio.fecha}} <br>
+                                                <ng-container *ngIf="envio.estado === 'enProceso'">
+                                                    <b>Estado:</b> En Proceso <mat-icon class="icono-punto"
+                                                        style="color: blue;">
+                                                        circle</mat-icon>
+                                                </ng-container>
+                                                <ng-container *ngIf="envio.estado === 'enRuta'">
+                                                    <b>Estado:</b> En Ruta <mat-icon class="icono-punto" style="color: yellow;">
+                                                        circle</mat-icon>
+                                                </ng-container>
+                                                <ng-container *ngIf="envio.estado === 'entregado'">
+                                                    <b>Estado:</b> Entregado <mat-icon class="icono-punto"
+                                                        style="color: green;">
+                                                        circle</mat-icon>
+                                                </ng-container>
+                                                <ng-container *ngIf="envio.estado === 'rechazado'">
+                                                    <b>Estado:</b> Rechazado <mat-icon class="icono-punto" style="color: red;">
+                                                        circle</mat-icon>
+                                                </ng-container>
+        
+        
+        
+                                            </div>
+        
+                                        </div>
+        
+                                        <div class="row ancho">
+                                            <div class="col-xs-12">
+        
+                                                <b>Información Envío:</b>
+                                                <ul>
+                                                    <li><b>Descripción: </b>{{envio.infoEnvio.descripcion}}</li>
+                                                    <li><b>Tipo: </b>{{envio.infoEnvio.tipo}}</li>
+                                                    <li><b>Peso: </b>{{envio.infoEnvio.peso}} gr</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+        
+        
+        
+                                        <mat-card-actions class="centrar">
+                                            <button style="color: green;" mat-button>
+                                                <mat-icon>done</mat-icon> Entregado
+                                            </button>
+                                            <button mat-button>
+                                                <mat-icon>map</mat-icon> Ver mapa
+                                            </button>
+                                            <button style="color: red;" mat-button (click)="openDialogProblemas()">
+                                                <mat-icon class="material-icons-outlined">info</mat-icon> Reportar
+                                            </button>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                </ng-container>
+                                
+                                
+    
+                            </div>
+                        </ng-container>
+    
+                    </div>
+                </ng-container>
+                
 
-
-
-                                    </div>
-
-                                </div>
-
-                                <div class="row ancho">
-                                    <div class="col-xs-12">
-
-                                        <b>Información Envío:</b>
-                                        <ul>
-                                            <li><b>Descripción: </b>{{envio.infoEnvio.descripcion}}</li>
-                                            <li><b>Tipo: </b>{{envio.infoEnvio.tipo}}</li>
-                                            <li><b>Peso: </b>{{envio.infoEnvio.peso}} gr</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-
-                                <mat-card-actions class="centrar">
-                                    <button style="color: green;" mat-button>
-                                        <mat-icon>done</mat-icon> Entregado
-                                    </button>
-                                    <button mat-button>
-                                        <mat-icon>map</mat-icon> Ver mapa
-                                    </button>
-                                    <button style="color: red;" mat-button (click)="openDialogProblemas()">
-                                        <mat-icon class="material-icons-outlined">info</mat-icon> Reportar
-                                    </button>
-                                </mat-card-actions>
-                            </mat-card>
-
-                        </div>
-                    </ng-container>
-
-                </div>
 
 
 
