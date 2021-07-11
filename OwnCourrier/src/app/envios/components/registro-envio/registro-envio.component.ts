@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Envio } from 'src/app/core/models/envio.model';
+import { SendEmailService } from 'src/app/core/services/correo/send-email.service';
 import { EnvioService } from 'src/app/core/services/envios/envio.service';
 import { MyValidations } from 'src/app/core/utils/validadores';
 import { GuiaComponent } from '../guia/guia.component';
@@ -24,7 +25,7 @@ export class RegistroEnvioComponent implements OnInit {
   tipos = ['Postal', 'Alimentos', 'Mercaderia', 'Medico']
 
   constructor(private formBuilder: FormBuilder, private envioService: EnvioService, public dialog: MatDialog,
-    private router: Router, private ruta: ActivatedRoute) {
+    private router: Router, private ruta: ActivatedRoute, private emailService: SendEmailService) {
     this.buildFormCliente();
     this.buildFormDireccion();
     this.buildFormInfoEnvio();
@@ -95,10 +96,14 @@ export class RegistroEnvioComponent implements OnInit {
       }
       this.envioService.guardarEnvio(envio).then(
         value => {
-          envio.$key =  value.key
-          this.abrirGuia(envio);
-          this.router.navigate(['../'], {relativeTo: this.ruta})
-          this.loading = false
+          this.emailService.sendEmail(envio ,value.key).then(
+            () => {
+              envio.$key =  value.key
+              this.abrirGuia(envio);
+              this.router.navigate(['../'], {relativeTo: this.ruta})
+              this.loading = false
+            }
+          )
         }
       )
     }
