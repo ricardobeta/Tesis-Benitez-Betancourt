@@ -14,10 +14,10 @@
                     <h2 class="marg10">
                         Estado: {{estado.text}}
                     </h2>
-                    <div class="row ancho contenedor">
+                    <div class="row ancho contenedor start-xs">
                         <ng-container *ngFor="let envio of envios">
-                            <div class="col-xs-12 col-sm-6">
-                                <ng-container *ngIf="estado.value == envio.estado">
+                            <div class="col-xs-12 col-sm-6" *ngIf="estado.value == envio.estado">
+                                <ng-container >
                                     <mat-card class="sombra">
                                         <ng-container *ngIf="envio.estado === 'enRuta'">
                                             <p class="centro centrar"><small>Envío en proceso</small></p>
