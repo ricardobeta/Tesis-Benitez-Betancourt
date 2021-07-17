@@ -32,10 +32,10 @@
             </ng-container>
             <ng-container *ngIf="urlLogo.value !== ''">
                 <div class="logo" *ngIf="file.value === null">
-                    <img style="border-radius: 20px;" height="200px" src="{{urlLogo.value}}" alt="">
+                    <img style="border-radius: 20px;" height="150px" src="{{urlLogo.value}}" alt="">
 
                 </div>
-                <div *ngIf="file.value === null && imagenCargada === true">
+                <div *ngIf="urlLogo.value !== null && imagenCargada === true">
 
                     <input class="ng-hide " id="input-file-id" accept=".png, .jpg" (change)="cargarFotoPerfil($event)"
                         type="file" />
@@ -45,19 +45,7 @@
                 </div>
 
             </ng-container>
-            <div class="row" class="but-suss" *ngIf="file.value !== null && imagenCargada === false">
-                <div class="col-xs-12">
-                    <mat-icon id="per">camera_alt</mat-icon>
-                </div>
-                <div class="col-xs-12">
-                    Imagen Cargada Correctamente
-                </div>
-                <div class="col-xs-12">
-                    <button mat-raised-button color="primary" type="button" (click)="eliminarFotoPerfil()">
-                        Eliminar Imagen
-                    </button>
-                </div>
-            </div>
+
         </div>
 
 

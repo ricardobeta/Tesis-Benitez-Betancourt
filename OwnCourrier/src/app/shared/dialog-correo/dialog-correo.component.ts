@@ -37,8 +37,7 @@ export class DialogCorreoComponent implements OnInit {
   recuperarContrasena() {
     console.log(this.correoRecuperacion.value);
 
-    this.negocioService.cambiarEmail(this.correoRecuperacion.value).then(correoR => {
-      console.log(correoR);
+    this.negocioService.cambiarEmail(this.correoRecuperacion.value).then(() => {
       this.toastr.success('Su petición se ha enviado exitosamente', 'Enviado');
     }).catch (error => {
       console.log(error.code);

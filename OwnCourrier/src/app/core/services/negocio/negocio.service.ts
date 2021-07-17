@@ -58,7 +58,7 @@ export class NegocioService {
   cambiarEmail(newEmail: string) {
     return this.auth.currentUser.then(
       user => {
-        return user.updateEmail(newEmail)
+        user.updateEmail(newEmail)
       }
     )
   }
