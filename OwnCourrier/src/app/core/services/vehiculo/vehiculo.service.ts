@@ -36,4 +36,11 @@ export class VehiculoService {
     listaVehiculosNoAsignados() {
       return this.db.list(`Negocios/${this.negocioService.idNegocio.value}/vehiculos`, ref => ref.orderByChild('asignado').equalTo(false)).snapshotChanges()
     }
+
+    eliminarVehiculo(vehiculo: Vehiculo) {
+      this.storage.ref(`Vehiculos/${vehiculo.pathMatricula}`).delete().subscribe(() => {
+        // tslint:disable-next-line: no-string-literal
+        this.db.list(`Negocios/${this.negocioService.idNegocio.value}/vehiculos`).remove(vehiculo['$key']);
+      });
+    }
 }
