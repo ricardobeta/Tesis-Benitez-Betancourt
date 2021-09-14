@@ -89,4 +89,12 @@ export class ConductorService {
     return this.db.list(`Negocios/${conductor.keyNegocio}/envios`, ref => ref.orderByChild('keyConductor').equalTo(this.negocioService.idConductor.value)).snapshotChanges()
   }
 
+  eliminarConductor(conductor: Conductor) {
+    this.storage.ref(`Conductores/${conductor.pathFoto}`).delete().subscribe(() => {
+      this.storage.ref(`Conductores/${conductor.pathLicencia}`).delete().subscribe(() => {
+        this.db.list('Conductores').remove(conductor['$key']);
+      })
+    });
+  }
+
 }

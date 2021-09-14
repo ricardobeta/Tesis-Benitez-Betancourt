@@ -6,10 +6,11 @@ import { MaterialModule } from '../material/material.module';
 import { DialogPasswComponent } from './dialog-passw/dialog-passw.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogCorreoComponent } from './dialog-correo/dialog-correo.component';
+import { DialogEliminarComponent } from './dialog-eliminar/dialog-eliminar/dialog-eliminar.component';
 
 
 @NgModule({
-  declarations: [MapaComponent, DialogPasswComponent, DialogCorreoComponent],
+  declarations: [MapaComponent, DialogPasswComponent, DialogCorreoComponent, DialogEliminarComponent],
   imports: [
     CommonModule,
     LeafletModule,

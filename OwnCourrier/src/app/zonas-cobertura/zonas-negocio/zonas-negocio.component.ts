@@ -90,7 +90,11 @@ export class ZonasNegocioComponent implements OnInit {
 
     const $sub = this.negocioService.recuperarCentral().subscribe(
       (central: Central) => {
-        this.iconoMovible.setLatLng(latLng(central.latitud, central.longitud))
+        if (central === undefined || central.latitud === undefined || central.longitud === undefined) {
+          this.iconoMovible.setLatLng(latLng(-0.1834136, -78.474397));
+        } else {
+          this.iconoMovible.setLatLng(latLng(central.latitud, central.longitud));
+        }
         $sub.unsubscribe()
       }
     )

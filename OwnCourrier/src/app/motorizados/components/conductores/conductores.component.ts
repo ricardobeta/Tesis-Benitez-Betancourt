@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Conductor } from 'src/app/core/models/conductor.model';
 import { ConductorService } from 'src/app/core/services/conductor/conductor.service';
 import { AsignacionComponent } from '../asignacion/asignacion.component';
+import { DialogEliminarComponent } from '../../../shared/dialog-eliminar/dialog-eliminar/dialog-eliminar.component';
 
 @Component({
   selector: 'app-conductores',
@@ -18,6 +19,8 @@ export class ConductoresComponent implements OnInit {
   dataSource = new MatTableDataSource<Conductor>();
   displayedColumns: string[] = ['foto', 'cedula', 'nombreCompleto', 'celular', 'fecha', 'estado', 'acciones'];
   conductor: Conductor;
+  dialogRef;
+  eliminarDato;
 
   constructor(private conductorService: ConductorService, public dialog: MatDialog,
               private toast: ToastrService) { }
@@ -50,6 +53,30 @@ export class ConductoresComponent implements OnInit {
         if(result === 'Guardado Exitosamente') {
           this.toast.success('Se Asigno Correctamente')
         }
+    });
+  }
+
+  eliminarConductor(aux) {
+
+    //const aux =  this.dataSource.data.splice(i, 1)[0] as Conductor;
+    console.log(aux);
+     //this.dataSource._updateChangeSubscription();
+     //this.conductorService.eliminarConductor(aux);
+     //console.log('dato no eliminado');
+   }
+
+  openDialogEliminar(i: number) {
+    this.dialogRef = this.dialog.open(DialogEliminarComponent);
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      this.eliminarDato = result;
+      console.log(this.eliminarDato);
+      if (this.eliminarDato === true) {
+        this.eliminarConductor(i);
+        console.log('dato eliminado');
+      } else {
+        console.log('dato no eliminado');
+      }
     });
   }
 }
