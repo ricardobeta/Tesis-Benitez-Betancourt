@@ -21,7 +21,6 @@ export class ClienteService {
 
   conseguirEnvio(keyEmpresa, keyEnvio){
     return this.db.object(`Negocios/${keyEmpresa}/envios/${keyEnvio}`).snapshotChanges();
-  }
-    
+  }    
 }
 

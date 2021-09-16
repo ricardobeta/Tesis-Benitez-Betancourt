@@ -38,18 +38,23 @@
                 <table mat-table [dataSource]="dataSource" class="ancho" style="position: sticky;">
                     <ng-container matColumnDef="Cedula">
                         <th mat-header-cell *matHeaderCellDef> Cédula </th>
-                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.cliente.cedula}} </td>
                     </ng-container>
                     
                     <ng-container matColumnDef="Nombre">
                         <th mat-header-cell *matHeaderCellDef> Nombre cliente </th>
-                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.cliente.nombreCompleto}} </td>
                     </ng-container>
 
 
                     <ng-container matColumnDef="Direccion">
                         <th mat-header-cell *matHeaderCellDef> Dirección </th>
-                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.direccion.descripcion}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Celular">
+                        <th mat-header-cell *matHeaderCellDef> Celular </th>
+                        <td mat-cell *matCellDef="let element"> {{element.cliente.celular}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="Pedidos">
@@ -67,17 +72,6 @@
                             <button mat-icon-button matTooltip="Eliminar">
                                 <mat-icon>delete</mat-icon>
                             </button>
-
-                            <button mat-icon-button matTooltip="Copiar url">
-                                <mat-icon>file_copy</mat-icon>
-                            </button>
-
-                            <!-- <button mat-icon-button matTooltip="Vista previa">
-                                <mat-icon>visibility</mat-icon>
-                            </button> -->
-
-                            <mat-slide-toggle class="example-margin" [checked]="element.estado" color="warn">
-                            </mat-slide-toggle>
 
                         </td>
                     </ng-container>

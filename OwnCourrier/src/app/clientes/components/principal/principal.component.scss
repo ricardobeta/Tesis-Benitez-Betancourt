@@ -8,3 +8,45 @@
 .icono-punto{
     font-size: 10px;
 }
+
+.info{
+    right: 10%;
+    font-size: 12px;
+    color: gray;
+}
+
+.icono-punto{
+    font-size: 10px;
+}
+
+table td  {
+    text-align: -webkit-center;
+    text-align: -moz-center;
+    font-size: 12px;
+}
+
+table th {
+    text-align: -webkit-center;
+    text-align: -moz-center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+@media screen and (max-width: 700px) {
+    .listaConductores {
+        overflow-x: scroll;
+        
+    }
+}
+
+.green{
+    color: green;
+}
+
+.red{
+    color: red;
+}
+
+.orange{
+    color: orange;
+}
