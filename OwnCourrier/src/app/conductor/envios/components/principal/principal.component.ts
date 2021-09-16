@@ -88,6 +88,13 @@ export class PrincipalComponent implements OnInit {
   }
 
   
+  openURLmapa (url:string) {
+    window.open(url, "_blank");
+  }
+
+  cambioEstado(key, estado) {
+    this.envioService.cambioEstadoEnvio(key,estado)
+  }
 
 
 }

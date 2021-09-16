@@ -92,10 +92,10 @@
         
         
                                         <mat-card-actions class="centrar">
-                                            <button style="color: green;" mat-button>
+                                            <button style="color: green;" mat-button (click)="cambioEstado(envio.$key,'entregado')">
                                                 <mat-icon>done</mat-icon> Entregado
                                             </button>
-                                            <button mat-button>
+                                            <button mat-button (click)="openURLmapa(envio.direccion.urlMapa)">
                                                 <mat-icon>map</mat-icon> Ver mapa
                                             </button>
                                             <button style="color: red;" mat-button (click)="openDialogProblemas()">
