@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Router } from '@angular/router';
 import { Conductor } from '../../models/conductor.model';
 import { NegocioService } from '../negocio/negocio.service';
 
@@ -12,7 +13,8 @@ export class ConductorService {
   constructor(private db: AngularFireDatabase,
     private storage: AngularFireStorage,
     private auth: AngularFireAuth,
-    private negocioService: NegocioService) {
+    private negocioService: NegocioService,
+    private router: Router) {
 
   }
 
@@ -81,7 +83,7 @@ export class ConductorService {
     return this.db.object(`Conductores/${keyConductor}`).update({ keyZona })
   }
 
-  conseguirConductor(key){
+  conseguirConductor(key) {
     return this.db.object(`Conductores/${key}`).snapshotChanges();
   }
 
@@ -94,6 +96,16 @@ export class ConductorService {
       this.storage.ref(`Conductores/${conductor.pathLicencia}`).delete().subscribe(() => {
         this.db.list('Conductores').remove(conductor['$key']);
       })
+    })
+  }
+
+  recuperarConductorID(id) {
+    const sub$ = this.db.object(`Conductores/${id}`).snapshotChanges().subscribe(aux => {
+      const conductor = aux.payload.toJSON() as Conductor;
+      console.log(conductor)
+      this.negocioService.idConductor.next(id);
+      this.negocioService.idNegocio.next(conductor.keyNegocio);
+      sub$.unsubscribe();
     });
   }
 
