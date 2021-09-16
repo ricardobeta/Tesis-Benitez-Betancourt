@@ -19,6 +19,8 @@ export class InicioComponent implements OnInit {
 
   banderaCargando = true;
   conductor: Conductor;
+  totalEnviospendientes = 0;
+  totalEnviosRealizados = 0;
 
 
   constructor(private negociosService: NegocioService,
