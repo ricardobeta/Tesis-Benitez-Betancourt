@@ -17,20 +17,15 @@ export class ScannerComponent implements OnInit, OnDestroy {
   escanear = true;
   constructor(public dialogRef: MatDialogRef<ScannerComponent>) { }
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    this.scanner = undefined
   }
 
   ngOnInit(): void {
-    
   }
 
   onNoClick(): void {
     this.escanear = false;
     this.dialogRef.close();
-    
-    // setTimeout(() => { 
-    //   this.dialogRef.close();
-    // }, 500)
   }
 
   scanSuccessHandler(event) {

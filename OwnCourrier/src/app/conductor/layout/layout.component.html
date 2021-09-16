@@ -1,4 +1,4 @@
-<ng-container>
+<ng-container *ngIf="bandera; else loading">
     <mat-sidenav-container class="sidenav-container">
       <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
@@ -29,3 +29,11 @@
     </mat-sidenav-container>
   </ng-container>
   
+  <ng-template #loading>
+    <div class="row center-xs middle-xs contenedorL">
+        
+            <mat-spinner id="loading"></mat-spinner>
+            <h1>CARGANDO...</h1>
+        
+    </div>
+  </ng-template>
