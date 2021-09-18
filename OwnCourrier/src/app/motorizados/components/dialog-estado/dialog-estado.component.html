@@ -1,0 +1,18 @@
+<label id="example-radio-group-label">Selecciona una opción:</label>
+<mat-dialog-content class="mat-typography">
+    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
+        <mat-radio-button color="warn" class="example-radio-button" *ngFor="let estado of estados" value="{{estado.value}}">
+             {{estado.title}}
+        </mat-radio-button>
+    </mat-radio-group>
+
+    
+</mat-dialog-content>
+<mat-dialog-actions class="centro centrar">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>
+        <mat-icon>sync</mat-icon> Cambiar
+    </button>
+    <button mat-button mat-dialog-close>
+        <mat-icon>close</mat-icon>Cancel
+    </button>
+</mat-dialog-actions>
