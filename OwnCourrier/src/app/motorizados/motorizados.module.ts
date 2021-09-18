@@ -10,10 +10,11 @@ import { CrearConductorComponent } from './components/crear-conductor/crear-cond
 import { ReactiveFormsModule } from '@angular/forms';
 import { CrearVehiculoComponent } from './components/crear-vehiculo/crear-vehiculo.component';
 import { AsignacionComponent } from './components/asignacion/asignacion.component';
+import { DialogEstadoComponent } from './components/dialog-estado/dialog-estado.component';
 
 
 @NgModule({
-  declarations: [PrincipalComponent, ConductoresComponent, VehiculosComponent, CrearConductorComponent, CrearVehiculoComponent, AsignacionComponent],
+  declarations: [PrincipalComponent, ConductoresComponent, VehiculosComponent, CrearConductorComponent, CrearVehiculoComponent, AsignacionComponent, DialogEstadoComponent],
   imports: [
     CommonModule,
     MotorizadosRoutingModule,

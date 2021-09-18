@@ -38,7 +38,7 @@ export class VehiculoService {
     }
 
     eliminarVehiculo(vehiculo: Vehiculo) {
-      this.storage.ref(`Vehiculos/${vehiculo.pathMatricula}`).delete().subscribe(() => {
+      this.storage.ref(`Vehiculos/${vehiculo.pathMatricula}.jpg`).delete().subscribe(() => {
         // tslint:disable-next-line: no-string-literal
         this.db.list(`Negocios/${this.negocioService.idNegocio.value}/vehiculos`).remove(vehiculo['$key']);
       });

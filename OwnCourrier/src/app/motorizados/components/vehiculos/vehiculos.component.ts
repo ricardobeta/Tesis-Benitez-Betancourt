@@ -5,6 +5,7 @@ import { Vehiculo } from 'src/app/core/models/vehiculo.model';
 import { VehiculoService } from 'src/app/core/services/vehiculo/vehiculo.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEliminarComponent } from '../../../shared/dialog-eliminar/dialog-eliminar/dialog-eliminar.component';
+import { DialogEstadoComponent } from '../dialog-estado/dialog-estado.component';
 
 @Component({
   selector: 'app-vehiculos',
@@ -40,7 +41,6 @@ export class VehiculosComponent implements OnInit {
      // console.log(aux);
      this.dataSource._updateChangeSubscription();
      this.vehiculoService.eliminarVehiculo(aux);
-     console.log('dato no eliminado');
  
   }
 
@@ -57,6 +57,10 @@ export class VehiculosComponent implements OnInit {
         console.log('dato no eliminado');
       }
     });
+  }
+
+  openDialogEstados() {
+    const dialogRef = this.dialog.open(DialogEstadoComponent);
   }
 
   applyFilter(event: Event) {

@@ -7,6 +7,7 @@ import { Envio } from 'src/app/core/models/envio.model';
 import { EnvioService } from 'src/app/core/services/envios/envio.service';
 import { GuiaComponent } from '../guia/guia.component';
 import { InfoEnvioComponent } from '../info-envio/info-envio.component';
+import { DialogEliminarComponent } from '../../../shared/dialog-eliminar/dialog-eliminar/dialog-eliminar.component';
 
 @Component({
   selector: 'app-principal',
@@ -18,6 +19,8 @@ export class PrincipalComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   dataSource = new MatTableDataSource<Envio>();
   displayedColumns: string[] = ['Cedula', 'Nombre_cliente', 'Celular', 'Dir_url', 'Fecha', 'Estado', 'Acciones'];
+  dialogRef;
+  eliminarDato;
 
   constructor(private envioService: EnvioService, 
               public dialog: MatDialog,
@@ -54,6 +57,30 @@ export class PrincipalComponent implements OnInit {
   openBottomSheet(envioRecibido): void {
     const bottomSheetRef = this.bottomSheet.open(InfoEnvioComponent, {
       data: { envio: envioRecibido },
+    });
+  }
+
+  eliminarEnvio(aux) {
+
+    // const aux =  this.dataSource.data.splice(i, 1)[0] as Producto;
+     // console.log(aux);
+     this.dataSource._updateChangeSubscription();
+     this.envioService.eliminarEnvio(aux);
+    
+  }
+
+  openDialog(i) {
+    this.dialogRef = this.dialog.open(DialogEliminarComponent);
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      this.eliminarDato = result;
+      console.log(this.eliminarDato);
+      if (this.eliminarDato === true) {
+        this.eliminarEnvio(i);
+        console.log('dato eliminado');
+      } else {
+        console.log('dato no eliminado');
+      }
     });
   }
 
