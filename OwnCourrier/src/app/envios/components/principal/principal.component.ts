@@ -29,6 +29,7 @@ export class PrincipalComponent implements OnInit {
   ngOnInit(): void {
     this.envioService.listaEnvios().subscribe(
       enviosDB => {
+        this.dataSource.data = [];
         enviosDB.forEach(
           envioAux => {
             const envio:any = envioAux.payload.toJSON();
@@ -78,6 +79,7 @@ export class PrincipalComponent implements OnInit {
       if (this.eliminarDato === true) {
         this.eliminarEnvio(i);
         console.log('dato eliminado');
+        this.dataSource._updateChangeSubscription();
       } else {
         console.log('dato no eliminado');
       }
