@@ -95,4 +95,8 @@ export class EnvioService {
   cambioEstadoEnvio(keyEnvio, estado:string) {
     return this.db.object(`Negocios/${this.negocioService.idNegocio.value}/envios/${keyEnvio}`).update({estado});
   }
+
+  eliminarEnvio(envio: Envio) {
+    this.db.list(`Negocios/${this.negocioService.idNegocio.value}/envios`).remove(envio.$key);
+  }
 }
