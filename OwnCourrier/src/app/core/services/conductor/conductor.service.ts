@@ -92,9 +92,9 @@ export class ConductorService {
   }
 
   eliminarConductor(conductor: Conductor) {
-    this.storage.ref(`Conductores/${conductor.pathFoto}`).delete().subscribe(() => {
-      this.storage.ref(`Conductores/${conductor.pathLicencia}`).delete().subscribe(() => {
-        this.db.list('Conductores').remove(conductor['$key']);
+    this.storage.ref(`Conductores/${conductor.pathFoto}.jpg`).delete().subscribe(() => {
+      this.storage.ref(`Conductores/${conductor.pathLicencia}.jpg`).delete().subscribe(() => {
+        this.db.list('Conductores').remove(conductor.$key);
       })
     })
   }

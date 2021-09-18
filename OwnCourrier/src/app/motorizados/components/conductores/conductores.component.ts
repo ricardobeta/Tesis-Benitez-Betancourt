@@ -60,8 +60,8 @@ export class ConductoresComponent implements OnInit {
 
     //const aux =  this.dataSource.data.splice(i, 1)[0] as Conductor;
     console.log(aux);
-     //this.dataSource._updateChangeSubscription();
-     //this.conductorService.eliminarConductor(aux);
+    this.dataSource._updateChangeSubscription();
+    this.conductorService.eliminarConductor(aux);
      //console.log('dato no eliminado');
    }
 

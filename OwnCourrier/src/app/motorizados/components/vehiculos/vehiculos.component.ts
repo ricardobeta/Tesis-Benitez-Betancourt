@@ -40,7 +40,6 @@ export class VehiculosComponent implements OnInit {
      // console.log(aux);
      this.dataSource._updateChangeSubscription();
      this.vehiculoService.eliminarVehiculo(aux);
-     console.log('dato no eliminado');
  
   }
 
