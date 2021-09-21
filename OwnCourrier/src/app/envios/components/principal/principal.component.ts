@@ -9,6 +9,15 @@ import { GuiaComponent } from '../guia/guia.component';
 import { InfoEnvioComponent } from '../info-envio/info-envio.component';
 import { DialogEliminarComponent } from '../../../shared/dialog-eliminar/dialog-eliminar/dialog-eliminar.component';
 
+interface EnviosTable {
+  Cedula: string
+  Nombre_cliente: string
+  Celular: string
+  Dir_url: string
+  Fecha: string
+  Estado: string
+}
+
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
@@ -17,7 +26,7 @@ import { DialogEliminarComponent } from '../../../shared/dialog-eliminar/dialog-
 export class PrincipalComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  dataSource = new MatTableDataSource<Envio>();
+  dataSource = new MatTableDataSource<EnviosTable>();
   displayedColumns: string[] = ['Cedula', 'Nombre_cliente', 'Celular', 'Dir_url', 'Fecha', 'Estado', 'Acciones'];
   dialogRef;
   eliminarDato;
@@ -27,20 +36,20 @@ export class PrincipalComponent implements OnInit {
               private bottomSheet: MatBottomSheet) { }
 
   ngOnInit(): void {
-    this.envioService.listaEnvios().subscribe(
-      enviosDB => {
-        this.dataSource.data = [];
-        enviosDB.forEach(
-          envioAux => {
-            const envio:any = envioAux.payload.toJSON();
-            envio.$key = envioAux.key;
-            this.dataSource.data.push(envio);
-            this.dataSource._updateChangeSubscription()
-          }
-        );
-        this.dataSource.paginator = this.paginator;
-      }
-    );
+    this.envioService.listaEnvios().subscribe(envios => {
+      this.dataSource.data = envios.reverse().map(envio => {
+        const auxEnvio = envio.payload.toJSON() as Envio;
+        return {
+          Cedula: auxEnvio.cliente.cedula,
+          Nombre_cliente: auxEnvio.cliente.nombreCompleto,
+          Celular: auxEnvio.cliente.celular,
+          Dir_url: auxEnvio.direccion.descripcion,
+          Fecha: auxEnvio.fecha,
+          Estado: auxEnvio.estado
+        } as EnviosTable
+      })
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   applyFilter(event: Event) {

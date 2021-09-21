@@ -8,6 +8,15 @@ import { ConductorService } from 'src/app/core/services/conductor/conductor.serv
 import { AsignacionComponent } from '../asignacion/asignacion.component';
 import { DialogEliminarComponent } from '../../../shared/dialog-eliminar/dialog-eliminar/dialog-eliminar.component';
 
+interface ConductoresTable {
+  foto: string
+  cedula: string
+  nombreCompleto: string
+  celular: string
+  fecha: string
+  estado: string
+}
+
 @Component({
   selector: 'app-conductores',
   templateUrl: './conductores.component.html',
@@ -16,7 +25,7 @@ import { DialogEliminarComponent } from '../../../shared/dialog-eliminar/dialog-
 export class ConductoresComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  dataSource = new MatTableDataSource<Conductor>();
+  dataSource = new MatTableDataSource<ConductoresTable>();
   displayedColumns: string[] = ['foto', 'cedula', 'nombreCompleto', 'celular', 'fecha', 'estado', 'acciones'];
   conductor: Conductor;
   dialogRef;
@@ -27,11 +36,16 @@ export class ConductoresComponent implements OnInit {
 
   ngOnInit(): void {
     this.conductorService.listaConductores().subscribe(conductores => {
-      this.dataSource.data = [];
-      conductores.forEach(conductor => {
-        const auxConductor: any = conductor.payload.toJSON();
-        auxConductor.$key = conductor.key;
-        this.dataSource.data.push(auxConductor as Conductor);
+      this.dataSource.data = conductores.map(conductor => {
+        const auxConductor = conductor.payload.toJSON() as Conductor;
+        return {
+          foto: auxConductor.urlFoto,
+          cedula: auxConductor.cedula,
+          nombreCompleto: auxConductor.nombreCompleto,
+          celular: auxConductor.celular,
+          fecha: auxConductor.fechaNacimiento,
+          estado: auxConductor.estado
+        }
       })
       this.dataSource.paginator = this.paginator;
     });

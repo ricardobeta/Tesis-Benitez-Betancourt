@@ -36,7 +36,6 @@ export class PrincipalComponent implements OnInit {
       this.dataSource.data = envios.reverse().map(
         envio => {
           const auxEnvio = envio.payload.toJSON() as Envio;
-          // recuperar #pedidos por cliente
           return {
             Cedula: auxEnvio.cliente.cedula,
             Celular: auxEnvio.cliente.celular,
