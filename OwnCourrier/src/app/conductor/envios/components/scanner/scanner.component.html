@@ -1,7 +1,11 @@
-<div class="row ancho">
-    <div class="colsx-12">
+
+v1<div class="row ancho margTop">
+    <div class="col-xs-12">
+        <button mat-raised-button (click)="escanear = !escanear"> {{ escanear? 'Apagar Camara':'Prender Camara'}}</button>
+    </div>
+    <div class="col-sx-12">
         <mat-dialog-content>
-            <zxing-scanner [enable]="escanear" (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
+            <zxing-scanner [enable]="escanear" (scanSuccess)="scanSuccessHandler($event)" ></zxing-scanner>
             <mat-list *ngIf="id !== ''">
                 <div mat-subheader>Pedido</div>
                 <mat-list-item >

@@ -14,10 +14,11 @@ export class ScannerComponent implements OnInit, OnDestroy {
   devices = []
   desiredDevice;
   id = ''
-  escanear = true;
-  constructor(public dialogRef: MatDialogRef<ScannerComponent>) { }
+  escanear = false;
+  constructor() { }
   ngOnDestroy(): void {
-    this.scanner = undefined
+    this.escanear = false;
+    this.scanner = undefined;
   }
 
   ngOnInit(): void {
@@ -25,13 +26,13 @@ export class ScannerComponent implements OnInit, OnDestroy {
 
   onNoClick(): void {
     this.escanear = false;
-    this.dialogRef.close();
+    //this.dialogRef.close();
   }
 
   scanSuccessHandler(event) {
     this.id = event
     this.escanear = false;
-    this.dialogRef.close(this.id);
+    //this.dialogRef.close(this.id);
   }
 
 

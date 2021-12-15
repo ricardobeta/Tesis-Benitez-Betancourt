@@ -8,6 +8,7 @@ import { ScannerComponent } from '../scanner/scanner.component';
 import { EnvioService } from 'src/app/core/services/envios/envio.service';
 import { ToastrService } from 'ngx-toastr';
 import { DialogProblemasComponent } from '../dialog-problemas/dialog-problemas.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-principal',
@@ -45,7 +46,9 @@ export class PrincipalComponent implements OnInit {
               private negociosService: NegocioService,
               private envioService: EnvioService,
               public dialog: MatDialog,
-              private toast: ToastrService) { }
+              private toast: ToastrService,
+              private route: Router,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.negociosService.idConductor.subscribe(idConductor => {
@@ -66,17 +69,18 @@ export class PrincipalComponent implements OnInit {
 
   }
 
-  openDialog() {
-    const ref = this.dialog.open(ScannerComponent);
-    ref.afterClosed().subscribe(
-      id => {
-        if(id) {
-          this.envioService.envioEnruta(id).then(
-            () => this.toast.success("Envio cargado correctamente")
-          )
-        }
-      }
-    )
+  openDialog(id: string) {
+    this.route.navigate([`./scanner/${id}`], {relativeTo: this.activatedRoute})
+    // const ref = this.dialog.open(ScannerComponent);
+    // ref.afterClosed().subscribe(
+    //   id => {
+    //     if(id) {
+    //       this.envioService.envioEnruta(id).then(
+    //         () => this.toast.success("Envio cargado correctamente")
+    //       )
+    //     }
+    //   }
+    // )
   }
 
 
